@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.ResumeDao">
+    <insert id="insertResume">
+        INSERT INTO T_RESUME  VALUES(
+        #{R_ID},#{R_VID} ,#{R_NAME} ,#{R_SEX} ,#{R_NATION} ,#{R_BIR} ,#{R_NATIVE_PLACE} ,
+        #{R_POL_STA},#{R_HEIGTH} ,#{R_WEIGTH} ,#{R_HEALTH} ,#{R_ENGLISH} , #{R_EDU},#{R_MAJOR} , #{R_IDC},#{R_PHONE} ,
+        #{R_ADD} , #{R_SCHOOL},#{R_GRA} , #{R_SALARY},#{R_JOB} ,#{R_HOBBY} ,#{R_SELF})
+    </insert>
+    <update id="updateResumeById">
+        UPDATE T_RESUME
+        <set>
+        R_VID=#{R_VID},R_NAME=#{R_NAME},R_SEX=#{R_SEX},
+        R_NATION=#{R_NATION},R_BIR=#{R_BIR},R_NATIVE_PLACE=#{R_NATIVE_PLACE},
+        R_POL_STA=#{R_POL_STA},R_HEIGTH=#{R_HEIGTH} ,R_WEIGTH=#{R_WEIGTH} ,R_HEALTH=#{R_HEALTH} ,
+        R_ENGLISH=#{R_ENGLISH} ,R_EDU= #{R_EDU},R_MAJOR=#{R_MAJOR} , R_IDC=#{R_IDC},R_PHONE=#{R_PHONE} ,
+        R_ADD=#{R_ADD} ,R_SCHOOL=#{R_SCHOOL},R_GRA=#{R_GRA} ,R_SALARY= #{R_SALARY},R_JOB=#{R_JOB} ,R_HOBBY=#{R_HOBBY} ,
+        R_SELF=#{R_SELF}
+    </set>
+  <where>r_id=#{r_id}</where>
+    </update>
+    <delete id="deleteResumeById">
+        DELETE  FROM T_RESUME WHERE R_ID=#{r_id}
+    </delete>
+    <select id="selectResumeByVid" resultType="com.oumae.model.Resume">
+        SELECT * FROM T_RESUME WHERE R_VID=#{r_vid}
+    </select>
+
+</mapper>
