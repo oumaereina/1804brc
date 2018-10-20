@@ -18,5 +18,6 @@
 <body>
 ${requestScope.msg}
 ${requestScope.visitor}
+<a href="../../pages/resume.jsp">查看简历</a>
 </body>
 </html>

@@ -16,18 +16,40 @@ public class ResumeServiceImpl implements ResumeService{
     @Resource
     private ResumeDao resumeDao;
     public boolean insertResume(Resume resume) {
+        if(resume!=null){
+            Integer row = resumeDao.insertResume(resume);
+            if(row==1){
+                return true;
+            }
+        }
         return false;
     }
 
     public boolean deleteResumeById(Integer r_id) {
+        if(r_id!=null){
+            Integer row = resumeDao.deleteResumeById(r_id);
+            if(row==1){
+                return true;
+            }
+        }
         return false;
     }
 
     public boolean updateResumeById(Resume resume) {
+        if(resume!=null){
+            Integer row = resumeDao.updateResumeById(resume);
+            if(row==1){
+                return true;
+            }
+        }
         return false;
     }
 
     public List<Resume> selectResumeByVid(Integer r_vid) {
+        if(r_vid!=null){
+            List<Resume> resumes = resumeDao.selectResumeByVid(r_vid);
+            return resumes;
+        }
         return null;
     }
 }

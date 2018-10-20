@@ -17,9 +17,22 @@
 </head>
 <body>
 <form action="visitor/visitorLogin" method="post">
-    账号：<input name="v_name"><br>
-    密码：<input name="v_pass" type="password"><br>
-    <input type="submit" value="登录">
+    <table>
+        <tr>
+            <td> 账号：</td>
+            <td><input name="v_name"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td><input name="v_pass" type="password"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="登录"></td>
+        </tr>
+        <tr><td><p style="color: crimson">${requestScope.msg}</p></td></tr>
+    </table>
 </form>
 <a href="pages/visitorRegister.jsp">游客注册</a>
 </body>

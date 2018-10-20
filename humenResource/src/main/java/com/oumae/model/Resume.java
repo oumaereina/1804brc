@@ -15,7 +15,7 @@ public class Resume {
     private String r_pol_sta;/*政治面貌*/
     private Double r_height;
     private Double r_weight;
-    private String r_health;
+    private String r_health;/*电子信箱*/
     private String r_english;
     private String r_edu;
     private String r_major;
@@ -26,7 +26,7 @@ public class Resume {
     private String r_gra;/*毕业日期*/
     private Double r_salary;
     private String r_job;
-    private String r_hobby;
+    private String r_hobby;/*工作地点/意向行业/意向岗位/工作要求*/
     private String r_self;/*自我评价*/
 
     public Resume(Integer r_id, Integer r_vid, String r_name, String r_sex, String r_nation, String r_bir, String r_native_place, String r_pol_sta, String r_health, String r_english, String r_edu, String r_major, Integer r_idc, Integer r_phone, String r_add, String r_school, String r_gra, Double r_salary, String r_job, String r_hobby, String r_self) {
