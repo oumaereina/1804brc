@@ -39,7 +39,7 @@
             <td><p id="p2"></p></td>
         </tr>
         <tr>
-            <td><input type="submit" value="注册"></td>
+            <td><input type="submit" value="注册" id="register"></td>
         </tr>
     </table>
 
@@ -58,6 +58,7 @@
                        $("#p1").html("可以注册")
                    }else {
                        $("#p1").html("已存在用户名")
+                       $("#register").disabled()
                    }
                }
            })
@@ -68,6 +69,7 @@
            var c_pass=$("#checkPass").val()
            if(v_pass!=c_pass){
                $("#p2").html("两次密码输入不一致")
+               $("#register").disabled()
            }else {
                $("#p2").html("")
            }

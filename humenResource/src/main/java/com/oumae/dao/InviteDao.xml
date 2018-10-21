@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.InviteDao">
+    <insert id="insertInvite">
+        INSERT INTO T_INVITE VALUES (VISITOR_SQL.nextval,#{I_VID},#{I_STATE})
+    </insert>
+    <select id="selectInviteByVid" resultType="com.oumae.model.Invite">
+        SELECT * FROM T_INVITE WHERE I_VID=#{I_VID} and I_STATE=0
+    </select>
+</mapper>

@@ -12,4 +12,5 @@ public interface ResumeService {
     boolean deleteResumeById(Integer r_id);
     boolean updateResumeById(Resume resume);
     List<Resume> selectResumeByVid(Integer r_vid);
+    List<Resume> selectResumeByState(Integer r_state);
 }

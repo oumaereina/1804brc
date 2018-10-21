@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.EmploymentDao">
+    <insert id="insertEmp">
+        INSERT INTO T_EMPLOYMENT
+        (EM_ID, EM_COMPONY, EM_POST, EM_PEOPLE, EM_ADD, EM_EDU, EM_SALARY, EM_EXP, EM_DATE)
+        VALUES (EMPLOYMENT_SQL.nextval,#{EM_COMPONY},#{EM_POST},#{EM_PEOPLE},#{EM_ADD},#{EM_EDU},#{EM_SALARY},#{EM_EXP},#{EM_DATE})
+    </insert>
+    <update id="updateEmpById">
+        UPDATE T_EMPLOYMENT SET
+        EM_COMPONY=#{EM_COMPONY}, EM_POST=#{EM_POST}, EM_PEOPLE=#{EM_PEOPLE},
+        EM_ADD=#{EM_ADD}, EM_EDU=#{EM_EDU}, EM_SALARY=#{EM_SALARY}, EM_EXP=#{EM_EXP}, EM_DATE=#{EM_DATE}
+        WHERE EM_ID=#{EM_ID}
+    </update>
+    <delete id="deleteEmpById">
+        DELETE FROM T_EMPLOYMENT WHERE EM_ID=#{EM_ID}
+    </delete>
+    <select id="selectAllEmployment" resultType="com.oumae.model.Employment">
+        SELECT * FROM T_EMPLOYMENT
+    </select>
+    <select id="getEmploymentByLimit" resultType="com.oumae.model.Employment">
+         SELECT * FROM (SELECT rownum rn,T_EMPLOYMENT.* FROM T_EMPLOYMENT WHERE rownum &lt;= #{pageSize}) g where g.rn &gt;=#{currentPage}
+    </select>
+</mapper>

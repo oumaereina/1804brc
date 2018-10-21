@@ -1,17 +1,21 @@
 package com.oumae.controller;
 
+import com.oumae.model.Invite;
+import com.oumae.model.Resume;
 import com.oumae.model.Visitor;
+import com.oumae.service.EmploymentService;
+import com.oumae.service.InviteService;
+import com.oumae.service.ResumeService;
 import com.oumae.service.VisitorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by oumaereina on 2018/10/19.
@@ -21,26 +25,41 @@ import javax.servlet.http.HttpSession;
 public class VisitorController {
     @Resource
     private VisitorService visitorService;
-
+    @Resource
+    private EmploymentService employmentService;
+    @Resource
+    private ResumeService resumeService;
+    @Resource
+    private InviteService inviteService;
+    private  final  int PAGESIZE = 5;
     @RequestMapping("/visitorLogin")
-    public String login(@ModelAttribute("visitor") Visitor visitor, Model model) throws Exception {
+    public String login(@ModelAttribute("visitor") Visitor visitor, Model model, HttpSession session) throws Exception {
+        if(visitor.getV_name().equals("admin")&&visitor.getV_pass().equals("admin")){
+            List<Resume> resumes = resumeService.selectResumeByState(0);
+            model.addAttribute("noReadResumes",resumes.size());
+            return "admin";
+        }
         Visitor visitor1 = visitorService.getVisitor(visitor);
         if (null != visitor1) {
-            model.addAttribute("msg", "��¼�ɹ�");
-            model.addAttribute("visitor", visitor1);
+            List<Invite> invites = inviteService.selectInviteByVid(visitor1.getV_id());
+            if(invites!=null){
+                model.addAttribute("inviteMsg","您好，您有一份简历已被面试官通过，请及时查看信息并与面试官取得联系");
+            }
+            //model.addAttribute("msg", "登录成功");
+            session.setAttribute("visitor", visitor1);
             return "main";
         }
-        model.addAttribute("msg", "�û������������");
-        return "../../index";
+        model.addAttribute("msg", "用户名或密码错误");
+        return "index";
     }
 
     @RequestMapping("/visitorRegister")
     public String register(@ModelAttribute("visitor") Visitor visitor, Model model) throws Exception {
         if (visitorService.insertVisitor(visitor)) {
-            model.addAttribute("msg", "ע��ɹ�");
+            model.addAttribute("msg", "注册成功");
 
         } else {
-            model.addAttribute("msg", "ע��ʧ��");
+            model.addAttribute("msg", "注册失败");
         }
         return "main";
     }
@@ -53,6 +72,5 @@ public class VisitorController {
        }else {
            response.getWriter().print("true");
        }
-
     }
 }

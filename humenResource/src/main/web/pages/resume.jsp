@@ -17,14 +17,14 @@
 </head>
 <script src="js/jquery-3.2.1.js"></script>
 <body>
-<form action="" method="post">
-    <table width="700" height="542" border="1"align="center">
+<form action="resume/addResume" method="post" accept-charset="UTF-8">
+    <table width="700" height="542" border="0"align="center">
         <caption><h3>个人简历</h3></caption>
         <tr>
             <td width="92">姓名:</td>
             <td width="100"><input name="r_name"></td>
             <td width="89">出生日期:</td>
-            <td width="113"><input name="r_bir"></td>
+            <td width="113"><input type="date" name="r_bir"></td>
             <td width="91">性别:</td>
             <td width="48"><input name="r_sex"></td>
             <td width="121" rowspan="5" background=""></td>
@@ -74,7 +74,7 @@
             <td colspan="6"><input name="r_english"></td>
         </tr>
         <tr>
-            <td colspan="7" align="center"><b>自我评价(不超过500字)</b></td>
+            <td colspan="7" align="center"><b>工作经历&自我评价(不超过500字)</b></td>
         </tr>
         <tr>
             <td colspan="7" height="500">
@@ -84,7 +84,10 @@
         <tr>
             <td colspan="7" align="center"><b>求职意向</b></td>
         </tr>
-        <tr><td colspan="6"><input name="r_hobby"></td></tr>
+        <tr><td colspan="6"><input name="r_hobby">
+            <input type="hidden" name="r_vid" value="${sessionScope.visitor.getV_id()}">
+        </td></tr>
+        <tr><td><input type="submit"></td></tr>
     </table>
 </form>
 </body>

@@ -52,4 +52,12 @@ public class ResumeServiceImpl implements ResumeService{
         }
         return null;
     }
+
+    public List<Resume> selectResumeByState(Integer r_state) {
+        if(r_state!=null){
+            List<Resume> resumes = resumeDao.selectResumeByState(r_state);
+            return resumes;
+        }
+        return null;
+    }
 }
