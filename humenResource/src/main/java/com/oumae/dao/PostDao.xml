@@ -26,9 +26,12 @@
         DELETE FROM T_POST WHERE P_ID=#{P_ID}
     </delete>
     <select id="selectById" resultType="com.oumae.model.Post">
-        select * from T_POST WHERE P_ID=#{P_ID};
+        select * from T_POST WHERE P_ID=#{P_ID}
     </select>
     <select id="selectAll" resultType="com.oumae.model.Post">
-        select * from T_POST;
+        select * from T_POST
+    </select>
+    <select id="selectByDid" resultType="com.oumae.model.Post">
+        select * from T_POST WHERE P_D_ID=#{P_D_ID}
     </select>
 </mapper>

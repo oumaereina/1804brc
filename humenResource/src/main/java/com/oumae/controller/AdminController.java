@@ -5,11 +5,14 @@ import com.oumae.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -78,10 +81,16 @@ public class AdminController {
             {
                 result+=random.nextInt(10);
             }
+            String result2="";
+            for (int i=0;i<6;i++)
+            {
+                result2+=random.nextInt(10);
+            }
             List<Department> departments = departmentService.selectAll();
             List<Post> posts = postService.selectAll();
             model.addAttribute("departments",departments);
             model.addAttribute("posts",posts);
+            model.addAttribute("empName",result2);
             model.addAttribute("empPass",result);
             model.addAttribute("resume",resumes.get(0));
         }
@@ -96,5 +105,16 @@ public class AdminController {
             model.addAttribute("msg", "添加失败");
         }
         return "";
+    }
+    @RequestMapping("/findPosts")
+    @ResponseBody
+    public List<Post> findReply(Integer P_D_ID){
+        if(P_D_ID==null){
+            return null;
+        }
+        List<Post> Post=postService.selectByDid(P_D_ID);
+        /*Map<String, Object> map = new HashMap<String, Object>();
+        map.put("Post", Post);*/
+        return Post;
     }
 }

@@ -10,6 +10,16 @@ public class Post {
     private Integer P_D_ID;
     private Integer P_NUM;
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "P_ID=" + P_ID +
+                ", P_NAME='" + P_NAME + '\'' +
+                ", P_D_ID=" + P_D_ID +
+                ", P_NUM=" + P_NUM +
+                '}';
+    }
+
     public Post() {
     }
 

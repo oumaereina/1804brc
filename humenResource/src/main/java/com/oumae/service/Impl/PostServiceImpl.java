@@ -53,4 +53,9 @@ public class PostServiceImpl implements PostService{
         List<Post> posts = postDao.selectAll();
         return posts;
     }
+
+    public List<Post> selectByDid(Integer P_D_ID) {
+        List<Post> posts = postDao.selectByDid(P_D_ID);
+        return posts;
+    }
 }

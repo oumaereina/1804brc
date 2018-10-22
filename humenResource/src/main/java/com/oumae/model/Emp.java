@@ -12,8 +12,17 @@ public class Emp {
     private String E_MAIL;
     private Integer E_PHONE;
     private Integer E_D_ID;/*≤ø√≈*/
+    private String E_REALNAME;
 
     public Emp() {
+    }
+
+    public String getE_REALNAME() {
+        return E_REALNAME;
+    }
+
+    public void setE_REALNAME(String e_REALNAME) {
+        E_REALNAME = e_REALNAME;
     }
 
     public Integer getE_ID() {

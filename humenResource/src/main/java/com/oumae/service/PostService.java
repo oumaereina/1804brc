@@ -13,4 +13,5 @@ public interface PostService {
     boolean updatePostById(Post post);
     Post selectById(Integer P_ID);
     List<Post> selectAll();
+    List<Post> selectByDid(Integer P_D_ID);
 }
