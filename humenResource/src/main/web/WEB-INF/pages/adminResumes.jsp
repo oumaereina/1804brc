@@ -30,10 +30,14 @@
             <tr>
                 <td>姓名:</td>
                 <td>${i.getR_name()}</td>
+                <td>电话:</td>
+                <td>${i.getR_phone()}</td>
             </tr>
             <tr>
                 <td>性别:</td>
                 <td>${i.getR_sex()}</td>
+                <td>电子邮件:</td>
+                <td>${i.getR_health()}</td>
             </tr>
             <tr>
                 <td>民族:</td>
@@ -49,6 +53,9 @@
             </tr>
             <tr>
                 <td><a href="admin/addInvite?vid=${i. getR_vid()}">发送面试邀请</a></td>
+            <c:if test="${i.getR_state()==1}">
+                <td><a href="admin/addEmp?vid=${i. getR_vid()}">录用此人</a> </td>
+            </c:if>
             </tr>
         </c:forEach>
     </table>

@@ -25,11 +25,26 @@ public class InviteServiceImpl implements InviteService{
         return false;
     }
 
+    public boolean updateInvite(Invite invite) {
+        if(invite!=null){
+            Integer integer = inviteDao.updateInvite(invite);
+            if(integer==1){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Invite> selectInviteByVid(Integer I_VID) {
         List<Invite> invites = inviteDao.selectInviteByVid(I_VID);
         if(invites!=null){
             return invites;
         }
         return null;
+    }
+
+    public Invite selectById(Integer I_ID) {
+        Invite invite = inviteDao.selectById(I_ID);
+        return invite;
     }
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.EmpDao">
+    <insert id="insertEmp">
+        INSERT INTO T_EMP(E_ID, E_NAME, E_PASS, E_P_ID, E_MAIL, E_PHONE, E_D_ID)
+         VALUES (EMP_SQL.nextval,#{E_NAME},#{E_PASS},#{E_P_ID},#{E_MAIL},#{E_PHONE},#{E_D_ID})
+    </insert>
+    <update id="updateEmpById">
+        UPDATE T_EMP <set>
+        <if test="E_NAME!=null">
+            E_NAME=#{E_NAME}
+        </if>
+        <if test="E_PASS!=null">
+            E_PASS=#{E_PASS}
+        </if>
+        <if test="E_P_ID!=null">
+            E_P_ID=#{E_P_ID}
+        </if>
+        <if test="E_MAIL!=null">
+            E_MAIL=#{E_MAIL}
+        </if>
+        <if test="E_PHONE!=null">
+            E_PHONE=#{E_PHONE}
+        </if>
+        <if test="E_D_ID!=null">
+            E_D_ID=#{E_D_ID}
+        </if>
+    </set>
+        <where>
+            E_ID#{E_ID}
+        </where>
+    </update>
+    <delete id="deleteEmpById">
+        DELETE FROM T_EMP WHERE E_ID#{E_ID}
+    </delete>
+    <select id="selectById" resultType="com.oumae.model.Emp">
+        select * from T_EMP WHERE E_ID#{E_ID};
+    </select>
+    <select id="selectEmpByPid" resultType="com.oumae.model.Emp">
+        select * from T_EMP WHERE E_P_ID=#{E_P_ID};
+    </select>
+    <select id="selectEmpByDid" resultType="com.oumae.model.Emp">
+        select * from T_EMP WHERE E_D_ID=#{E_D_ID};
+    </select>
+    <select id="selectEmpByPidLimit" resultType="com.oumae.model.Emp">
+        SELECT * FROM (SELECT rownum rn,T_EMP.* FROM T_EMP WHERE rownum &lt;= #{pageSize} and E_P_ID=#{E_P_ID})
+         g where g.rn &gt;=#{currentPage}
+    </select>
+    <select id="selectEmpByDidLimit" resultType="com.oumae.model.Emp">
+        SELECT * FROM (SELECT rownum rn,T_EMP.* FROM T_EMP WHERE rownum &lt;= #{pageSize} and E_D_ID=#{E_D_ID})
+         g where g.rn &gt;=#{currentPage}
+    </select>
+
+</mapper>

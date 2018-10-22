@@ -42,8 +42,8 @@ public class VisitorController {
         Visitor visitor1 = visitorService.getVisitor(visitor);
         if (null != visitor1) {
             List<Invite> invites = inviteService.selectInviteByVid(visitor1.getV_id());
-            if(invites!=null){
-                model.addAttribute("inviteMsg","您好，您有一份简历已被面试官通过，请及时查看信息并与面试官取得联系");
+            if(invites!=null&&invites.size()!=0){
+                model.addAttribute("inviteMsg",invites.get(0));
             }
             //model.addAttribute("msg", "登录成功");
             session.setAttribute("visitor", visitor1);
@@ -72,5 +72,14 @@ public class VisitorController {
        }else {
            response.getWriter().print("true");
        }
+    }
+    @RequestMapping("/checkInvite")
+    public String checkInvite(Integer inviteId,HttpSession session, Model model) throws Exception{
+        Invite invites = inviteService.selectById(inviteId);
+        if(invites!=null){
+            invites.setI_STATE(1);
+            inviteService.updateInvite(invites);
+        }
+        return "main";
     }
 }

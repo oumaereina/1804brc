@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface InviteDao {
     Integer insertInvite(Invite invite);
+    Integer updateInvite(Invite invite);
     List<Invite> selectInviteByVid(Integer I_VID);
+    Invite selectById(Integer I_ID);
 }

@@ -22,8 +22,8 @@
     <c:if test="${requestScope.inviteMsg!=null}">
         <ul>
             <li>面试邀请:</li>
-            <li>${requestScope.inviteMsg}</li>
-            <li>点击<a href="">确认</a>表示同意参加面试，稍后面试官会联系您</li>
+            <li>您好，您的简历已被面试官通过，请及时查看信息并与面试官取得联系</li>
+            <li>点击<a href="visitor/checkInvite?inviteId=${requestScope.inviteMsg.getI_ID()}">确认</a>表示同意参加面试，稍后面试官会联系您</li>
         </ul>
     </c:if>
 </div>

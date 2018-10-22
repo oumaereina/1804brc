@@ -4,7 +4,13 @@
     <insert id="insertInvite">
         INSERT INTO T_INVITE VALUES (VISITOR_SQL.nextval,#{I_VID},#{I_STATE})
     </insert>
+    <update id="updateInvite">
+        UPDATE T_INVITE SET I_VID=#{I_VID},I_STATE=#{I_STATE} WHERE I_ID=#{I_ID}
+    </update>
     <select id="selectInviteByVid" resultType="com.oumae.model.Invite">
         SELECT * FROM T_INVITE WHERE I_VID=#{I_VID} and I_STATE=0
+    </select>
+    <select id="selectById" resultType="com.oumae.model.Invite">
+        SELECT * FROM T_INVITE WHERE I_ID=#{I_ID}
     </select>
 </mapper>

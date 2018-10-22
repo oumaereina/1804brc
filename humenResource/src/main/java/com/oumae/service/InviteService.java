@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface InviteService {
     boolean insertInvite(Invite invite);
+    boolean updateInvite(Invite invite);
     List<Invite> selectInviteByVid(Integer I_VID);
+    Invite selectById(Integer I_ID);
 }

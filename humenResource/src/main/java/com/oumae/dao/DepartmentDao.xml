@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.DepartmentDao">
+    <insert id="insertDepartment">
+        INSERT INTO T_DEPARTMENT
+         VALUES (DEP_SQL.nextval,#{D_NAME},#{D_NUM})
+    </insert>
+    <update id="updateDepartmentById">
+        UPDATE T_DEPARTMENT
+        <set>
+            <if test="D_NAME!=null">
+                D_NAME=#{D_NAME}
+            </if>
+            <if test="E_P_ID!=null">
+                D_NUM=#{D_NUM}
+            </if>
+        </set>
+        <where>
+            D_ID=#{D_ID}
+        </where>
+    </update>
+    <delete id="deleteDepartmentById">
+        DELETE FROM T_DEPARTMENT WHERE  D_ID=#{D_ID}
+    </delete>
+    <select id="selectById" resultType="com.oumae.model.Department">
+        select * from T_DEPARTMENT WHERE  D_ID=#{D_ID};
+    </select>
+    <select id="selectAll" resultType="com.oumae.model.Department">
+        select * from T_DEPARTMENT;
+    </select>
+</mapper>
