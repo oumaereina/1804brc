@@ -53,6 +53,7 @@
             $.ajax({
                 type:"get",
                 url:"admin/findPosts",
+                dataType:"json",
                 data:{P_D_ID:$("option[name='E_D_ID']").val()},
                 success:function (obj) {
                     //var arr=JSON.parse(obj);

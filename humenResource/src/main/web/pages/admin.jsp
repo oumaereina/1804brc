@@ -21,8 +21,11 @@
         <li>您有${requestScope.noReadResumes}条未读简历</li>
     </ul>
 </div>
-<ul>
-    <li><a href="admin/selectAllResumeAdmin">游客简历管理</a></li>
-</ul>
+<div>
+    <ul>
+        <li><a href="admin/selectAllResumeAdmin">游客简历管理</a></li>
+        <li><a href="pages/adminEmployment.jsp">招聘信息管理</a></li>
+    </ul>
+</div>
 </body>
 </html>

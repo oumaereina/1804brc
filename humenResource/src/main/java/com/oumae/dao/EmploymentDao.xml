@@ -3,12 +3,11 @@
 <mapper namespace="com.oumae.dao.EmploymentDao">
     <insert id="insertEmp">
         INSERT INTO T_EMPLOYMENT
-        (EM_ID, EM_COMPONY, EM_POST, EM_PEOPLE, EM_ADD, EM_EDU, EM_SALARY, EM_EXP, EM_DATE)
-        VALUES (EMPLOYMENT_SQL.nextval,#{EM_COMPONY},#{EM_POST},#{EM_PEOPLE},#{EM_ADD},#{EM_EDU},#{EM_SALARY},#{EM_EXP},#{EM_DATE})
+        VALUES (EMPLOYMENT_SQL.nextval,#{EM_COMPANY},#{EM_POST},#{EM_PEOPLE},#{EM_ADD},#{EM_EDU},#{EM_SALARY},#{EM_EXP},#{EM_DATE})
     </insert>
     <update id="updateEmpById">
         UPDATE T_EMPLOYMENT SET
-        EM_COMPONY=#{EM_COMPONY}, EM_POST=#{EM_POST}, EM_PEOPLE=#{EM_PEOPLE},
+        EM_COMPANY=#{EM_COMPANY}, EM_POST=#{EM_POST}, EM_PEOPLE=#{EM_PEOPLE},
         EM_ADD=#{EM_ADD}, EM_EDU=#{EM_EDU}, EM_SALARY=#{EM_SALARY}, EM_EXP=#{EM_EXP}, EM_DATE=#{EM_DATE}
         WHERE EM_ID=#{EM_ID}
     </update>

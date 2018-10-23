@@ -69,9 +69,10 @@
            var c_pass=$("#checkPass").val()
            if(v_pass!=c_pass){
                $("#p2").html("两次密码输入不一致")
-               $("#register").disabled()
+               $("#register").prop("disabled",true)
            }else {
                $("#p2").html("")
+               $("#register").prop("disabled",false)
            }
        })
    })

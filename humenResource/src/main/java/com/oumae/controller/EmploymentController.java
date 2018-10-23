@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,4 +39,14 @@ public class EmploymentController {
         }
         return "index";
     }
+    @RequestMapping("/addEmployment")
+    public String addEmployment(Employment employment, HttpSession session, Model model) throws Exception{
+        Date currDate = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateTime = sdf.format(currDate);
+        employment.setEM_DATE(currDate);
+        employmentService.insertEmp(employment);
+        return "admin";
+    }
+
 }

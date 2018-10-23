@@ -2,13 +2,16 @@ package com.oumae.controller;
 
 import com.oumae.model.*;
 import com.oumae.service.*;
+import com.oumae.utils.DoPage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +25,8 @@ import java.util.Random;
 @RequestMapping("/admin")
 public class AdminController {
     @Resource
+    private EmploymentService employmentService;
+    @Resource
     private ResumeService resumeService;
     @Resource
     private InviteService inviteService;
@@ -31,6 +36,7 @@ public class AdminController {
     private DepartmentService departmentService;
     @Resource
     private PostService postService;
+    private  final  int PAGESIZE = 5;
     /*查看全部简历*/
     @RequestMapping("/selectAllResumeAdmin")
     public String selectResume(HttpSession session, Model model) throws Exception{
@@ -70,6 +76,7 @@ public class AdminController {
         }
         return new ModelAndView("redirect:selectReadResumeAdmin");
     }
+   
     /*录取为员工1*/
     @RequestMapping("/addEmp")
     public String addEmp(Integer vid,HttpSession session, Model model) throws Exception{
@@ -116,5 +123,25 @@ public class AdminController {
         /*Map<String, Object> map = new HashMap<String, Object>();
         map.put("Post", Post);*/
         return Post;
+    }
+    @RequestMapping("/showEmp")
+    public String addResume(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1") int currentPage) throws Exception{
+        List<Employment> employments = employmentService.getEmploymentByLimit(currentPage,PAGESIZE);
+        List<Employment> allEmployment = employmentService.selectAllEmployment();
+        int totalRows = allEmployment.size();
+        int totalPages = DoPage.getTotalPages(totalRows);
+        if(employments==null){
+            model.addAttribute("EmpMsg", "没有招聘信息");
+        }else {
+            model.addAttribute("totalPages",totalPages);
+            model.addAttribute("employments",employments);
+        }
+        return "adminEmployment";
+    }
+
+    @RequestMapping("/deleteEmployment")
+    public ModelAndView deleteEmployment(Integer EM_ID,HttpSession session, Model model) throws Exception{
+        employmentService.deleteEmpById(EM_ID);
+        return new ModelAndView("redirect:showEmp");
     }
 }

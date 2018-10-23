@@ -17,17 +17,32 @@
     <base href="<%=basePath%>"/>
     <title>500强企业主页</title>
 </head>
+<style>
+    #t1{
+        font-size: 14px;
+    }
+    #u1{
+        font-size: 14px;
+        list-style-type: none;
+    }
+    #u2{
+        font-size: 14px;
+        list-style-type: none;
+        float: left;
+    }
+</style>
 <body>
 <c:if test="${sessionScope.visitor==null}">
-    <ul>
-        <li><p>您还未登录，请先<a href="../../pages/visitorLogin.jsp">登录</a></p></li>
-        <li><a href="../../pages/visitorRegister.jsp">游客注册</a></li>
+    <ul id="u1">
+        <li><p>您还未登录，请先<a href="pages/visitorLogin.jsp">登录</a></p></li>
+        <li><a href="pages/visitorRegister.jsp">游客注册</a></li>
     </ul>
 </c:if>
+<hr>
 <p>${requestScope.EmpMsg}</p>
 <div>
     <c:forEach items="${requestScope.employments}" var="i">
-        <table>
+        <table id="t1">
             <tr>
                 <td>${i.getEM_POST()}</td>
                 <td>${i.getEM_COMPANY()}</td>
@@ -47,14 +62,16 @@
                 <td>${i.getEM_DATE()}</td>
             </tr>
             <tr>
-                <td><a href="../../pages/resume.jsp">投递简历</a> </td>
+                <c:if test="${sessionScope.visitor!=null}">
+                    <td><a href="resume.jsp">投递简历</a> </td>
+                </c:if>
             </tr>
         </table>
     </c:forEach>
 </div>
 <div style="position: relative" id="div3">
     <c:forEach var="i" end="${totalPages}" begin="1">
-        <ul>
+        <ul id="u2">
             <li><a href="employment/showEmp?currentPage=${i}">${i}</a></li>
         </ul>
     </c:forEach>
