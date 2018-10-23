@@ -12,4 +12,5 @@ public interface InviteService {
     boolean updateInvite(Invite invite);
     List<Invite> selectInviteByVid(Integer I_VID);
     Invite selectById(Integer I_ID);
+    List<Invite> selectInviteByState(Integer I_STATE);
 }

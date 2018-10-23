@@ -11,5 +11,6 @@ public interface InviteDao {
     Integer insertInvite(Invite invite);
     Integer updateInvite(Invite invite);
     List<Invite> selectInviteByVid(Integer I_VID);
+    List<Invite> selectInviteByState(Integer I_STATE);
     Invite selectById(Integer I_ID);
 }

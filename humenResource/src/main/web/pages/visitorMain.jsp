@@ -3,7 +3,7 @@
   Created by IntelliJ IDEA.
   User: oumaereina
   Date: 2018/10/19
-  Time: 10:15
+  Time: 11:32
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,8 +15,9 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>500强企业主页</title>
+    <title>游客</title>
 </head>
+<script src="../js/jquery-3.2.1.js"></script>
 <style>
     .oth{
         font-size: 8px;
@@ -29,8 +30,19 @@
     #u1{
         font-size: 14px;
         list-style-type: none;
+
+    }
+    #u3{
+        font-size: 14px;
+        list-style-type: none;
+
     }
     #u2{
+        font-size: 14px;
+        list-style-type: none;
+        float: left;
+    }
+    #u4{
         font-size: 14px;
         list-style-type: none;
         float: left;
@@ -58,17 +70,34 @@
         line-height: 5px;
 
     }
+    #d3{
+        position: relative;
+    }
+    #d4{
+        margin-top: 30px;
+    }
 </style>
 <body>
-<c:if test="${sessionScope.visitor==null}">
-    <ul id="u1">
-        <li><p>您还未登录，请先<a href="pages/visitorLogin.jsp">登录</a></p></li>
-        <li><a href="pages/visitorRegister.jsp">游客注册</a></li>
+<div id="d1">
+    <c:if test="${requestScope.inviteMsg!=null}">
+        <ul id="u1">
+            <li>消息通知:</li>
+            <li>您好，您的简历已被面试官通过，请及时查看信息并与面试官取得联系</li>
+            <li>点击<a href="visitor/checkInvite?inviteId=${requestScope.inviteMsg.getI_ID()}">确认</a>表示同意参加面试，稍后面试官会联系您</li>
+        </ul>
+    </c:if>
+</div>
+<div id="d2">
+    <ul id="u2">
+        <li>你好，${sessionScope.visitor.getV_name()}</li>
     </ul>
-</c:if>
-<hr>
-<p>${requestScope.EmpMsg}</p>
-<div >
+</div>
+<div id="d3">
+    <ul id="u3">
+        <li><a href="pages/visitorResume.jsp">简历管理</a></li>
+    </ul>
+</div>
+<div id="d4">
     <c:forEach items="${requestScope.employments}" var="i">
         <table id="t1">
             <tr>
@@ -100,12 +129,13 @@
         </table>
     </c:forEach>
 </div>
-<div style="position: relative" id="div3">
+<div style="position: relative" id="d5">
     <c:forEach var="i" end="${totalPages}" begin="1">
-        <ul id="u2">
-            <li><a href="employment/showEmp?currentPage=${i}">${i}</a></li>
+        <ul id="u4">
+            <li><a href="visitor/paging?currentPage=${i}">${i}</a></li>
         </ul>
     </c:forEach>
 </div>
 </body>
+
 </html>

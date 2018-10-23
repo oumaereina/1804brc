@@ -13,4 +13,7 @@
     <select id="selectById" resultType="com.oumae.model.Invite">
         SELECT * FROM T_INVITE WHERE I_ID=#{I_ID}
     </select>
+    <select id="selectInviteByState" resultType="com.oumae.model.Invite">
+         SELECT * FROM T_INVITE WHERE I_STATE=#{I_STATE}
+    </select>
 </mapper>

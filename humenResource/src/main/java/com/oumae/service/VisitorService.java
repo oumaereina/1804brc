@@ -7,6 +7,7 @@ import com.oumae.model.Visitor;
  */
 public interface VisitorService {
     boolean insertVisitor(Visitor visitor);
+    Visitor getVisitorByVid(Integer V_ID);
     Visitor getVisitor(Visitor visitor);
     Visitor getVisitorByName(String v_name);
 }

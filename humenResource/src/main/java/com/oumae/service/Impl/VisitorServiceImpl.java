@@ -24,6 +24,17 @@ public class VisitorServiceImpl implements VisitorService{
         }
         return false;
     }
+
+    public Visitor getVisitorByVid(Integer V_ID) {
+        if (V_ID!=null){
+            Visitor visitor1= visitorDao.getVisitorByVid(V_ID);
+            if(visitor1!=null){
+                return visitor1;
+            }
+        }
+        return null;
+    }
+
     /*ÓÎ¿ÍµÇÂ¼*/
     public Visitor getVisitor(Visitor visitor) {
         if (visitor.getV_name()!=null&&visitor.getV_pass()!=null){

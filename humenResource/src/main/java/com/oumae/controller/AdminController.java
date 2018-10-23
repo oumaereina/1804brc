@@ -13,10 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by oumaereina on 2018/10/21.
@@ -24,6 +21,8 @@ import java.util.Random;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    @Resource
+    private VisitorService visitorService;
     @Resource
     private EmploymentService employmentService;
     @Resource
@@ -124,6 +123,7 @@ public class AdminController {
         map.put("Post", Post);*/
         return Post;
     }
+    /*查看招聘信息*/
     @RequestMapping("/showEmp")
     public String addResume(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1") int currentPage) throws Exception{
         List<Employment> employments = employmentService.getEmploymentByLimit(currentPage,PAGESIZE);
@@ -138,10 +138,29 @@ public class AdminController {
         }
         return "adminEmployment";
     }
-
+/*删除招聘信息*/
     @RequestMapping("/deleteEmployment")
     public ModelAndView deleteEmployment(Integer EM_ID,HttpSession session, Model model) throws Exception{
         employmentService.deleteEmpById(EM_ID);
         return new ModelAndView("redirect:showEmp");
+    }
+    /*消息*/
+    @RequestMapping("/showMsg")
+    public String showMsg(Emp emp,HttpSession session, Model model) throws Exception{
+        List<Invite> invites = inviteService.selectInviteByState(1);/*找出已确认面试的游客*/
+        List<Visitor> visitors = new ArrayList<Visitor>();
+        List<Resume> resumes = new ArrayList<Resume>();
+        if(invites!=null&&invites.size()!=0){
+            for (Invite invite : invites) {
+                Visitor visitor = visitorService.getVisitorByVid(invite.getI_VID());
+                List<Resume> resumeList = resumeService.selectResumeByVid(invite.getI_VID());
+                resumes.add(resumeList.get(0));
+                visitors.add(visitor);
+            }
+            model.addAttribute("resumes",resumes);
+            model.addAttribute("visitors",visitors);
+            model.addAttribute("invites",invites);
+        }
+        return "admin";
     }
 }

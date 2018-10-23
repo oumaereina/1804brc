@@ -13,4 +13,7 @@
     <select id="getVisitorByName" resultType="com.oumae.model.Visitor">
         SELECT * FROM T_VISITOR WHERE V_NAME=#{v_name}
     </select>
+    <select id="getVisitorByVid" resultType="com.oumae.model.Visitor">
+        SELECT * FROM T_VISITOR WHERE V_ID=#{V_ID}
+    </select>
 </mapper>

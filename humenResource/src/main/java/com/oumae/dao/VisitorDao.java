@@ -8,5 +8,6 @@ import com.oumae.model.Visitor;
 public interface VisitorDao {
     Integer insertVisitor(Visitor visitor);
     Visitor getVisitor(Visitor visitor);
+    Visitor getVisitorByVid(Integer V_ID);
     Visitor getVisitorByName(String v_name);
 }

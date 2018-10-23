@@ -6,7 +6,6 @@ import com.oumae.service.ResumeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -51,13 +50,13 @@ public class ResumeController {
         }else {
             model.addAttribute("msg", "添加失败");
         }
-        return "main";
+        return "visitorMain";
     }
     @RequestMapping("/selectResume")
     public String selectResume(HttpSession session, Model model) throws Exception{
         Visitor visitor = (Visitor) session.getAttribute("visitor");
         List<Resume> resumes = resumeService.selectResumeByVid(visitor.getV_id());
         model.addAttribute("resumes",resumes);
-        return "main";
+        return "visitorResume";
     }
 }

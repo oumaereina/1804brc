@@ -47,4 +47,12 @@ public class InviteServiceImpl implements InviteService{
         Invite invite = inviteDao.selectById(I_ID);
         return invite;
     }
+
+    public List<Invite> selectInviteByState(Integer I_STATE) {
+        List<Invite> invites = inviteDao.selectInviteByState(I_STATE);
+        if(invites!=null){
+            return invites;
+        }
+        return null;
+    }
 }

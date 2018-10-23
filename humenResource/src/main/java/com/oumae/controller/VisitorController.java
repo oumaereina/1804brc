@@ -1,5 +1,6 @@
 package com.oumae.controller;
 
+import com.oumae.model.Employment;
 import com.oumae.model.Invite;
 import com.oumae.model.Resume;
 import com.oumae.model.Visitor;
@@ -7,10 +8,13 @@ import com.oumae.service.EmploymentService;
 import com.oumae.service.InviteService;
 import com.oumae.service.ResumeService;
 import com.oumae.service.VisitorService;
+import com.oumae.utils.DoPage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -33,13 +37,23 @@ public class VisitorController {
     private InviteService inviteService;
     private  final  int PAGESIZE = 5;
     @RequestMapping("/visitorLogin")
-    public String login(@ModelAttribute("visitor") Visitor visitor, Model model, HttpSession session) throws Exception {
+    public String login(@ModelAttribute("visitor") Visitor visitor, Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage) throws Exception {
         if(visitor.getV_name().equals("admin")&&visitor.getV_pass().equals("admin")){
             List<Resume> resumes = resumeService.selectResumeByState(0);
             model.addAttribute("noReadResumes",resumes.size());
             return "admin";
         }
         Visitor visitor1 = visitorService.getVisitor(visitor);
+        List<Employment> employments = employmentService.getEmploymentByLimit(currentPage,PAGESIZE);
+        List<Employment> allEmployment = employmentService.selectAllEmployment();
+        int totalRows = allEmployment.size();
+        int totalPages = DoPage.getTotalPages(totalRows);
+        if(employments==null){
+            model.addAttribute("EmpMsg", "没有招聘信息");
+        }else {
+            model.addAttribute("totalPages",totalPages);
+            model.addAttribute("employments",employments);
+        }
         if (null != visitor1) {
             List<Invite> invites = inviteService.selectInviteByVid(visitor1.getV_id());
             if(invites!=null&&invites.size()!=0){
@@ -47,12 +61,25 @@ public class VisitorController {
             }
             //model.addAttribute("msg", "登录成功");
             session.setAttribute("visitor", visitor1);
-            return "main";
+            return "visitorMain";
         }
         model.addAttribute("msg", "用户名或密码错误");
         return "index";
     }
-
+    @RequestMapping("/paging")
+    public String login(Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage) throws Exception {
+        List<Employment> employments = employmentService.getEmploymentByLimit(currentPage,PAGESIZE);
+        List<Employment> allEmployment = employmentService.selectAllEmployment();
+        int totalRows = allEmployment.size();
+        int totalPages = DoPage.getTotalPages(totalRows);
+        if(employments==null){
+            model.addAttribute("EmpMsg", "没有招聘信息");
+        }else {
+            model.addAttribute("totalPages",totalPages);
+            model.addAttribute("employments",employments);
+        }
+        return "visitorMain";
+    }
     @RequestMapping("/visitorRegister")
     public String register(@ModelAttribute("visitor") Visitor visitor, Model model) throws Exception {
         if (visitorService.insertVisitor(visitor)) {
@@ -61,7 +88,7 @@ public class VisitorController {
         } else {
             model.addAttribute("msg", "注册失败");
         }
-        return "main";
+        return "visitorMain";
     }
 
     @RequestMapping("/checkName")
@@ -74,12 +101,12 @@ public class VisitorController {
        }
     }
     @RequestMapping("/checkInvite")
-    public String checkInvite(Integer inviteId,HttpSession session, Model model) throws Exception{
+    public ModelAndView checkInvite(Integer inviteId, HttpSession session, Model model) throws Exception{
         Invite invites = inviteService.selectById(inviteId);
         if(invites!=null){
             invites.setI_STATE(1);
             inviteService.updateInvite(invites);
         }
-        return "main";
+        return new ModelAndView("redirect:paging");
     }
 }
