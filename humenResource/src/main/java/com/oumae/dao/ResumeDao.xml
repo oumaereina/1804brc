@@ -13,14 +13,18 @@
     <update id="updateResumeById">
         UPDATE T_RESUME
         <set>
-        R_VID=#{r_vid},R_NAME=#{r_name},R_SEX=#{r_sex},
-        R_NATION=#{r_nation},R_BIR=#{r_bir},R_NATIVE_PLACE=#{r_native_place},
-        R_POL_STA=#{r_pol_sta},R_HEIGTH=#{r_height} ,R_WEIGTH=#{r_weight} ,R_HEALTH=#{r_health} ,
-        R_ENGLISH=#{r_english} ,R_EDU= #{r_edu},R_MAJOR=#{r_major} , R_IDC=#{r_idc},R_PHONE=#{r_phone} ,
-        R_ADD=#{r_add} ,R_SCHOOL=#{r_school},R_HOBBY=#{r_hobby} ,
-        R_SELF=#{r_self},R_STATE#{r_state}
+        R_VID=#{r_vid,jdbcType=NUMERIC},R_NAME=#{r_name,jdbcType=VARCHAR},R_SEX=#{r_sex,jdbcType=VARCHAR},
+        R_NATION=#{r_nation,jdbcType=VARCHAR},R_BIR=#{r_bir,jdbcType=VARCHAR},R_NATIVE_PLACE=#{r_native_place,jdbcType=VARCHAR},
+        R_POL_STA=#{r_pol_sta,jdbcType=VARCHAR},R_HEIGHT=#{r_height,jdbcType=NUMERIC} ,
+            <if test="r_weight!=null">
+                R_WEIGHT=#{r_weight,jdbcType=NUMERIC}
+            </if>
+            ,R_HEALTH=#{r_health,jdbcType=VARCHAR} ,
+        R_ENGLISH=#{r_english,jdbcType=VARCHAR} ,R_EDU= #{r_edu,jdbcType=VARCHAR},R_MAJOR=#{r_major,jdbcType=VARCHAR} , R_IDC=#{r_idc,jdbcType=NUMERIC},R_PHONE=#{r_phone,jdbcType=NUMERIC} ,
+        R_ADD=#{r_add,jdbcType=VARCHAR} ,R_SCHOOL=#{r_school,jdbcType=VARCHAR},R_HOBBY=#{r_hobby,jdbcType=VARCHAR} ,
+        R_SELF=#{r_self,jdbcType=VARCHAR},R_STATE=#{r_state,jdbcType=VARCHAR}
     </set>
-  <where>r_id=#{r_id}</where>
+    <where>R_ID=#{r_id}</where>
     </update>
     <delete id="deleteResumeById">
         DELETE  FROM T_RESUME WHERE R_ID=#{r_id}
