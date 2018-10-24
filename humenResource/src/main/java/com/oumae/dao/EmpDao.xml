@@ -3,7 +3,7 @@
 <mapper namespace="com.oumae.dao.EmpDao">
     <insert id="insertEmp">
         INSERT INTO T_EMP(E_ID, E_NAME, E_PASS, E_P_ID, E_MAIL, E_PHONE, E_D_ID,E_REALNAME)
-         VALUES (EMP_SQL.nextval,#{E_NAME},#{E_PASS},#{E_P_ID},#{E_MAIL},#{E_PHONE},#{E_D_ID},#{E_REALNAME})
+         VALUES (EMP_SQL.nextval,#{E_NAME},#{E_PASS},#{E_P_ID},#{E_MAIL},#{E_PHONE},#{E_D_ID},#{E_REALNAME},#{E_SALARY})
     </insert>
     <update id="updateEmpById">
         UPDATE T_EMP <set>
@@ -27,6 +27,15 @@
         </if>
         <if test="E_REALNAME!=null">
             E_REALNAME=#{E_REALNAME}
+        </if>
+        <if test="E_SALARY!=null">
+            E_SALARY=#{E_SALARY}
+        </if>
+        <if test="E_SEX!=null">
+            E_SEX=#{E_SEX}
+        </if>
+        <if test="E_STATE!=null">
+            E_STATE=#{E_STATE}
         </if>
     </set>
         <where>
@@ -52,6 +61,9 @@
     <select id="selectEmpByDidLimit" resultType="com.oumae.model.Emp">
         SELECT * FROM (SELECT rownum rn,T_EMP.* FROM T_EMP WHERE rownum &lt;= #{pageSize} and E_D_ID=#{E_D_ID})
          g where g.rn &gt;=#{currentPage}
+    </select>
+    <select id="selectByNamePass" resultType="com.oumae.model.Emp">
+        select * from T_EMP WHERE E_NAME=#{E_NAME} AND E_PASS=#{E_PASS}
     </select>
 
 </mapper>

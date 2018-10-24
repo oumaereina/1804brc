@@ -1,5 +1,7 @@
 package com.oumae.model;
 
+import java.math.BigInteger;
+
 /**
  * Created by oumaereina on 2018/10/22.
  */
@@ -10,11 +12,42 @@ public class Emp {
     private String E_PASS;
     private Integer E_P_ID;/*¸ÚÎ»*/
     private String E_MAIL;
-    private Integer E_PHONE;
+    private BigInteger E_PHONE;
     private Integer E_D_ID;/*²¿ÃÅ*/
     private String E_REALNAME;
-
+    private Double E_SALARY;
+    private String E_SEX;
+    private Integer E_STATE;
     public Emp() {
+    }
+
+    public Emp(String e_NAME, String e_PASS) {
+        E_NAME = e_NAME;
+        E_PASS = e_PASS;
+    }
+
+    public String getE_SEX() {
+        return E_SEX;
+    }
+
+    public void setE_SEX(String e_SEX) {
+        E_SEX = e_SEX;
+    }
+
+    public Integer getE_STATE() {
+        return E_STATE;
+    }
+
+    public void setE_STATE(Integer e_STATE) {
+        E_STATE = e_STATE;
+    }
+
+    public Double getE_SALARY() {
+        return E_SALARY;
+    }
+
+    public void setE_SALARY(Double e_SALARY) {
+        E_SALARY = e_SALARY;
     }
 
     public String getE_REALNAME() {
@@ -65,11 +98,11 @@ public class Emp {
         E_MAIL = e_MAIL;
     }
 
-    public Integer getE_PHONE() {
+    public BigInteger getE_PHONE() {
         return E_PHONE;
     }
 
-    public void setE_PHONE(Integer e_PHONE) {
+    public void setE_PHONE(BigInteger e_PHONE) {
         E_PHONE = e_PHONE;
     }
 

@@ -66,8 +66,9 @@ public class VisitorController {
         model.addAttribute("msg", "用户名或密码错误");
         return "index";
     }
+    /*招聘信息分页*/
     @RequestMapping("/paging")
-    public String login(Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage) throws Exception {
+    public String showEmp(Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage) throws Exception {
         List<Employment> employments = employmentService.getEmploymentByLimit(currentPage,PAGESIZE);
         List<Employment> allEmployment = employmentService.selectAllEmployment();
         int totalRows = allEmployment.size();
@@ -80,6 +81,7 @@ public class VisitorController {
         }
         return "visitorMain";
     }
+    /*游客注册*/
     @RequestMapping("/visitorRegister")
     public String register(@ModelAttribute("visitor") Visitor visitor, Model model) throws Exception {
         if (visitorService.insertVisitor(visitor)) {
@@ -90,7 +92,7 @@ public class VisitorController {
         }
         return "visitorMain";
     }
-
+    /*确认名字*/
     @RequestMapping("/checkName")
     public void checkName(String v_name, HttpSession session, Model model, HttpServletResponse response) throws Exception {
         Visitor visitor = visitorService.getVisitorByName(v_name);

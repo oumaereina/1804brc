@@ -19,9 +19,9 @@
 <body>
 <div>
     <ul>
-        <li><a href="admin/selectAllResumeAdmin">所有简历</a> </li>
-        <li><a href="admin/selectNoReadResumeAdmin">未读简历</a></li>
-        <li><a href="admin/selectReadResumeAdmin">已读简历</a></li>
+        <li><a href="resume/selectAllResumeAdmin">所有简历</a> </li>
+        <li><a href="resume/selectNoReadResumeAdmin">未读简历</a></li>
+        <li><a href="resume/selectReadResumeAdmin">已读简历</a></li>
     </ul>
 </div>
 <div>
@@ -52,9 +52,9 @@
                 <td>${i.getR_pol_sta()}</td>
             </tr>
             <tr>
-                <td><a href="admin/addInvite?vid=${i. getR_vid()}">发送面试邀请</a></td>
+                <td><a href="invite/addInvite?vid=${i. getR_vid()}">发送面试邀请</a></td>
             <c:if test="${i.getR_state()==1}">
-                <td><a href="admin/addEmp?vid=${i. getR_vid()}">录用此人</a> </td>
+                <td><a href="emp/addEmp?vid=${i. getR_vid()}">录用此人</a> </td>
             </c:if>
             </tr>
         </c:forEach>

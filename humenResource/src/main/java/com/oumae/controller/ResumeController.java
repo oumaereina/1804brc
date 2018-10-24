@@ -88,4 +88,25 @@ public class ResumeController {
         resumeService.updateResumeById(resume);
         return new ModelAndView("redirect:selectResume");
     }
+    /*查看全部简历*/
+    @RequestMapping("/selectAllResumeAdmin")
+    public String selectAllResumeAdmin(HttpSession session, Model model) throws Exception{
+        List<Resume> resumes = resumeService.selectResumeByState(null);
+        model.addAttribute("resumes",resumes);
+        return "adminResumes";
+    }
+    /*查看未读简历*/
+    @RequestMapping("/selectNoReadResumeAdmin")
+    public String selectNoReadResumeAdmin(HttpSession session, Model model) throws Exception{
+        List<Resume> resumes = resumeService.selectResumeByState(0);
+        model.addAttribute("resumes",resumes);
+        return "adminResumes";
+    }
+    /*查看已读简历*/
+    @RequestMapping("/selectReadResumeAdmin")
+    public String selectReadResumeAdmin(HttpSession session, Model model) throws Exception{
+        List<Resume> resumes = resumeService.selectResumeByState(1);
+        model.addAttribute("resumes",resumes);
+        return "adminResumes";
+    }
 }

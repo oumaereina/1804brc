@@ -47,8 +47,14 @@ public class EmpServiceImpl implements EmpService{
     }
 
     public Emp selectById(Integer E_ID) {
-        Emp emp = selectById(E_ID);
+        Emp emp = empDao.selectById(E_ID);
         return emp;
+    }
+
+    public Emp selectByNamePass(Emp emp) {
+        Emp emp1 = empDao.selectByNamePass(emp);
+
+        return emp1;
     }
 
     public List<Emp> selectEmpByPid(Integer E_P_ID) {

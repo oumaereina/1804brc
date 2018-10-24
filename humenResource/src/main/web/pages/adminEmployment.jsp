@@ -19,22 +19,70 @@
 </head>
 <style>
     #page{
+        font-size: 14px;
         list-style-type: none;
         float: left;
+    }
+    .oth{
+        font-size: 8px;
+    }
+    #t1{
+        font-size: 14px;
+        border:solid 1px #F2F2F2;
+        width: 900px;
+    }
+    #u1{
+        font-size: 14px;
+        list-style-type: none;
+    }
+    #u2{
+        font-size: 14px;
+        list-style-type: none;
+        float: left;
+    }
+    td{
+        padding-left: 50px;
+        padding-top: 20px;
+    }
+    .div1{
+
+        margin:0 auto;
+
+        background: #F2F2F2;
+
+        width:70px;
+
+        height:25px;
+
+        border:1px solid darkslategray;
+
+        border-radius:30px;
+
+        text-align: center;
+
+        line-height: 5px;
+
+    }
+    #d3{
+        position: relative
+    }
+    #d4{
+        margin-left: 900px;
+        position: relative;
+        margin-top: -900px;
     }
 </style>
 <body>
 <div id="d1">
-    <ul>
-        <li><a href="admin/showEmp">查看招聘信息</a> </li>
-        <li><a href="" id="add">增加招聘信息</a></li>
+    <ul >
+        <li><a href="employment/showEmpAdmin">查看招聘信息</a> </li>
     </ul>
 </div>
 <c:if test="${requestScope.employments!=null}">
     <div id="d2">
         <p>${requestScope.EmpMsg}</p>
         <c:forEach items="${requestScope.employments}" var="i">
-            <table>
+            <table id="t1">
                 <tr>
                     <td>${i.getEM_POST()}</td>
                     <td>${i.getEM_COMPANY()}</td>
@@ -47,30 +95,30 @@
                     <td>${i.getEM_PEOPLE()}</td>
                 </tr>
                 <tr>
-                    <td>绩效奖金</td>
-                    <td>五险一金</td>
-                    <td>年终分红</td>
-                    <td>包吃包住</td>
+                    <td class="oth"><div class="div1"><p>绩效奖金</p></div></td>
+                    <td class="oth"><div class="div1"><p>五险一金</p></div></td>
+                    <td class="oth"><div class="div1"><p>年终分红</p></div></td>
+                    <td class="oth"><div class="div1"><p>包吃包住</p></div></td>
                     <td>${i.getEM_DATE()}</td>
                 </tr>
                 <tr>
-                    <td><a href="admin/deleteEmployment?EM_ID=${i.getEM_ID()}" onclick="add()">删除</a> </td>
+                    <td><a href="employment/deleteEmployment?EM_ID=${i.getEM_ID()}" onclick="add()">删除</a> </td>
                     <td><a href="">修改</a> </td>
                 </tr>
             </table>
         </c:forEach>
     </div>
 </c:if>
-<div style="position: absolute" id="d3">
+<div id="d3">
     <c:forEach var="i" end="${totalPages}" begin="1">
         <ul id="page">
-            <li><a href="admin/showEmp?currentPage=${i}">${i}</a></li>
+            <li><a href="employment/showEmpAdmin?currentPage=${i}">${i}</a></li>
         </ul>
     </c:forEach>
 </div>
 <div id="d4">
     <form action="employment/addEmployment" method="post">
-        <ul>
+        <ul id="u1">
             <li>公司名</li>
             <li><input name="EM_COMPANY" class="ins" msg="公司名" type="text"></li>
             <li>岗位</li>
@@ -84,8 +132,8 @@
             <li>月薪</li>
             <li><input name="EM_SALARY" class="ins" msg="月薪" type="text"></li>
             <li>工作经验</li>
-            <li><input name="EM_EXP" class="ins" msg="工作经验" type="text" onblur="checkNull()"></li>
-            <li><input type="submit" id="sub1" onmouseleave="checkNull()"></li>
+            <li><input name="EM_EXP" class="ins" msg="工作经验" type="text" ></li>
+            <li><input type="submit" id="sub1"></li>
         </ul>
     </form>
 </div>
@@ -96,8 +144,7 @@
             window.event.returnValue = false;
         }
     }
-    function checkNull()
-    {
+    $("#sub1").click(function (e) {
         var num=0;
         var str="";
         $(".ins").each(function(n){
@@ -110,14 +157,13 @@
         if(num>0)
         {
             alert(str);
-            $("#sub1").prop("disabled",true)
+            e.preventDefault()
             return false;
         }
         else
         {
-            $("#sub1").prop("disabled",false)
             return true;
         }
-    }
+    })
 </script>
 </html>

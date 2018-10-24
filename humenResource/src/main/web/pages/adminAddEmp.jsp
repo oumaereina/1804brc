@@ -28,13 +28,16 @@
             <li>姓名:</li>
             <li><input value="${requestScope.resume.getR_name()}" name="E_REALNAME"></li>
             <li>性别:</li>
-            <li><input value="${requestScope.resume.getR_sex()}" name="E_REALNAME"></li>
+            <li><input value="${requestScope.resume.getR_sex()}" name="E_SEX"></li>
             <li>电子邮箱:</li>
-            <li><input value="${requestScope.resume.getR_health()}" name="E_PASS"></li>
+            <li><input value="${requestScope.resume.getR_health()}" name="E_MAIL"></li>
             <li>电话:</li>
             <li><input value="${requestScope.resume.getR_phone()}" name="E_PHONE"></li>
+            <li>薪资:</li>
+            <li><input value="" name="E_SALARY"></li>
+            <li><input value="${requestScope.resume.getR_phone()}" name="E_STATE" type="hidden"></li>
             <select name="" id="s1">
-                <option value="${null}">选择部门</option>
+                <option value="${null}" >选择部门</option>
                 <c:forEach items="${requestScope.departments}" var="i">
                     <option name="E_D_ID" value="${i.getD_ID()}">${i.getD_NAME()}</option>
                 </c:forEach>
@@ -54,24 +57,29 @@
                 type:"get",
                 url:"admin/findPosts",
                 dataType:"json",
-                data:{P_D_ID:$("option[name='E_D_ID']").val()},
+                async:false,
+                data:{"P_D_ID":$("#s1").val()},
                 success:function (obj) {
-                    //var arr=JSON.parse(obj);
-                    var arr=obj
+                    $("#s2").empty()
+                    for(var i=0; i<obj.length;i++){
+                        $("#s2").append("<option name='"+obj[i].P_ID+"' value=''>"+obj[i].P_NAME+"</option>");
+                    }
+                    //var arr=eval("("+obj+")");
+                   /* var arr=obj
                     for(var i in arr){
                         var name=arr[i];
                         $("#s2").prepend("<option name='E_P_ID' value=''>"+name+"</option>")
-                    }
+                    }*/
                   /* jQuery.each(obj.Post, function (i,item) {
                        $("#s2").prepend("<option name='E_P_ID' value=''>"+item.P_NAME+"</option>")
                    })*/
-                 /* $.each(obj,function (i,item) {
+                /*  $.each(obj,function (i,item) {
                       var name = item.P_NAME
                       $("#s2").prepend("<option name='E_P_ID' value=''>"+name+"</option>")
                   })*/
                 }
-            })
-        })
+            });
+        });
     })
 </script>
 </html>

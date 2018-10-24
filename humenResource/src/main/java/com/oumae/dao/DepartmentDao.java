@@ -12,5 +12,6 @@ public interface DepartmentDao {
     Integer deleteDepartmentById(Integer D_ID);
     Integer updateDepartmentById(Department department);
     Department selectById(Integer D_ID);
+    Department selectByName(String D_NAME);
     List<Department> selectAll();
 }

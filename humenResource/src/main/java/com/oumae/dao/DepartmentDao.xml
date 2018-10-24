@@ -28,4 +28,7 @@
     <select id="selectAll" resultType="com.oumae.model.Department">
         select * from T_DEPARTMENT
     </select>
+    <select id="selectByName" resultType="com.oumae.model.Department">
+        select * from T_DEPARTMENT WHERE D_NAME=#{D_NAME}
+    </select>
 </mapper>

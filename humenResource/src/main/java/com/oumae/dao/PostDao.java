@@ -12,6 +12,7 @@ public interface PostDao {
     Integer deletePostById(Integer P_ID);
     Integer updatePostById(Post post);
     Post selectById(Integer P_ID);
+    Post selectByNAME(String P_NAME);
     List<Post> selectAll();
     List<Post> selectByDid(Integer P_D_ID);
 }

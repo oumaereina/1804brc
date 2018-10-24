@@ -13,6 +13,7 @@ public interface EmpDao {
     Integer deleteEmpById(Integer E_ID);
     Integer updateEmpById(Emp emp);
     Emp selectById(Integer E_ID);
+    Emp selectByNamePass(Emp emp);
     List<Emp> selectEmpByPid(Integer E_P_ID);
     List<Emp> selectEmpByDid(Integer E_D_ID);
     List<Emp> selectEmpByPidLimit(HashMap<String,Object> hashMap);

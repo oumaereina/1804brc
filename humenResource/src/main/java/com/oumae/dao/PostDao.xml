@@ -34,4 +34,7 @@
     <select id="selectByDid" resultType="com.oumae.model.Post">
         select * from T_POST WHERE P_D_ID=#{P_D_ID}
     </select>
+    <select id="selectByNAME" resultType="com.oumae.model.Post">
+        select * from T_POST WHERE P_NAME=#{P_D_ID}
+    </select>
 </mapper>

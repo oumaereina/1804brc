@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -48,5 +49,25 @@ public class EmploymentController {
         employmentService.insertEmp(employment);
         return "admin";
     }
-
+    /*查看招聘信息*/
+    @RequestMapping("/showEmpAdmin")
+    public String showEmp(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1") int currentPage) throws Exception{
+        List<Employment> employments = employmentService.getEmploymentByLimit(currentPage,PAGESIZE);
+        List<Employment> allEmployment = employmentService.selectAllEmployment();
+        int totalRows = allEmployment.size();
+        int totalPages = DoPage.getTotalPages(totalRows);
+        if(employments==null){
+            model.addAttribute("EmpMsg", "没有招聘信息");
+        }else {
+            model.addAttribute("totalPages",totalPages);
+            model.addAttribute("employments",employments);
+        }
+        return "adminEmployment";
+    }
+    /*删除招聘信息*/
+    @RequestMapping("/deleteEmployment")
+    public ModelAndView deleteEmployment(Integer EM_ID, HttpSession session, Model model) throws Exception{
+        employmentService.deleteEmpById(EM_ID);
+        return new ModelAndView("redirect:showEmp");
+    }
 }

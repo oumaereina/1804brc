@@ -62,8 +62,9 @@
 <body>
 <c:if test="${sessionScope.visitor==null}">
     <ul id="u1">
-        <li><p>您还未登录，请先<a href="pages/visitorLogin.jsp">登录</a></p></li>
+        <li><p>游客:您还未登录，请先<a href="pages/visitorLogin.jsp">登录</a></p></li>
         <li><a href="pages/visitorRegister.jsp">游客注册</a></li>
+        <li><a href="pages/empLogin.jsp">员工登录通道</a> </li>
     </ul>
 </c:if>
 <hr>
