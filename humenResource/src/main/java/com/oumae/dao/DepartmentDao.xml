@@ -9,10 +9,10 @@
         UPDATE T_DEPARTMENT
         <set>
             <if test="D_NAME!=null">
-                D_NAME=#{D_NAME}
+                D_NAME=#{D_NAME},
             </if>
-            <if test="E_P_ID!=null">
-                D_NUM=#{D_NUM}
+            <if test="D_NUM!=null">
+                D_NUM=#{D_NUM},
             </if>
         </set>
         <where>

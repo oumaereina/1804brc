@@ -2,40 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.oumae.dao.EmpDao">
     <insert id="insertEmp">
-        INSERT INTO T_EMP(E_ID, E_NAME, E_PASS, E_P_ID, E_MAIL, E_PHONE, E_D_ID,E_REALNAME)
-         VALUES (EMP_SQL.nextval,#{E_NAME},#{E_PASS},#{E_P_ID},#{E_MAIL},#{E_PHONE},#{E_D_ID},#{E_REALNAME},#{E_SALARY})
+        INSERT INTO T_EMP
+         VALUES (EMP_SQL.nextval,#{e_name},#{e_pass},#{e_p_id}
+         ,#{e_mail},#{e_phone},#{e_d_id},#{e_realName},#{e_salary},#{e_sex},#{e_state},#{e_age},#{e_date})
     </insert>
     <update id="updateEmpById">
         UPDATE T_EMP <set>
-        <if test="E_NAME!=null">
-            E_NAME=#{E_NAME}
+        <if test="e_name!=null">
+            E_NAME=#{e_name}
         </if>
-        <if test="E_PASS!=null">
-            E_PASS=#{E_PASS}
+        <if test="e_pass!=null">
+            E_PASS=#{e_pass}
         </if>
-        <if test="E_P_ID!=null">
-            E_P_ID=#{E_P_ID}
+        <if test="e_p_id!=null">
+            E_P_ID=#{e_p_id}
         </if>
-        <if test="E_MAIL!=null">
-            E_MAIL=#{E_MAIL}
+        <if test="e_mail!=null">
+            E_MAIL=#{e_mail}
         </if>
-        <if test="E_PHONE!=null">
-            E_PHONE=#{E_PHONE}
+        <if test="e_phone!=null">
+            E_PHONE=#{e_phone}
         </if>
-        <if test="E_D_ID!=null">
-            E_D_ID=#{E_D_ID}
+        <if test="e_d_id!=null">
+            E_D_ID=#{e_d_id}
         </if>
-        <if test="E_REALNAME!=null">
-            E_REALNAME=#{E_REALNAME}
+        <if test="e_realName!=null">
+            E_REALNAME=#{e_realName}
         </if>
-        <if test="E_SALARY!=null">
-            E_SALARY=#{E_SALARY}
+        <if test="e_salary!=null">
+            E_SALARY=#{e_salary}
         </if>
-        <if test="E_SEX!=null">
-            E_SEX=#{E_SEX}
+        <if test="e_sex!=null">
+            E_SEX=#{e_sex}
         </if>
-        <if test="E_STATE!=null">
-            E_STATE=#{E_STATE}
+        <if test="e_state!=null">
+            E_STATE=#{e_state}
+        </if>
+        <if test="e_age!=null">
+            E_STATE=#{e_age}
+        </if>
+        <if test="e_date!=null">
+            E_STATE=#{e_date}
         </if>
     </set>
         <where>
@@ -46,24 +53,44 @@
         DELETE FROM T_EMP WHERE E_ID#{E_ID}
     </delete>
     <select id="selectById" resultType="com.oumae.model.Emp">
-        select * from T_EMP WHERE E_ID#{E_ID}
+        select
+         E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
+          E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
+          E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
+          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date
+         from T_EMP WHERE E_ID=#{e_id}
     </select>
     <select id="selectEmpByPid" resultType="com.oumae.model.Emp">
-        select * from T_EMP WHERE E_P_ID=#{E_P_ID}
+        select  E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
+          E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
+          E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
+          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date from T_EMP WHERE E_P_ID=#{e_id}
     </select>
     <select id="selectEmpByDid" resultType="com.oumae.model.Emp">
-        select * from T_EMP WHERE E_D_ID=#{E_D_ID}
+        select  E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
+          E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
+          E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
+          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_datefrom T_EMP WHERE E_D_ID=#{e_id}
     </select>
     <select id="selectEmpByPidLimit" resultType="com.oumae.model.Emp">
-        SELECT * FROM (SELECT rownum rn,T_EMP.* FROM T_EMP WHERE rownum &lt;= #{pageSize} and E_P_ID=#{E_P_ID})
+        SELECT  E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
+          E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
+          E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
+          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date FROM (SELECT rownum rn,T_EMP.* FROM T_EMP WHERE rownum &lt;= #{pageSize} and E_P_ID=#{e_p_id})
          g where g.rn &gt;=#{currentPage}
     </select>
     <select id="selectEmpByDidLimit" resultType="com.oumae.model.Emp">
-        SELECT * FROM (SELECT rownum rn,T_EMP.* FROM T_EMP WHERE rownum &lt;= #{pageSize} and E_D_ID=#{E_D_ID})
+        SELECT  E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
+          E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
+          E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
+          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date FROM (SELECT rownum rn,T_EMP.* FROM T_EMP WHERE rownum &lt;= #{pageSize} and E_D_ID=#{e_d_id})
          g where g.rn &gt;=#{currentPage}
     </select>
     <select id="selectByNamePass" resultType="com.oumae.model.Emp">
-        select * from T_EMP WHERE E_NAME=#{E_NAME} AND E_PASS=#{E_PASS}
+        select E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
+          E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
+          E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
+          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date from T_EMP WHERE E_NAME=#{e_name} AND E_PASS=#{e_pass}
     </select>
 
 </mapper>

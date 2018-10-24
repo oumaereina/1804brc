@@ -5,16 +5,24 @@ package com.oumae.model;
  */
 /*¸ÚÎ»*/
 public class Post {
-    private Integer P_ID;
-    private String P_NAME;
+    private Integer p_id;
+    private String pname;
     private Integer P_D_ID;
     private Integer P_NUM;
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
 
     @Override
     public String toString() {
         return "Post{" +
-                "P_ID=" + P_ID +
-                ", P_NAME='" + P_NAME + '\'' +
+                "P_ID=" + p_id +
+                ", P_NAME='" + pname + '\'' +
                 ", P_D_ID=" + P_D_ID +
                 ", P_NUM=" + P_NUM +
                 '}';
@@ -31,20 +39,12 @@ public class Post {
         P_NUM = p_NUM;
     }
 
-    public Integer getP_ID() {
-        return P_ID;
+    public Integer getP_id() {
+        return p_id;
     }
 
-    public void setP_ID(Integer p_ID) {
-        P_ID = p_ID;
-    }
-
-    public String getP_NAME() {
-        return P_NAME;
-    }
-
-    public void setP_NAME(String p_NAME) {
-        P_NAME = p_NAME;
+    public void setP_id(Integer p_id) {
+        this.p_id = p_id;
     }
 
     public Integer getP_D_ID() {

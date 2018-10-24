@@ -10,12 +10,12 @@ import java.util.List;
  */
 public interface EmpDao {
     Integer insertEmp(Emp emp);
-    Integer deleteEmpById(Integer E_ID);
+    Integer deleteEmpById(Integer e_id);
     Integer updateEmpById(Emp emp);
-    Emp selectById(Integer E_ID);
+    Emp selectById(Integer e_id);
     Emp selectByNamePass(Emp emp);
-    List<Emp> selectEmpByPid(Integer E_P_ID);
-    List<Emp> selectEmpByDid(Integer E_D_ID);
+    List<Emp> selectEmpByPid(Integer e_p_id);
+    List<Emp> selectEmpByDid(Integer e_d_id);
     List<Emp> selectEmpByPidLimit(HashMap<String,Object> hashMap);
     List<Emp> selectEmpByDidLimit(HashMap<String,Object> hashMap);
 }

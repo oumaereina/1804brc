@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -33,7 +36,7 @@ public class EmpController {
     private ResumeService resumeService;
     /*录取为员工1*/
     @RequestMapping("/addEmp")
-    public String addEmp(Integer vid, HttpSession session, Model model) throws Exception{
+    public String addEmp1(Integer vid, HttpSession session, Model model) throws Exception{
         List<Resume> resumes = resumeService.selectResumeByVid(vid);
         if(resumes!=null&&resumes.size()!=0){
             Random random = new Random();
@@ -47,6 +50,10 @@ public class EmpController {
             {
                 result2+=random.nextInt(10);
             }
+            Date currDate = Calendar.getInstance().getTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateTime = sdf.format(currDate);
+            model.addAttribute("date",currDate);
             List<Department> departments = departmentService.selectAll();
             List<Post> posts = postService.selectAll();
             model.addAttribute("departments",departments);
@@ -58,21 +65,29 @@ public class EmpController {
         return "adminAddEmp";
     }
     /*录取为员工2*/
-    @RequestMapping("/addEmp2")
-    public String addEmp2(Emp emp, HttpSession session, Model model) throws Exception{
+    @RequestMapping("/addeee")
+    public String addEmp3(Emp emp, HttpSession session, Model model) throws Exception{
         if(empService.insertEmp(emp)){
+            Department department = departmentService.selectById(emp.getE_d_id());
+            department.setD_NUM(department.getD_NUM()+1);
+            departmentService.updateDepartmentById(department);
+            Post post = postService.selectById(emp.getE_p_id());
             model.addAttribute("msg", "添加成功");
         }else {
             model.addAttribute("msg", "添加失败");
         }
-        return "";
+        return "adminAddEmp";
     }
     @RequestMapping("/empLogin")
     public String showEmp(Emp emp, HttpSession session, Model model) throws Exception{
         System.out.println(emp);
         Emp emp1 = empService.selectByNamePass(emp);
         if(emp1!=null){
-            model.addAttribute("emp",emp1);
+            Department department = departmentService.selectById(emp1.getE_d_id());
+            Post post = postService.selectById(emp1.getE_p_id());
+            session.setAttribute("depart",department);
+            session.setAttribute("post",post);
+            session.setAttribute("emp",emp1);
             return "emp";
         }
         model.addAttribute("msg","用户名或密码错误");

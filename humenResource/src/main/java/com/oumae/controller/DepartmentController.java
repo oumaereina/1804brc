@@ -23,7 +23,7 @@ public class DepartmentController {
     public String showMsg(HttpSession session, Model model) throws Exception{
         List<Department> departments = departmentService.selectAll();
         if(departments!=null){
-            model.addAttribute("departments",departments);
+            session.setAttribute("departments",departments);
         }
         return "adminDepartment";
     }

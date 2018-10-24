@@ -19,24 +19,32 @@
     .uu{
         list-style-type: none;
     }
+    #d1{
+        position: relative;
+    }
+    #d2{
+        position: relative;
+
+    }
 </style>
+
 <head>
     <base href="<%=basePath%>"/>
     <title>部门管理</title>
 </head>
 <body id="b1">
-<div>
+<div id="d1">
     <form action="" method="post">
-        <c:forEach items="${requestScope.departments}" var="i">
+        <c:forEach items="${sessionScope.departments}" var="i">
             <ul class="uu">
                 <li><a href="post/showPostByDid?did=${i.getD_ID()}">${i.getD_NAME()}</a></li>
             </ul>
         </c:forEach>
     </form>
 </div>
-<div>
+<div id="d2">
     <form action="" method="post">
-        <c:forEach items="${requestScope.posts}" var="i">
+        <c:forEach items="${sessionScope.posts}" var="i">
             <ul class="uu">
                 <li><a href="">${i.getP_NAME()}</a></li>
             </ul>

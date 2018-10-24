@@ -41,7 +41,7 @@ public class AdminController {
 
     /*二级联动找岗位*/
     @RequestMapping("/findPosts")
-    public @ResponseBody List findPosts(Integer P_D_ID) throws IOException {
+    public @ResponseBody List<Post> findPosts(Integer P_D_ID) throws IOException {
         if(P_D_ID==null){
             return null;
         }

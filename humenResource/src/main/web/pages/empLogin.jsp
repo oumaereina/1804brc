@@ -21,13 +21,13 @@
         <tr><td>您还未登录</td></tr>
         <tr><td>请登录:</td></tr>
         <tr>
-            <td> 账号：</td>
-            <td><input name="E_NAME" class="ins"msg="用户名"></td>
+            <td>账号：</td>
+            <td><input name="e_name" class="ins"msg="用户名"></td>
             <td></td>
         </tr>
         <tr>
             <td>密码：</td>
-            <td><input name="E_PASS" type="password"class="ins"  msg="密码"></td>
+            <td><input name="e_pass" type="password"class="ins"  msg="密码"></td>
             <td></td>
         </tr>
         <tr>

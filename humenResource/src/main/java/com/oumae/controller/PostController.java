@@ -22,7 +22,7 @@ public class PostController {
     public String showMsg(Integer did,HttpSession session, Model model) throws Exception{
         List<Post> posts = postService.selectByDid(did);
         if(posts!=null){
-            model.addAttribute("posts",posts);
+            session.setAttribute("posts",posts);
         }
         return "adminDepartment";
     }

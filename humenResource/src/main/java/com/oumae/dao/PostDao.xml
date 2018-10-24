@@ -3,13 +3,13 @@
 <mapper namespace="com.oumae.dao.PostDao">
     <insert id="insertPost">
         INSERT INTO T_POST (P_ID, P_NAME, P_D_ID, P_NUM)
-        VALUES (POST_SQL.nextval,#{P_NAME},#{P_D_ID},#{P_NUM})
+        VALUES (POST_SQL.nextval,#{pname},#{P_D_ID},#{P_NUM})
     </insert>
     <update id="updatePostById">
         UPDATE T_POST
         <set>
             <if test="P_NAME!=null">
-                P_NAME=#{P_NAME}
+                P_NAME=#{pname}
             </if>
             <if test="P_D_ID!=null">
                 P_D_ID=#{P_D_ID}
@@ -19,22 +19,22 @@
             </if>
         </set>
         <where>
-            P_ID=#{P_ID}
+            P_ID=#{p_id}
         </where>
     </update>
     <delete id="deletePostById">
-        DELETE FROM T_POST WHERE P_ID=#{P_ID}
+        DELETE FROM T_POST WHERE P_ID=#{p_id}
     </delete>
     <select id="selectById" resultType="com.oumae.model.Post">
-        select * from T_POST WHERE P_ID=#{P_ID}
+        select P_NAME as pname,P_D_ID,P_NUM,P_ID as p_id from T_POST WHERE P_ID=#{p_id}
     </select>
     <select id="selectAll" resultType="com.oumae.model.Post">
-        select * from T_POST
+        select P_NAME as pname,P_D_ID,P_NUM,P_ID as p_id from T_POST
     </select>
     <select id="selectByDid" resultType="com.oumae.model.Post">
-        select * from T_POST WHERE P_D_ID=#{P_D_ID}
+        select P_NAME as pname,P_D_ID,P_NUM,P_ID as p_id from T_POST WHERE P_D_ID=#{P_D_ID}
     </select>
     <select id="selectByNAME" resultType="com.oumae.model.Post">
-        select * from T_POST WHERE P_NAME=#{P_D_ID}
+        select P_NAME as pname,P_D_ID,P_NUM,P_ID as p_id from T_POST WHERE P_NAME=#{P_D_ID}
     </select>
 </mapper>

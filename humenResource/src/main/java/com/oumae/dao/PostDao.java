@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface PostDao {
     Integer insertPost(Post post);
-    Integer deletePostById(Integer P_ID);
+    Integer deletePostById(Integer p_id);
     Integer updatePostById(Post post);
-    Post selectById(Integer P_ID);
+    Post selectById(Integer p_id);
     Post selectByNAME(String P_NAME);
     List<Post> selectAll();
     List<Post> selectByDid(Integer P_D_ID);

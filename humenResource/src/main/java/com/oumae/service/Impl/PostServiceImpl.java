@@ -16,7 +16,7 @@ public class PostServiceImpl implements PostService{
     @Resource
     private PostDao postDao;
     public boolean insertPost(Post post) {
-        Post post1 = postDao.selectByNAME(post.getP_NAME());
+        Post post1 = postDao.selectByNAME(post.getPname());
         if(post1!=null){
             return false;
         }
