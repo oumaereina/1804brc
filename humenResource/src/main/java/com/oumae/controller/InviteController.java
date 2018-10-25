@@ -35,7 +35,7 @@ public class InviteController {
                 model.addAttribute("msg", "ÃÌº” ß∞‹");
             }
         }
-        return new ModelAndView("redirect:selectReadResumeAdmin");
+        return new ModelAndView("redirect:/resume/selectReadResumeAdmin");
     }
 
 }

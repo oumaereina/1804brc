@@ -31,20 +31,20 @@
 </div>
 <div class="layui-tab layui-tab-card">
     <ul class="layui-tab-title">
-        <li class="layui-this">网站设置</li>
+        <li class="layui-this" ><a href="">员工管理</a> </li>
         <li><a href="admin/showMsg">消息</a></li>
         <li><a href="resume/selectAllResumeAdmin">游客简历管理</a></li>
         <li><a href="pages/adminEmployment.jsp">招聘信息管理</a></li>
         <li><a href="department/showDep">部门管理</a></li>
     </ul>
     <div class="layui-tab-content" style="height: 100px;">
-        <div class="layui-tab-item layui-show"></div>
+        <div class="layui-tab-item layui-show">sda</div>
         <div class="layui-tab-item">
 
         </div>
-        <div class="layui-tab-item"></div>
-        <div class="layui-tab-item"></div>
-        <div class="layui-tab-item"></div>
+        <div class="layui-tab-item">asd</div>
+        <div class="layui-tab-item">sad</div>
+        <div class="layui-tab-item">sad</div>
         <div class="layui-tab-item">6</div>
     </div>
 </div>
@@ -69,6 +69,24 @@
 </body>
 <script src="../static/layui/layui/layui.all.js" charset="utf-8"></script>
 <script>
+    /*$("#u1").click(function () {
+        $.ajax({
+            type:"get",
+            url:"",
+            dataType:"json",
+            async:false,
+            data:{"P_D_ID":$("#s1").val()},
+            success:function (obj) {
+                $("#s2").empty();
+                for(var i=0; i<obj.length;i++){
+                    $("#s2").append("<option name='' value='"+obj[i].p_id+"'>"+obj[i].pname+"</option>");
+                    var a= $("#p1").text();
+                    a+=$("#p1").html(obj[i].P_NAME);
+                }
+
+            }
+        });
+    })*/
     layui.use('element', function(){
         var $ = layui.jquery
             ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块

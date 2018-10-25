@@ -1,13 +1,7 @@
 package com.oumae.controller;
 
-import com.oumae.model.Employment;
-import com.oumae.model.Invite;
-import com.oumae.model.Resume;
-import com.oumae.model.Visitor;
-import com.oumae.service.EmploymentService;
-import com.oumae.service.InviteService;
-import com.oumae.service.ResumeService;
-import com.oumae.service.VisitorService;
+import com.oumae.model.*;
+import com.oumae.service.*;
 import com.oumae.utils.DoPage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +22,8 @@ import java.util.List;
 @RequestMapping("/visitor")
 public class VisitorController {
     @Resource
+    EmpService empService;
+    @Resource
     private VisitorService visitorService;
     @Resource
     private EmploymentService employmentService;
@@ -43,6 +39,7 @@ public class VisitorController {
             model.addAttribute("noReadResumes",resumes.size());
             return "admin";
         }
+
         Visitor visitor1 = visitorService.getVisitor(visitor);
         List<Employment> employments = employmentService.getEmploymentByLimit(currentPage,PAGESIZE);
         List<Employment> allEmployment = employmentService.selectAllEmployment();
@@ -55,6 +52,10 @@ public class VisitorController {
             model.addAttribute("employments",employments);
         }
         if (null != visitor1) {
+            Emp emp = empService.selectByVid(visitor1.getV_id());
+            if(emp!=null){
+                session.setAttribute("emp",emp);
+            }
             List<Invite> invites = inviteService.selectInviteByVid(visitor1.getV_id());
             if(invites!=null&&invites.size()!=0){
                 model.addAttribute("inviteMsg",invites.get(0));

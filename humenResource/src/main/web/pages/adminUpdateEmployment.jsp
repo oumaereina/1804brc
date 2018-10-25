@@ -64,6 +64,7 @@
         </li>
     </form>
 </c:if>
+
 <c:if test="${requestScope.emp!=null}">
   <form action="emp/updateDP2" method="post">
       <p>将${requestScope.emp.getE_realName()}调换至</p>
@@ -81,6 +82,13 @@
       <input type="hidden" value="${requestScope.emp.getE_p_id()}" name="opid">
       <p><input type="submit"></p>
   </form>
+</c:if>
+<c:if test="${requestScope.empDis!=null}">
+    <p>${requestScope.msg}</p>
+    <form action="emp/doDismission" method="post">
+        离职原因:<input name="dm_result"><input name="dm_e_id" type="hidden" value="${requestScope.empDis}">
+        <input type="submit" name="" id="">
+    </form>
 </c:if>
 </body>
 <script>

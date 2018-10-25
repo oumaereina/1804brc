@@ -18,15 +18,24 @@ public class Emp {
     private String e_realName;
     private Double e_salary;
     private String e_sex;
-    private Integer e_state;
+    private Integer e_state;//员工状态
     private Integer e_age;
-    private Date e_date;
+    private Date e_date;//入职时间
+    private Integer e_vid;
     public Emp() {
     }
 
     public Emp(String e_name, String e_pass) {
         this.e_name = e_name;
         this.e_pass = e_pass;
+    }
+
+    public Integer getE_vid() {
+        return e_vid;
+    }
+
+    public void setE_vid(Integer e_vid) {
+        this.e_vid = e_vid;
     }
 
     public Date getE_date() {

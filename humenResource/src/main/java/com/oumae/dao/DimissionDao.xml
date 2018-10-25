@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.DimissionDao">
+    <insert id="insertDimission">
+        INSERT INTO T_DIMISSION (DM__ID, DM_E_ID, DM_RESULT)
+        VALUES (DIM_SQL.nextval,#{dm_e_id},#{dm_result})
+    </insert>
+    <select id="selectDimissionByEid" resultType="com.oumae.model.Dimission">
+        SELECT DM__ID AS dm_id ,DM_RESULT as dm_result ,DM_E_ID as dm_e_id
+        FROM T_DIMISSION WHERE DM_E_ID=#{dm_e_id}
+    </select>
+</mapper>

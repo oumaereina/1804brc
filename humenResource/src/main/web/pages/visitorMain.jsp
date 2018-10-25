@@ -74,7 +74,7 @@
         position: relative;
     }
     #d4{
-        margin-top: 30px;
+        margin-top: 60px;
     }
 </style>
 <body>
@@ -86,10 +86,14 @@
             <li>点击<a href="visitor/checkInvite?inviteId=${requestScope.inviteMsg.getI_ID()}">确认</a>表示同意参加面试，稍后面试官会联系您</li>
         </ul>
     </c:if>
+
 </div>
 <div id="d2">
     <ul id="u2">
         <li>你好，${sessionScope.visitor.getV_name()}</li>
+        <c:if test="${sessionScope.emp!=null}">
+            <li>您已被录取，员工账号：${sessionScope.emp.getE_name()}密码：${sessionScope.emp.getE_pass()}</li>
+        </c:if>
     </ul>
 </div>
 <div id="d3">
@@ -123,7 +127,7 @@
             </tr>
             <tr>
                 <c:if test="${sessionScope.visitor!=null}">
-                    <td><a href="resume.jsp">投递简历</a> </td>
+                    <td><a href="pages/resume.jsp">投递简历</a> </td>
                 </c:if>
             </tr>
         </table>

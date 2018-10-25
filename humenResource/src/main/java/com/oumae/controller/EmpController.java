@@ -11,10 +11,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by oumaereina on 2018/10/24.
@@ -31,7 +28,7 @@ public class EmpController {
     @Resource
     private ResumeService resumeService;
     @Resource
-    private VisitorService visitorService;
+    private DimissionService dimissionService;
     /*录取为员工1*/
     @RequestMapping("/addEmp")
     public String addEmp1(Integer vid, HttpSession session, Model model) throws Exception{
@@ -56,6 +53,7 @@ public class EmpController {
             model.addAttribute("date",currDate);
             List<Department> departments = departmentService.selectAll();
             List<Post> posts = postService.selectAll();
+            model.addAttribute("vid",vid);
             model.addAttribute("departments",departments);
             model.addAttribute("posts",posts);
             model.addAttribute("empName",result2);
@@ -66,7 +64,7 @@ public class EmpController {
     }
     /*录取为员工2*/
     @RequestMapping("/addeee")
-    public String addEmp3(Emp emp, HttpSession session, Model model) throws Exception{
+    public String addEmp3(Integer vid,Emp emp, HttpSession session, Model model) throws Exception{
         if(empService.insertEmp(emp)){
             Department department = departmentService.selectById(emp.getE_d_id());
             department.setD_NUM(department.getD_NUM()+1);
@@ -94,11 +92,19 @@ public class EmpController {
         model.addAttribute("msg","用户名或密码错误");
         return "empLogin";
     }
-/*通过部门查询员工*/
+    /*通过部门查询员工*/
     @RequestMapping("/showDepNum")
     public String showDepNum(Integer did,HttpSession session, Model model) throws Exception{
         List<Emp>emps =  empService.selectEmpByDid(did);
+        List<Dimission> dimissions = new ArrayList<Dimission>();
         if(emps!=null||emps.size()!=0){
+            for (Emp emp : emps) {
+                if(emp.getE_state()==3){
+                    Dimission dimission = dimissionService.selectDimissionByEid(emp.getE_id());
+                    dimissions.add(dimission);
+                }
+            }
+            model.addAttribute("dis",dimissions);
             model.addAttribute("emps",emps);
         }else {
             model.addAttribute("msg","没有员工");
@@ -154,6 +160,59 @@ public class EmpController {
             }
         }else {
             model.addAttribute("msg","修改失败");
+        }
+        return "adminDepartment";
+    }
+    /*转正*/
+    @RequestMapping("/positive")
+    public String positive(Integer eid,HttpSession session, Model model) throws Exception{
+        Emp emp = empService.selectById(eid);
+        Date currDate = Calendar.getInstance().getTime();
+        Date date = emp.getE_date();
+        if((currDate.getTime()-date.getTime())/1000>2419200){
+            emp.setE_state(2);
+            if(empService.updateEmpById(emp)){
+                model.addAttribute("msg","转正成功,已成为正式员工");
+            }else {
+                model.addAttribute("msg","操作失败");
+            }
+        }else {
+            model.addAttribute("msg","转正失败,时间未满一个月");
+        }
+        return "adminDepartment";
+    }
+    /*离职*/
+    @RequestMapping("/dismission")
+    public String dismission(Integer eid,HttpSession session, Model model) throws Exception{
+        Emp emp = empService.selectById(eid);
+        emp.setE_state(3);
+        if(empService.updateEmpById(emp)){
+            Department department = departmentService.selectById(emp.getE_d_id());
+            department.setD_NUM(department.getD_NUM()-1);
+            departmentService.updateDepartmentById(department);/*人数-1*/
+            Post post = postService.selectById(emp.getE_p_id());
+            post.setP_NUM(post.getP_NUM()-1);
+            postService.updatePostById(post);/*人数-1*/
+
+            List<Department> departments = departmentService.selectAll();
+            if(departments!=null){
+                session.setAttribute("departments",departments);
+            }
+
+            model.addAttribute("empDis",emp.getE_id());
+            model.addAttribute("msg","操作成功，员工已离职,请填写离职原因");
+        }else {
+            model.addAttribute("msg","操作失败");
+        }
+        return "adminUpdateEmployment";
+    }
+    /*填写离职原因*/
+    @RequestMapping("/doDismission")
+    public String doDismission(Dimission dimission,HttpSession session, Model model) throws Exception{
+        if(dimissionService.insertDimission(dimission)){
+            model.addAttribute("msg","提交成功");
+        }else {
+            model.addAttribute("msg","提交失败");
         }
         return "adminDepartment";
     }

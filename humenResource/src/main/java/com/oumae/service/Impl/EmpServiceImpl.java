@@ -2,6 +2,7 @@ package com.oumae.service.Impl;
 
 import com.oumae.dao.EmpDao;
 import com.oumae.model.Emp;
+import com.oumae.model.Visitor;
 import com.oumae.service.EmpService;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +56,11 @@ public class EmpServiceImpl implements EmpService{
         Emp emp1 = empDao.selectByNamePass(emp);
 
         return emp1;
+    }
+
+    public Emp selectByVid(Integer e_vid) {
+        Emp emp = empDao.selectByVid(e_vid);
+        return emp;
     }
 
     public List<Emp> selectEmpByPid(Integer E_P_ID) {

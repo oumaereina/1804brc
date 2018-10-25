@@ -36,7 +36,7 @@
             <li>电话:</li>
             <li><input value="${requestScope.resume.getR_phone()}" name="e_phone"></li>
             <li>薪资:</li>
-            <li><input value="" name="e_salary"></li>
+            <li><input value="" name="e_salary"><input name="e_vid" value="${requestScope.vid}" type="hidden"></li>
             <li><input value=1 name="e_state" type="hidden"><input name="e_date" value="${requestScope.date}" type="hidden"></li>
             <select name="e_d_id" id="s1">
                 <option value="${null}" >选择部门</option>

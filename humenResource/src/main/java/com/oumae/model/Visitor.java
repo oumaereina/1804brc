@@ -8,6 +8,12 @@ public class Visitor {
     private Integer v_id;
     private String v_name;
     private String v_pass;
+    private Integer v_eid;
+
+    public Visitor(String v_name, String v_pass) {
+        this.v_name = v_name;
+        this.v_pass = v_pass;
+    }
 
     @Override
     public String toString() {
@@ -15,15 +21,19 @@ public class Visitor {
                 "v_id=" + v_id +
                 ", v_name='" + v_name + '\'' +
                 ", v_pass='" + v_pass + '\'' +
+                ", v_eid=" + v_eid +
                 '}';
     }
 
-    public Visitor(String v_name, String v_pass) {
-        this.v_name = v_name;
-        this.v_pass = v_pass;
+    public Visitor() {
     }
 
-    public Visitor() {
+    public Integer getV_eid() {
+        return v_eid;
+    }
+
+    public void setV_eid(Integer v_eid) {
+        this.v_eid = v_eid;
     }
 
     public Integer getV_id() {
