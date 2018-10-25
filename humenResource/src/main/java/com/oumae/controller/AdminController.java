@@ -46,9 +46,6 @@ public class AdminController {
             return null;
         }
         List<Post> postList=postService.selectByDid(P_D_ID);
-        /*Map<String, Object> map = new HashMap<String, Object>();
-        map.put("Post", Post);*/
-        //response.getWriter().print(Post);
         return postList;
     }
 

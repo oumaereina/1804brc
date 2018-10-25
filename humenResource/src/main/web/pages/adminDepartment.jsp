@@ -68,7 +68,7 @@
     <form action="" method="post">
         <c:forEach items="${sessionScope.posts}" var="i">
             <ul class="uu">
-                <li><a href="">${i.getPname()}</a> 该岗位有${i.getP_NUM()}人</li>
+                <li><a>${i.getPname()}</a> 该岗位有${i.getP_NUM()}人</li>
                 <li><a href="post/updatePost1?pid=${i.getP_id()}">修改</a><a href="post/delPost?pid=${i.getP_id()}">删除</a></li>
             </ul>
         </c:forEach>
@@ -90,7 +90,7 @@
 <div>
     <c:forEach items="${requestScope.emps}" var="i">
         <ul id="u3" class="uu">
-            <li>${i.getE_realName()}</li>
+            <li>${i.getE_realName()}<a href="emp/updateDP?eid=${i.getE_id()}">换岗</a></li>
         </ul>
     </c:forEach>
 </div>

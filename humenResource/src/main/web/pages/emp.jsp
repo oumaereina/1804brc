@@ -121,10 +121,9 @@
                 <td>${sessionScope.emp.getE_date()}</td>
             </tr>
             <tr>
-
-
                 <td>培训信息</td>
                 <td>奖惩信息</td>
+                <td>实收工资</td>
             </tr>
             <tr>
 
@@ -148,6 +147,8 @@
         <li>您好,</li>
     </ul>
 </div>
+</div>
+</body>
 <script src="../static/layui/layui/layui.all.js" charset="utf-8"></script>
 <script>
     //JavaScript代码区域
@@ -156,5 +157,5 @@
 
     });
 </script>
-</body>
+
 </html>

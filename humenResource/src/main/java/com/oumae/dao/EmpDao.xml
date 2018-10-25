@@ -9,44 +9,44 @@
     <update id="updateEmpById">
         UPDATE T_EMP <set>
         <if test="e_name!=null">
-            E_NAME=#{e_name}
+            E_NAME=#{e_name},
         </if>
         <if test="e_pass!=null">
-            E_PASS=#{e_pass}
+            E_PASS=#{e_pass},
         </if>
         <if test="e_p_id!=null">
-            E_P_ID=#{e_p_id}
+            E_P_ID=#{e_p_id},
         </if>
         <if test="e_mail!=null">
-            E_MAIL=#{e_mail}
+            E_MAIL=#{e_mail},
         </if>
         <if test="e_phone!=null">
-            E_PHONE=#{e_phone}
+            E_PHONE=#{e_phone},
         </if>
         <if test="e_d_id!=null">
-            E_D_ID=#{e_d_id}
+            E_D_ID=#{e_d_id},
         </if>
         <if test="e_realName!=null">
-            E_REALNAME=#{e_realName}
+            E_REALNAME=#{e_realName},
         </if>
         <if test="e_salary!=null">
-            E_SALARY=#{e_salary}
+            E_SALARY=#{e_salary},
         </if>
         <if test="e_sex!=null">
-            E_SEX=#{e_sex}
+            E_SEX=#{e_sex},
         </if>
         <if test="e_state!=null">
-            E_STATE=#{e_state}
+            E_STATE=#{e_state},
         </if>
         <if test="e_age!=null">
-            E_STATE=#{e_age}
+            E_AGE=#{e_age},
         </if>
         <if test="e_date!=null">
-            E_STATE=#{e_date}
+            E_DATE=#{e_date}
         </if>
     </set>
         <where>
-            E_ID#{E_ID}
+            E_ID=#{e_id}
         </where>
     </update>
     <delete id="deleteEmpById">

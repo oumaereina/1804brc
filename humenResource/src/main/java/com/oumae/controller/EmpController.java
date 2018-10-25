@@ -1,16 +1,15 @@
 package com.oumae.controller;
 
 import com.oumae.model.*;
-import com.oumae.service.DepartmentService;
-import com.oumae.service.EmpService;
-import com.oumae.service.PostService;
-import com.oumae.service.ResumeService;
+import com.oumae.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,6 +30,8 @@ public class EmpController {
     private PostService postService;
     @Resource
     private ResumeService resumeService;
+    @Resource
+    private VisitorService visitorService;
     /*录取为员工1*/
     @RequestMapping("/addEmp")
     public String addEmp1(Integer vid, HttpSession session, Model model) throws Exception{
@@ -47,6 +48,8 @@ public class EmpController {
             {
                 result2+=random.nextInt(10);
             }
+            resumes.get(0).setR_state(2);//设置状态2代表已录用
+            resumeService.updateResumeById(resumes.get(0));
             Date currDate = Calendar.getInstance().getTime();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String dateTime = sdf.format(currDate);
@@ -101,6 +104,57 @@ public class EmpController {
             model.addAttribute("msg","没有员工");
         }
 
+        return "adminDepartment";
+    }
+    /*换岗1*/
+    @RequestMapping("/updateDP")
+    public String updateDP(Integer eid,HttpSession session, Model model) throws Exception{
+        Emp emp = empService.selectById(eid);
+        List<Department> departments = departmentService.selectAll();
+        if(departments!=null){
+            model.addAttribute("departments",departments);
+        }
+        model.addAttribute("emp",emp);
+        return "adminUpdateEmployment";
+    }
+    /*二级联动找岗位*/
+    @RequestMapping("/findPosts")
+    public @ResponseBody
+    List<Post> findPosts(Integer P_D_ID) throws IOException {
+        if(P_D_ID==null){
+            return null;
+        }
+        List<Post> postList=postService.selectByDid(P_D_ID);
+        return postList;
+    }
+    @RequestMapping("/updateDP2")
+    public String updateDP2(Integer did,Integer pid,Integer eid,Integer opid,Integer odid,HttpSession session, Model model) throws Exception{
+        Emp emp = empService.selectById(eid);
+        emp.setE_d_id(did);
+        emp.setE_p_id(pid);
+        if(empService.updateEmpById(emp)){
+            Department department = departmentService.selectById(odid);
+            department.setD_NUM(department.getD_NUM()-1);
+            departmentService.updateDepartmentById(department);/*人数-1*/
+            Post post = postService.selectById(opid);
+            post.setP_NUM(post.getP_NUM()-1);
+            postService.updatePostById(post);/*人数-1*/
+
+            Department department1 = departmentService.selectById(did);
+            department1.setD_NUM(department1.getD_NUM()+1);
+            departmentService.updateDepartmentById(department1);/*人数+1*/
+            Post post1 = postService.selectById(pid);
+            post1.setP_NUM(post1.getP_NUM()+1);
+            postService.updatePostById(post1);/*人数+1*/
+
+            model.addAttribute("msg","修改成功");
+            List<Department> departments = departmentService.selectAll();
+            if(departments!=null){
+                session.setAttribute("departments",departments);
+            }
+        }else {
+            model.addAttribute("msg","修改失败");
+        }
         return "adminDepartment";
     }
 }

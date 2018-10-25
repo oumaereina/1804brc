@@ -16,6 +16,7 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
 </head>
+<script src="../js/jquery-3.2.1.js"></script>
 <body>
 <c:if test="${requestScope.employment!=null}">
     <div id="d4">
@@ -63,5 +64,44 @@
         </li>
     </form>
 </c:if>
+<c:if test="${requestScope.emp!=null}">
+  <form action="emp/updateDP2" method="post">
+      <p>将${requestScope.emp.getE_realName()}调换至</p>
+      <select name="did" id="s1">
+          <option value="${null}" >选择部门</option>
+          <c:forEach items="${requestScope.departments}" var="i">
+              <option name="" value="${i.getD_ID()}">${i.getD_NAME()}</option>
+          </c:forEach>
+      </select>
+      <select name="pid" id="s2">
+          <option value="${null}" >选择岗位</option>
+      </select>
+      <input type="hidden" value="${requestScope.emp.getE_id()}" name="eid">
+      <input type="hidden" value="${requestScope.emp.getE_d_id()}" name="odid">
+      <input type="hidden" value="${requestScope.emp.getE_p_id()}" name="opid">
+      <p><input type="submit"></p>
+  </form>
+</c:if>
 </body>
+<script>
+    $(function () {
+        $("#s1").change(function () {
+            $.ajax({
+                type:"get",
+                url:"emp/findPosts",
+                dataType:"json",
+                async:false,
+                data:{"P_D_ID":$("#s1").val()},
+                success:function (obj) {
+                    $("#s2").empty();
+                    for(var i=0; i<obj.length;i++){
+                        $("#s2").append("<option name='' value='"+obj[i].p_id+"'>"+obj[i].pname+"</option>");
+                        var a= $("#p1").text();
+                        a+=$("#p1").html(obj[i].P_NAME);
+                    }
+                }
+            });
+        });
+    })
+</script>
 </html>

@@ -1,10 +1,12 @@
 package com.oumae.model;
 
+import java.io.Serializable;
+
 /**
  * Created by oumaereina on 2018/10/22.
  */
 /*≤ø√≈*/
-public class Department {
+public class Department implements Serializable{
     private Integer D_ID;
     private String D_NAME;
     private Integer D_NUM;

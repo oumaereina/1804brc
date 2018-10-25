@@ -1,10 +1,12 @@
 package com.oumae.model;
 
+import java.io.Serializable;
+
 /**
  * Created by oumaereina on 2018/10/22.
  */
 /*¸ÚÎ»*/
-public class Post {
+public class Post implements Serializable{
     private Integer p_id;
     private String pname;
     private Integer P_D_ID;
