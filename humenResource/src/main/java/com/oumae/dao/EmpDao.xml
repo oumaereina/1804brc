@@ -70,7 +70,7 @@
         select  E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
           E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
           E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
-          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_datefrom T_EMP WHERE E_D_ID=#{e_id}
+          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date from T_EMP WHERE E_D_ID=#{e_id}
     </select>
     <select id="selectEmpByPidLimit" resultType="com.oumae.model.Emp">
         SELECT  E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,

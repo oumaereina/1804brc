@@ -2,8 +2,10 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
     <file url="file://$PROJECT_DIR$/src/main/java/com/oumae/controller/AdminController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/oumae/controller/DepartmentController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/oumae/controller/EmpController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/oumae/controller/EmploymentController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/oumae/controller/PostController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/oumae/controller/ResumeController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/oumae/controller/VisitorController.java" charset="UTF-8" />
     <file url="PROJECT" charset="GBK" />

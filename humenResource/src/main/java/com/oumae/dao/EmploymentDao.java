@@ -9,6 +9,7 @@ import java.util.List;
  * Created by oumaereina on 2018/10/21.
  */
 public interface EmploymentDao {
+    Employment selectEmpById(Integer EM_ID);
     Integer insertEmp(Employment employment);
     Integer deleteEmpById(Integer id);
     Integer updateEmpById(Employment employment);

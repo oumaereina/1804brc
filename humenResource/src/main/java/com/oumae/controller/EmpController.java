@@ -1,9 +1,6 @@
 package com.oumae.controller;
 
-import com.oumae.model.Department;
-import com.oumae.model.Emp;
-import com.oumae.model.Post;
-import com.oumae.model.Resume;
+import com.oumae.model.*;
 import com.oumae.service.DepartmentService;
 import com.oumae.service.EmpService;
 import com.oumae.service.PostService;
@@ -72,6 +69,8 @@ public class EmpController {
             department.setD_NUM(department.getD_NUM()+1);
             departmentService.updateDepartmentById(department);
             Post post = postService.selectById(emp.getE_p_id());
+            post.setP_NUM(post.getP_NUM()+1);
+            postService.updatePostById(post);
             model.addAttribute("msg", "添加成功");
         }else {
             model.addAttribute("msg", "添加失败");
@@ -80,7 +79,6 @@ public class EmpController {
     }
     @RequestMapping("/empLogin")
     public String showEmp(Emp emp, HttpSession session, Model model) throws Exception{
-        System.out.println(emp);
         Emp emp1 = empService.selectByNamePass(emp);
         if(emp1!=null){
             Department department = departmentService.selectById(emp1.getE_d_id());
@@ -92,5 +90,17 @@ public class EmpController {
         }
         model.addAttribute("msg","用户名或密码错误");
         return "empLogin";
+    }
+/*通过部门查询员工*/
+    @RequestMapping("/showDepNum")
+    public String showDepNum(Integer did,HttpSession session, Model model) throws Exception{
+        List<Emp>emps =  empService.selectEmpByDid(did);
+        if(emps!=null||emps.size()!=0){
+            model.addAttribute("emps",emps);
+        }else {
+            model.addAttribute("msg","没有员工");
+        }
+
+        return "adminDepartment";
     }
 }

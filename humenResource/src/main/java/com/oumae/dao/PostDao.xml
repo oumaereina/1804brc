@@ -8,11 +8,11 @@
     <update id="updatePostById">
         UPDATE T_POST
         <set>
-            <if test="P_NAME!=null">
-                P_NAME=#{pname}
+            <if test="pname!=null">
+                P_NAME=#{pname},
             </if>
             <if test="P_D_ID!=null">
-                P_D_ID=#{P_D_ID}
+                P_D_ID=#{P_D_ID},
             </if>
             <if test="P_NUM!=null">
                 P_NUM=#{P_NUM}

@@ -70,4 +70,23 @@ public class EmploymentController {
         employmentService.deleteEmpById(EM_ID);
         return new ModelAndView("redirect:showEmp");
     }
+    /*修改招聘信息1*/
+    @RequestMapping("/updateEmployment")
+    public String updateEmployment1(Integer EM_ID, HttpSession session, Model model) throws Exception{
+        Employment employment = employmentService.insertEmpById(EM_ID);
+        if(employment!=null){
+            model.addAttribute("employment",employment);
+        }
+        return "adminUpdateEmployment";
+    }
+    /*修改招聘信息1*/
+    @RequestMapping("/updateEmployment2")
+    public String updateEmployment2(Employment employment, HttpSession session, Model model) throws Exception{
+       if( employmentService.updateEmpById(employment)){
+           model.addAttribute("msg","修改成功");
+       }else {
+           model.addAttribute("msg","修改失败");
+       }
+        return "adminUpdateEmployment";
+    }
 }

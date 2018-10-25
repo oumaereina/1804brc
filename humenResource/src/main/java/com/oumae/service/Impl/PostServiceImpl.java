@@ -30,6 +30,10 @@ public class PostServiceImpl implements PostService{
     }
 
     public boolean deletePostById(Integer P_ID) {
+        Post post1 = postDao.selectById(P_ID);
+        if(post1.getP_NUM()!=0){
+            return false;
+        }
         if(P_ID!=null){
             Integer integer = postDao.deletePostById(P_ID);
             if(integer==1){

@@ -63,7 +63,7 @@ public class EmpServiceImpl implements EmpService{
     }
 
     public List<Emp> selectEmpByDid(Integer E_D_ID) {
-        List<Emp> emps = empDao.selectEmpByPid(E_D_ID);
+        List<Emp> emps = empDao.selectEmpByDid(E_D_ID);
         return emps;
     }
 

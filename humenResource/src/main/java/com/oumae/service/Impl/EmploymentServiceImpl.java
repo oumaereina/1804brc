@@ -16,6 +16,12 @@ import java.util.List;
 public class EmploymentServiceImpl implements EmploymentService{
     @Resource
     private EmploymentDao employmentDao;
+
+    public Employment insertEmpById(Integer EM_ID) {
+        Employment employment = employmentDao.selectEmpById(EM_ID);
+        return employment;
+    }
+
     public boolean insertEmp(Employment employment) {
         if(employment!=null){
             Integer integer = employmentDao.insertEmp(employment);

@@ -5,6 +5,7 @@ import com.oumae.service.DepartmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -18,13 +19,56 @@ import java.util.List;
 public class DepartmentController {
     @Resource
     private DepartmentService departmentService;
-    /*��ѯ���в���*/
+    /*查询所有部门*/
     @RequestMapping("/showDep")
-    public String showMsg(HttpSession session, Model model) throws Exception{
+    public String showDep(HttpSession session, Model model) throws Exception{
         List<Department> departments = departmentService.selectAll();
         if(departments!=null){
             session.setAttribute("departments",departments);
         }
         return "adminDepartment";
+    }
+    @RequestMapping("/delDep")
+    public String delDep(Integer did,HttpSession session, Model model) throws Exception{
+        Department department = departmentService.selectById(did);
+        if(department.getD_NUM()!=0){
+            model.addAttribute("msg","删除失败，该部门还有员工");
+        }else {
+           if( departmentService.deleteDepartmentById(department.getD_ID())){
+               List<Department> departments = departmentService.selectAll();
+               if(departments!=null){
+                   session.setAttribute("departments",departments);
+               }
+               model.addAttribute("msg","删除成功");
+           }else {
+               model.addAttribute("msg","删除失败");
+           }
+        }
+        return "adminDepartment";
+    }
+    @RequestMapping("/addDep")
+    public String addDep(Department department,HttpSession session, Model model) throws Exception{
+        if(departmentService.insertDepartment(department)){
+            model.addAttribute("msg","添加成功");
+        }else {
+            model.addAttribute("msg","添加失败,部门名重复");
+        }
+        return "adminDepartment";
+    }
+    @RequestMapping("/updateDep")
+    public ModelAndView updateDep(Department department, HttpSession session, Model model) throws Exception{
+        if(departmentService.updateDepartmentById(department)){
+            model.addAttribute("msg","修改成功");
+        }else {
+            model.addAttribute("msg","修改失败");
+        }
+        return new ModelAndView("redirect:showDep");
+    }
+
+    @RequestMapping("/updateDep1")
+    public String updateDep1(Integer did,HttpSession session, Model model) throws Exception{
+        Department department = departmentService.selectById(did);
+        model.addAttribute("department",department);
+        return "adminUpdateEmployment";
     }
 }

@@ -5,10 +5,13 @@
         INSERT INTO T_EMPLOYMENT
         VALUES (EMPLOYMENT_SQL.nextval,#{EM_COMPANY},#{EM_POST},#{EM_PEOPLE},#{EM_ADD},#{EM_EDU},#{EM_SALARY},#{EM_EXP},#{EM_DATE})
     </insert>
+    <select id="selectEmpById" resultType="com.oumae.model.Employment">
+        select * from T_EMPLOYMENT WHERE EM_ID=#{EM_ID}
+    </select>
     <update id="updateEmpById">
         UPDATE T_EMPLOYMENT SET
         EM_COMPANY=#{EM_COMPANY}, EM_POST=#{EM_POST}, EM_PEOPLE=#{EM_PEOPLE},
-        EM_ADD=#{EM_ADD}, EM_EDU=#{EM_EDU}, EM_SALARY=#{EM_SALARY}, EM_EXP=#{EM_EXP}, EM_DATE=#{EM_DATE}
+        EM_ADD=#{EM_ADD}, EM_EDU=#{EM_EDU}, EM_SALARY=#{EM_SALARY}, EM_EXP=#{EM_EXP}, EM_DATE=#{EM_DATE,jdbcType=DATE}
         WHERE EM_ID=#{EM_ID}
     </update>
     <delete id="deleteEmpById">

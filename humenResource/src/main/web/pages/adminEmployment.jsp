@@ -84,15 +84,15 @@
         <c:forEach items="${requestScope.employments}" var="i">
             <table id="t1">
                 <tr>
-                    <td>${i.getEM_POST()}</td>
-                    <td>${i.getEM_COMPANY()}</td>
+                    <td>岗位：${i.getEM_POST()}</td>
+                    <td>公司：${i.getEM_COMPANY()}</td>
                 </tr>
                 <tr>
-                    <td>${i.getEM_SALARY()}</td>
-                    <td>${i.getEM_ADD()}</td>
-                    <td>${i.getEM_EDU()}</td>
-                    <td>${i.getEM_EXP()}</td>
-                    <td>${i.getEM_PEOPLE()}</td>
+                    <td>薪资：${i.getEM_SALARY()}/月</td>
+                    <td>工作地点：${i.getEM_ADD()}</td>
+                    <td>学历要求：${i.getEM_EDU()}</td>
+                    <td>工作要求：${i.getEM_EXP()}</td>
+                    <td>人数要求：${i.getEM_PEOPLE()}</td>
                 </tr>
                 <tr>
                     <td class="oth"><div class="div1"><p>绩效奖金</p></div></td>
@@ -103,7 +103,7 @@
                 </tr>
                 <tr>
                     <td><a href="employment/deleteEmployment?EM_ID=${i.getEM_ID()}" onclick="add()">删除</a> </td>
-                    <td><a href="">修改</a> </td>
+                    <td><a href="employment/updateEmployment?EM_ID=${i.getEM_ID()}">修改</a> </td>
                 </tr>
             </table>
         </c:forEach>
