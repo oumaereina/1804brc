@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,13 +50,20 @@ public class DepartmentController {
     }
     @RequestMapping("/addDep")
     public String addDep(Department department,HttpSession session, Model model) throws Exception{
+        Date currDate = Calendar.getInstance().getTime();
+        department.setD_DATE(currDate);
         if(departmentService.insertDepartment(department)){
+            List<Department> departments = departmentService.selectAll();
+            if(departments!=null){
+                session.setAttribute("departments",departments);
+            }
             model.addAttribute("msg","添加成功");
         }else {
             model.addAttribute("msg","添加失败,部门名重复");
         }
         return "adminDepartment";
     }
+
     @RequestMapping("/updateDep")
     public ModelAndView updateDep(Department department, HttpSession session, Model model) throws Exception{
         if(departmentService.updateDepartmentById(department)){

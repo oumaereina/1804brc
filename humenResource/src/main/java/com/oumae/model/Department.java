@@ -1,6 +1,7 @@
 package com.oumae.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by oumaereina on 2018/10/22.
@@ -10,8 +11,16 @@ public class Department implements Serializable{
     private Integer D_ID;
     private String D_NAME;
     private Integer D_NUM;
-
+    private Date D_DATE;//创建日期
     public Department() {
+    }
+
+    public Date getD_DATE() {
+        return D_DATE;
+    }
+
+    public void setD_DATE(Date d_DATE) {
+        D_DATE = d_DATE;
     }
 
     public Integer getD_NUM() {

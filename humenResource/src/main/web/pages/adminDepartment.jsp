@@ -66,7 +66,8 @@
     <form action="department/addDep" method="post">
         <ul class="uu">
             <li>添加部门</li>
-            <li>部门名：<input name="D_NAME"><input type="hidden" name="E_NUM" value=0></li>
+            <li>部门名：<input name="D_NAME"><input type="hidden" name="D_NUM" value=0></li>
+            <li></li>
             <li><input type="submit"></li>
         </ul>
     </form>

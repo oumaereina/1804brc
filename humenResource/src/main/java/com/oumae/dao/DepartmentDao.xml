@@ -3,7 +3,7 @@
 <mapper namespace="com.oumae.dao.DepartmentDao">
     <insert id="insertDepartment">
         INSERT INTO T_DEPARTMENT
-         VALUES (DEP_SQL.nextval,#{D_NAME},#{D_NUM})
+         VALUES (DEP_SQL.nextval,#{D_NAME},#{D_NUM},#{D_DATE,jdbcType=VARCHAR})
     </insert>
     <update id="updateDepartmentById">
         UPDATE T_DEPARTMENT
@@ -13,6 +13,9 @@
             </if>
             <if test="D_NUM!=null">
                 D_NUM=#{D_NUM},
+            </if>
+            <if test="D_DATE!=null">
+                D_DATE=#{D_DATE,jdbcType=VARCHAR}
             </if>
         </set>
         <where>

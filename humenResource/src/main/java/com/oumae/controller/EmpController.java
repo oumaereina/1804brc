@@ -133,6 +133,7 @@ public class EmpController {
         List<Post> postList=postService.selectByDid(P_D_ID);
         return postList;
     }
+    /*换岗2*/
     @RequestMapping("/updateDP2")
     public String updateDP2(Integer did,Integer pid,Integer eid,Integer opid,Integer odid,HttpSession session, Model model) throws Exception{
         Emp emp = empService.selectById(eid);
