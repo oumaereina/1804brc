@@ -1,7 +1,9 @@
 package com.oumae.service.Impl;
 
 import com.oumae.dao.DepartmentDao;
+import com.oumae.dao.PostDao;
 import com.oumae.model.Department;
+import com.oumae.model.Post;
 import com.oumae.service.DepartmentService;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService{
     @Resource
     private DepartmentDao departmentDao;
+    @Resource
+    private PostDao postDao;
     public boolean insertDepartment(Department department) {
         Department department1 = departmentDao.selectByName(department.getD_name());
         if(department1!=null){
@@ -33,6 +37,10 @@ public class DepartmentServiceImpl implements DepartmentService{
         if(D_ID!=null){
             Integer integer = departmentDao.deleteDepartmentById(D_ID);
             if(integer==1){
+                List<Post>posts = postDao.selectByDid(D_ID);
+                for (Post post : posts) {
+                    postDao.deletePostById(post.getP_id());
+                }
                 return true;
             }
         }

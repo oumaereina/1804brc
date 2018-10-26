@@ -31,7 +31,6 @@
 <div>
     <ul id="u1">
         <li><a href="resume/selectResume">查看简历</a></li>
-        <li><a href="">修改简历</a></li>
     </ul>
 </div>
 <form action="resume/updateResume" method="post">
@@ -54,6 +53,7 @@
                <li><input type="text"value="${i.getR_add()}" name="r_add"></li>
                <li><input type="text"value="${i.getR_school()}" name="r_school"></li>
                <li><input type="text"value="${i.getR_hobby()}" name="r_hobby"></li>
+               <li><input type="text"value="${i.getR_health()}" name="r_health"></li>
                <li><input type="text"value="${i.getR_self()}" name="r_self">
                    <input type="hidden" value="${i.getR_id()}" name="r_id">
                </li>

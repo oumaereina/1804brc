@@ -25,6 +25,14 @@ public class Emp {
     public Emp() {
     }
 
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "e_id=" + e_id +
+                ", e_name='" + e_name + '\'' +
+                '}';
+    }
+
     public Emp(String e_name, String e_pass) {
         this.e_name = e_name;
         this.e_pass = e_pass;

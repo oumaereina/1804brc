@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.oumae.dao.DepartmentDao">
     <insert id="insertDepartment">
-        INSERT INTO T_DEPARTMENT (D_ID as d_id, D_NAME as d_name, D_NUM, D_DATE)
+        INSERT INTO T_DEPARTMENT
          VALUES (DEP_SQL.nextval,#{d_name},#{D_NUM},#{D_DATE,jdbcType=VARCHAR})
     </insert>
     <update id="updateDepartmentById">
