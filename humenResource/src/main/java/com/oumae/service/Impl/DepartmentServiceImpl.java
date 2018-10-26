@@ -16,7 +16,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     @Resource
     private DepartmentDao departmentDao;
     public boolean insertDepartment(Department department) {
-        Department department1 = departmentDao.selectByName(department.getD_NAME());
+        Department department1 = departmentDao.selectByName(department.getD_name());
         if(department1!=null){
             return false;
         }

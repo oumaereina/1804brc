@@ -62,4 +62,11 @@ public class PostController {
         }
         return "adminDepartment";
     }
+    /*员工查询岗位*/
+    @RequestMapping("/empShowPost")
+    public String empShowPost(Integer did,HttpSession session, Model model) throws Exception{
+        List<Post> posts = postService.selectByDid(did);
+        session.setAttribute("posts",posts);
+        return "empShowPosts";
+    }
 }

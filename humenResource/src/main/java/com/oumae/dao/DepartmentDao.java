@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface DepartmentDao {
     Integer insertDepartment(Department department);
-    Integer deleteDepartmentById(Integer D_ID);
+    Integer deleteDepartmentById(Integer d_id);
     Integer updateDepartmentById(Department department);
-    Department selectById(Integer D_ID);
-    Department selectByName(String D_NAME);
+    Department selectById(Integer d_id);
+    Department selectByName(String d_name);
     List<Department> selectAll();
 }

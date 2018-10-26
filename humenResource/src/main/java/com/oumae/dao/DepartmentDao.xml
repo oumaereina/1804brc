@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.oumae.dao.DepartmentDao">
     <insert id="insertDepartment">
-        INSERT INTO T_DEPARTMENT
-         VALUES (DEP_SQL.nextval,#{D_NAME},#{D_NUM},#{D_DATE,jdbcType=VARCHAR})
+        INSERT INTO T_DEPARTMENT (D_ID as d_id, D_NAME as d_name, D_NUM, D_DATE)
+         VALUES (DEP_SQL.nextval,#{d_name},#{D_NUM},#{D_DATE,jdbcType=VARCHAR})
     </insert>
     <update id="updateDepartmentById">
         UPDATE T_DEPARTMENT
         <set>
-            <if test="D_NAME!=null">
-                D_NAME=#{D_NAME},
+            <if test="d_name!=null">
+                D_NAME=#{d_name},
             </if>
             <if test="D_NUM!=null">
                 D_NUM=#{D_NUM},
@@ -19,19 +19,19 @@
             </if>
         </set>
         <where>
-            D_ID=#{D_ID}
+            D_ID=#{d_id}
         </where>
     </update>
     <delete id="deleteDepartmentById">
-        DELETE FROM T_DEPARTMENT WHERE  D_ID=#{D_ID}
+        DELETE FROM T_DEPARTMENT WHERE  D_ID=#{d_id}
     </delete>
     <select id="selectById" resultType="com.oumae.model.Department">
-        select * from T_DEPARTMENT WHERE  D_ID=#{D_ID}
+        select D_ID as d_id, D_NAME as d_name, D_NUM, D_DATE from T_DEPARTMENT WHERE  D_ID=#{D_ID}
     </select>
     <select id="selectAll" resultType="com.oumae.model.Department">
-        select * from T_DEPARTMENT
+        select D_ID as d_id, D_NAME as d_name, D_NUM, D_DATE from T_DEPARTMENT
     </select>
     <select id="selectByName" resultType="com.oumae.model.Department">
-        select * from T_DEPARTMENT WHERE D_NAME=#{D_NAME}
+        select D_ID as d_id, D_NAME as d_name, D_NUM, D_DATE from T_DEPARTMENT WHERE D_NAME=#{d_name}
     </select>
 </mapper>

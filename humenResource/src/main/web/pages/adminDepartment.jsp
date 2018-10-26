@@ -46,18 +46,14 @@
         <c:forEach items="${sessionScope.departments}" var="i">
             <ul class="uu">
                 <li>
-                    <a href="post/showPostByDid?did=${i.getD_ID()}">${i.getD_NAME()}</a>
-                    <p>人数：<a href="emp/showDepNum?did=${i.getD_ID()}">${i.getD_NUM()} 人</a></p>
+                    <a href="post/showPostByDid?did=${i.getD_id()}">${i.getD_name()}</a>
+                    <p>人数：<a href="emp/showDepNum?did=${i.getD_id()}">${i.getD_NUM()} 人</a></p>
                 </li>
-                <li><a href="department/delDep?did=${i.getD_ID()}" id="a1"> 删除</a><input type="hidden"
+                <li><a href="department/delDep?did=${i.getD_id()}" id="a1"> 删除</a><input type="hidden"
                                                                                          value="${i.getD_NUM()}"
                                                                                          id="num">
                 </li>
-                <li><a href="department/updateDep1?did=${i.getD_ID()}">修改</a></li>
-                    <%--  <li><input name="D_NAME" value="${i.getD_NAME()}"><input type="submit" value="修改">
-                          <input name="D_NUM" value="${i.getD_NUM()}" type="hidden">
-                          <input name="D_ID" value="${i.getD_ID()}" type="hidden">
-                      </li>--%>
+                <li><a href="department/updateDep1?did=${i.getD_id()}">修改</a></li>
             </ul>
         </c:forEach>
     </form>
@@ -66,7 +62,7 @@
     <form action="department/addDep" method="post">
         <ul class="uu">
             <li>添加部门</li>
-            <li>部门名：<input name="D_NAME"><input type="hidden" name="D_NUM" value=0></li>
+            <li>部门名：<input name="D_name"><input type="hidden" name="D_NUM" value=0></li>
             <li></li>
             <li><input type="submit"></li>
         </ul>
@@ -91,7 +87,7 @@
         <p>添加岗位</p>
         <select name="P_D_ID" id="s1">
             <c:forEach items="${sessionScope.departments}" var="i">
-                <option name="" value="${i.getD_ID()}">${i.getD_NAME()}</option>
+                <option name="" value="${i.getD_id()}">${i.getD_name()}</option>
             </c:forEach>
         </select>
         岗位名:<input name="pname" type="text"><input type="hidden" value=0 name="P_NUM">

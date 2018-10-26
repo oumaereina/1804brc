@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <td> 密码：</td>
-            <td><input name="v_pass" type="password" id="pass"></td>
+            <td><input name="v_pass" type="password" id="pass"><input name="v_eid" type="hidden" value=0></td>
         </tr>
         <tr>
             <td> 再次输入密码：</td>

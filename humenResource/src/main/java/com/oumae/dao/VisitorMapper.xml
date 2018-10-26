@@ -5,9 +5,9 @@
 <mapper namespace="com.oumae.dao.VisitorDao">
 
     <insert id="insertVisitor">
-        INSERT INTO T_VISITOR VALUES (VISITOR_SQL.nextval,#{v_name},#{v_pass}
+        INSERT INTO T_VISITOR VALUES (VISITOR_SQL.nextval,#{v_name},#{v_pass},
         <if test="v_eid!=null">
-            V_EID=#{v_eid}
+            #{v_eid,jdbcType=NUMERIC}
         </if>
         )
     </insert>

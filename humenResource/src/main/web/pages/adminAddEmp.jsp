@@ -41,7 +41,7 @@
             <select name="e_d_id" id="s1">
                 <option value="${null}" >选择部门</option>
                 <c:forEach items="${requestScope.departments}" var="i">
-                    <option name="" value="${i.getD_ID()}">${i.getD_NAME()}</option>
+                    <option name="" value="${i.getD_id()}">${i.getD_name()}</option>
                 </c:forEach>
             </select>
             <select name="e_p_id" id="s2">

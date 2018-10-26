@@ -5,6 +5,7 @@ import com.oumae.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -29,6 +30,7 @@ public class EmpController {
     private ResumeService resumeService;
     @Resource
     private DimissionService dimissionService;
+    private  final  int PAGESIZE = 10;
     /*录取为员工1*/
     @RequestMapping("/addEmp")
     public String addEmp1(Integer vid, HttpSession session, Model model) throws Exception{
@@ -80,10 +82,13 @@ public class EmpController {
     }
     @RequestMapping("/empLogin")
     public String showEmp(Emp emp, HttpSession session, Model model) throws Exception{
+
         Emp emp1 = empService.selectByNamePass(emp);
         if(emp1!=null){
+            List<Department> departments=departmentService.selectAll();
             Department department = departmentService.selectById(emp1.getE_d_id());
             Post post = postService.selectById(emp1.getE_p_id());
+            session.setAttribute("departs",departments);
             session.setAttribute("depart",department);
             session.setAttribute("post",post);
             session.setAttribute("emp",emp1);
@@ -216,5 +221,14 @@ public class EmpController {
             model.addAttribute("msg","提交失败");
         }
         return "adminDepartment";
+    }
+    @RequestMapping("/showEmpByPid")
+    public String showEmpByPid(Integer pid, Model model, @RequestParam(defaultValue = "1") int currentPage) throws Exception{
+        //List<Emp> emps = empService.selectEmpByPidLimit(currentPage,PAGESIZE,pid);
+        List<Emp> emps1 = empService.selectEmpByPid(pid);
+        int totalPages = emps1.size();
+        model.addAttribute("emps",emps1);
+        //model.addAttribute("totalPages",totalPages);
+        return "empShowPosts";
     }
 }

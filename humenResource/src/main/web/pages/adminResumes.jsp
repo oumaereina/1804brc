@@ -52,7 +52,7 @@
                 <td>${i.getR_pol_sta()}</td>
             </tr>
             <tr>
-                <td><a href="invite/addInvite?vid=${i. getR_vid()}">发送面试邀请</a></td>
+                <td><a href="invite/addInvite1?vid=${i. getR_vid()}">发送面试邀请</a></td>
             <c:if test="${i.getR_state()==1}">
                 <td><a href="emp/addEmp?vid=${i. getR_vid()}">录用此人</a> </td>
             </c:if>

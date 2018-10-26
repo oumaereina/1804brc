@@ -1,5 +1,7 @@
 package com.oumae.model;
 
+import java.util.Date;
+
 /**
  * Created by oumaereina on 2018/10/22.
  */
@@ -8,8 +10,22 @@ public class Invite {
     private Integer I_ID;
     private Integer I_VID;
     private Integer I_STATE;
-
+    private String I_DATE;
     public Invite() {
+    }
+
+    public String getI_DATE() {
+        return I_DATE;
+    }
+
+    public Invite(Integer i_VID, Integer i_STATE, String i_DATE) {
+        I_VID = i_VID;
+        I_STATE = i_STATE;
+        I_DATE = i_DATE;
+    }
+
+    public void setI_DATE(String i_DATE) {
+        I_DATE = i_DATE;
     }
 
     public Integer getI_ID() {

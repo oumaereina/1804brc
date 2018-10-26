@@ -8,8 +8,8 @@ import java.util.Date;
  */
 /*部门*/
 public class Department implements Serializable{
-    private Integer D_ID;
-    private String D_NAME;
+    private Integer d_id;
+    private String d_name;
     private Integer D_NUM;
     private Date D_DATE;//创建日期
     public Department() {
@@ -31,19 +31,19 @@ public class Department implements Serializable{
         D_NUM = d_NUM;
     }
 
-    public Integer getD_ID() {
-        return D_ID;
+    public Integer getD_id() {
+        return d_id;
     }
 
-    public void setD_ID(Integer d_ID) {
-        D_ID = d_ID;
+    public void setD_id(Integer d_id) {
+        this.d_id = d_id;
     }
 
-    public String getD_NAME() {
-        return D_NAME;
+    public String getD_name() {
+        return d_name;
     }
 
-    public void setD_NAME(String d_NAME) {
-        D_NAME = d_NAME;
+    public void setD_name(String d_name) {
+        this.d_name = d_name;
     }
 }

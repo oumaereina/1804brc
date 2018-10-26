@@ -9,6 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,20 +22,29 @@ import java.util.List;
 public class InviteController {
     @Resource
     private InviteService inviteService;
-    /*·¢ËÍÃæÊÔÑûÇë*/
-    @RequestMapping("/addInvite")
-    public ModelAndView addInvite(Integer vid, HttpSession session, Model model) throws Exception{
-        List<Invite> invites = inviteService.selectInviteByVid(vid);
+    @RequestMapping("/addInvite1")
+    public String addInvite1(Integer vid, HttpSession session, Model model) throws Exception{
+        model.addAttribute("vid",vid);
+        return "adminInvite";
+    }
+    /*å‘é€é¢è¯•é‚€è¯·*/
+    @RequestMapping("/addInvite2")
+    public ModelAndView addInvite2(Invite invite,HttpSession session, Model model) throws Exception{
+        Date currDate = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = sdf.parse(invite.getI_DATE());
+        if(date.getTime()-currDate.getTime()<86400000){
+            session.setAttribute("msg","é¢è¯•æ—¶é—´é¡»åœ¨å½“å‰æ—¶é—´24å°æ—¶ä¹‹å");
+            return new ModelAndView("redirect:/pages/adminInvite.jsp");
+        }
+        List<Invite> invites = inviteService.selectInviteByVid(invite.getI_VID());
         if(invites!=null&&invites.size()!=0){
-            model.addAttribute("msg", "Ìí¼ÓÊ§°Ü,²»ÄÜÖØ¸´·¢ËÍÃæÊÔÑûÇë");
+            model.addAttribute("msg", "æ·»åŠ å¤±è´¥,ä¸èƒ½é‡å¤å‘é€é¢è¯•é‚€è¯·");
         }else {
-            Invite invite = new Invite();
-            invite.setI_VID(vid);
-            invite.setI_STATE(0);
             if(inviteService.insertInvite(invite)){
-                model.addAttribute("msg", "Ìí¼Ó³É¹¦");
+                model.addAttribute("msg", "æ·»åŠ æˆåŠŸ");
             }else {
-                model.addAttribute("msg", "Ìí¼ÓÊ§°Ü");
+                model.addAttribute("msg", "æ·»åŠ å¤±è´¥");
             }
         }
         return new ModelAndView("redirect:/resume/selectReadResumeAdmin");

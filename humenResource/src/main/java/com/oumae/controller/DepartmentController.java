@@ -1,14 +1,17 @@
 package com.oumae.controller;
 
 import com.oumae.model.Department;
+import com.oumae.model.Post;
 import com.oumae.service.DepartmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +39,7 @@ public class DepartmentController {
         if(department.getD_NUM()!=0){
             model.addAttribute("msg","删除失败，该部门还有员工");
         }else {
-           if( departmentService.deleteDepartmentById(department.getD_ID())){
+           if( departmentService.deleteDepartmentById(department.getD_id())){
                List<Department> departments = departmentService.selectAll();
                if(departments!=null){
                    session.setAttribute("departments",departments);
@@ -79,5 +82,11 @@ public class DepartmentController {
         Department department = departmentService.selectById(did);
         model.addAttribute("department",department);
         return "adminUpdateEmployment";
+    }
+    @RequestMapping("/findDeps")
+    public @ResponseBody
+    List<Department> findDeps() throws IOException {
+        List<Department> departments=departmentService.selectAll();
+        return departments;
     }
 }

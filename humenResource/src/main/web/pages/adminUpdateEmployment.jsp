@@ -47,10 +47,10 @@
 </c:if>
 <c:if test="${requestScope.department!=null}">
     <form action="department/updateDep" method="post">
-        <li><input name="D_NAME" value="${requestScope.department.getD_NAME()}">
+        <li><input name="D_name" value="${requestScope.department.getD_name()}">
             <input type="submit" value="修改">
             <input name="D_NUM" value="${requestScope.department.getD_NUM()}" type="hidden">
-            <input name="D_ID" value="${requestScope.department.getD_ID()}" type="hidden">
+            <input name="D_id" value="${requestScope.department.getD_id()}" type="hidden">
         </li>
     </form>
 </c:if>
@@ -71,7 +71,7 @@
       <select name="did" id="s1">
           <option value="${null}" >选择部门</option>
           <c:forEach items="${requestScope.departments}" var="i">
-              <option name="" value="${i.getD_ID()}">${i.getD_NAME()}</option>
+              <option name="" value="${i.getD_id()}">${i.getD_name()}</option>
           </c:forEach>
       </select>
       <select name="pid" id="s2">
