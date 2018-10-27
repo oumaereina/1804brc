@@ -36,7 +36,7 @@
         <li><a href="resume/selectAllResumeAdmin">游客简历管理</a></li>
         <li><a href="pages/adminEmployment.jsp">招聘信息管理</a></li>
         <li><a href="department/showDep">部门管理</a></li>
-        <li><a href="pages/adminTrain.jsp">培训管理</a></li>
+        <li><a href="train/showTrainMain">培训管理</a></li>
     </ul>
     <div class="layui-tab-content" style="height: 100px;">
         <div class="layui-tab-item layui-show">sda</div>

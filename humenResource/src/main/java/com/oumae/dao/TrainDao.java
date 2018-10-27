@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface TrainDao {
     Train selectById(Integer t_id);
-    List<Emp> selectByTid(Integer t_id);
+    List<Train> selectAll();
     Integer insertTrain(Train train);
     Integer deleteTrain(Integer t_id);
     Integer updateTrain(Train train);

@@ -82,13 +82,19 @@
           E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date,E_VID as e_vid FROM (SELECT rownum rn,T_EMP.* FROM T_EMP WHERE rownum &lt;= #{pageSize} and E_P_ID=#{e_p_id})
          g where g.rn &gt;=#{currentPage}
     </select>
-    <select id="selectEmpByDidLimit" resultType="com.oumae.model.Emp">
-        SELECT  E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
-          E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
-          E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
-          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date,E_VID as e_vid FROM (SELECT rownum rn,T_EMP.* FROM T_EMP WHERE rownum &lt;= #{pageSize} and E_D_ID=#{e_d_id})
+    <select id="selectEmpByDidLimit" resultMap="emp">
+        SELECT
+          E_ID , E_NAME , E_PASS , E_P_ID ,
+          E_MAIL, E_PHONE , E_D_ID ,
+          E_REALNAME, E_SALARY , E_SEX ,
+          E_STATE , E_AGE , E_DATE ,E_VID
+          FROM
+          (SELECT rownum rn,T_EMP.* FROM T_EMP WHERE rownum &lt;= #{pageSize} and E_D_ID=#{e_d_id})
          g where g.rn &gt;=#{currentPage}
     </select>
+    <resultMap id="emp" type="Emp" autoMapping="true">
+        <id property="e_id" column="E_ID" />
+    </resultMap>
     <select id="selectByNamePass" resultType="com.oumae.model.Emp">
         select E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
           E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
@@ -101,5 +107,13 @@
           E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
           E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date,E_VID as e_vid from T_EMP WHERE E_VID=#{e_vid,jdbcType=NUMERIC}
     </select>
+    <select id="selectTrainByIdAll" resultMap="Tra_Emp">
 
+    </select>
+    <resultMap id="Tra_Emp" type="Emp">
+        <id property="e_id" column="E_ID"/>
+        <result property="e_realName" column="E_REALNAME"/>
+
+
+    </resultMap>
 </mapper>

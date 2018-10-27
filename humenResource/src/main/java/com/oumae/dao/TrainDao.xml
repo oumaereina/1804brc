@@ -15,15 +15,18 @@
         DELETE FROM T_TRAIN WHERE T_ID=#{t_id}
     </delete>
     <select id="selectById" resultMap="Tra_Emp">
-        SELECT t.*,
-          e.E_ID,e.E_NAME
+        SELECT
+          t.*,
+          e.E_ID,e.E_REALNAME
         FROM
-          T_TRAIN t,
-          T_EMP e,
+          T_TRAIN t
+          LEFT JOIN
           T_TRA_TO_EMP tm
-        WHERE t.T_ID=tm.TM_TID
-        AND e.E_ID=tm.TM_EID
-        AND t.T_ID=#{t_id}
+          ON T_ID=TM_TID
+          LEFT JOIN
+          T_EMP e
+          ON
+          E_ID=TM_EID
     </select>
     <resultMap id="Tra_Emp" type="Train">
         <id property="t_id" column="T_ID"/>
@@ -34,15 +37,26 @@
         <result property="t_other" column="T_OTHER"/>
         <result property="t_state" column="T_STATE"/>
         <collection property="emps" ofType="Emp">
-            <id property="e_id" column="E_ID"/>
-            <result property="e_name" column="E_NAME"/>
-
-        </collection>
-        <collection property="traToEmps" ofType="TraToEmp">
-            <id column="tm_id" property="TM_ID"/>
-            <result column="tm_eid" property="TM_EID"/>
-            <result column="tm_tid" property="TM_TID"/>
+            <id column="E_ID" property="e_id"/>
+            <result property="e_realName" column="E_REALNAME"/>
         </collection>
     </resultMap>
-    <select id="selectByTid" resultType="com.oumae.model.Emp"></select>
+    <!--<resultMap id="collection" type="Train" extends="Tra_Emp">
+        <collection property="emps" ofType="Emp">
+            <id column="E_ID" property="e_id"/>
+            <result property="e_realName" column="E_REALNAME"/>
+        </collection>
+     </resultMap>-->
+    <select id="selectAll" resultMap="train">
+        SELECT *  FROM T_TRAIN
+    </select>
+    <resultMap id="train" type="Train">
+        <id property="t_id" column="T_ID"/>
+        <result property="t_add" column="T_ADD"/>
+        <result property="t_content" column="T_CONTENT"/>
+        <result property="t_start" column="T_START"/>
+        <result property="t_end" column="T_END"/>
+        <result property="t_other" column="T_OTHER"/>
+        <result property="t_state" column="T_STATE"/>
+    </resultMap>
 </mapper>

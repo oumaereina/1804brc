@@ -11,20 +11,14 @@ public class Train {
     private String t_start;
     private String t_end;
     private String t_content;
-    private String t_other;/*其他*/
+    private String t_other;/*标题*/
     private Integer t_state;
     private List<Emp> emps;
-    private List<TraToEmp> traToEmps;
+
     public Train() {
     }
 
-    public List<TraToEmp> getTraToEmps() {
-        return traToEmps;
-    }
 
-    public void setTraToEmps(List<TraToEmp> traToEmps) {
-        this.traToEmps = traToEmps;
-    }
 
     public List<Emp> getEmps() {
         return emps;

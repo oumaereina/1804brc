@@ -231,4 +231,11 @@ public class EmpController {
         //model.addAttribute("totalPages",totalPages);
         return "empShowPosts";
     }
+    /*根据部门选择培训员工*/
+    @RequestMapping("/EmpByDid")
+    public String EmpByDid(Integer did,HttpSession session, Model model) throws Exception{
+        List<Emp> emps = empService.selectEmpByDid(did);
+        model.addAttribute("emps",emps);
+        return "adminTrain";
+    }
 }

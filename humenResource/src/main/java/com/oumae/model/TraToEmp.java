@@ -4,43 +4,43 @@ package com.oumae.model;
  * Created by oumaereina on 2018/10/26.
  */
 public class TraToEmp {
-    private Integer TM_ID;
-    private Integer TM_TID;
-    private Integer TM_EID;
-    private Integer TM_STATE;
+    private Integer tm_id;
+    private Integer tm_tid;
+    private Integer tm_eid;
+    private Integer tm_state;
 
     public TraToEmp() {
     }
 
-    public Integer getTM_ID() {
-        return TM_ID;
+    public Integer getTm_id() {
+        return tm_id;
     }
 
-    public void setTM_ID(Integer TM_ID) {
-        this.TM_ID = TM_ID;
+    public void setTm_id(Integer tm_id) {
+        this.tm_id = tm_id;
     }
 
-    public Integer getTM_TID() {
-        return TM_TID;
+    public Integer getTm_tid() {
+        return tm_tid;
     }
 
-    public void setTM_TID(Integer TM_TID) {
-        this.TM_TID = TM_TID;
+    public void setTm_tid(Integer tm_tid) {
+        this.tm_tid = tm_tid;
     }
 
-    public Integer getTM_EID() {
-        return TM_EID;
+    public Integer getTm_eid() {
+        return tm_eid;
     }
 
-    public void setTM_EID(Integer TM_EID) {
-        this.TM_EID = TM_EID;
+    public void setTm_eid(Integer tm_eid) {
+        this.tm_eid = tm_eid;
     }
 
-    public Integer getTM_STATE() {
-        return TM_STATE;
+    public Integer getTm_state() {
+        return tm_state;
     }
 
-    public void setTM_STATE(Integer TM_STATE) {
-        this.TM_STATE = TM_STATE;
+    public void setTm_state(Integer tm_state) {
+        this.tm_state = tm_state;
     }
 }

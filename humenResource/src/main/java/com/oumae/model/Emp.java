@@ -2,6 +2,7 @@ package com.oumae.model;
 
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by oumaereina on 2018/10/22.
@@ -22,6 +23,7 @@ public class Emp {
     private Integer e_age;
     private Date e_date;//入职时间
     private Integer e_vid;
+    private List<Train> trains;
     public Emp() {
     }
 
@@ -29,14 +31,23 @@ public class Emp {
     public String toString() {
         return "Emp{" +
                 "e_id=" + e_id +
-                ", e_name='" + e_name + '\'' +
+                ", e_realName='" + e_realName + '\'' +
                 '}';
+    }
+
+    public List<Train> getTrains() {
+        return trains;
+    }
+
+    public void setTrains(List<Train> trains) {
+        this.trains = trains;
     }
 
     public Emp(String e_name, String e_pass) {
         this.e_name = e_name;
         this.e_pass = e_pass;
     }
+
 
     public Integer getE_vid() {
         return e_vid;

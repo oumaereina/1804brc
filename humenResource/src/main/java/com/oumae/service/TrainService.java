@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface TrainService {
     Train selectById(Integer t_id);
-    List<Emp> selectByTid(Integer t_id);
+    List<Train> selectAll();
     boolean insertTrain(Train train);
     boolean deleteTrain(Integer t_id);
     boolean updateTrain(Train train);

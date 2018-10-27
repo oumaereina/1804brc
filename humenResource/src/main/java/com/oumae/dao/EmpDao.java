@@ -9,6 +9,7 @@ import java.util.List;
  * Created by oumaereina on 2018/10/22.
  */
 public interface EmpDao {
+    Emp selectTrainByIdAll(Integer t_id);
     Integer insertEmp(Emp emp);
     Integer deleteEmpById(Integer e_id);
     Integer updateEmpById(Emp emp);

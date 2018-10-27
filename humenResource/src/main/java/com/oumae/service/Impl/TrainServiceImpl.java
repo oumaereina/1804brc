@@ -24,13 +24,11 @@ public class TrainServiceImpl implements TrainService{
         return null;
     }
 
-    public List<Emp> selectByTid(Integer t_id) {
-        if(t_id!=null){
-            List<Emp> emps = trainDao.selectByTid(t_id);
-            return emps;
-        }
-        return null;
+    public List<Train> selectAll() {
+        List<Train> trains = trainDao.selectAll();
+        return trains;
     }
+
 
     public boolean insertTrain(Train train) {
         if(train!=null){

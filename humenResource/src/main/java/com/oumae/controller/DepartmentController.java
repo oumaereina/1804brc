@@ -89,4 +89,6 @@ public class DepartmentController {
         List<Department> departments=departmentService.selectAll();
         return departments;
     }
+
+
 }
