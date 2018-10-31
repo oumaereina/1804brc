@@ -68,9 +68,9 @@
     </ul>
 </c:if>
 <hr>
-<p>${requestScope.EmpMsg}</p>
+<p>${sessionScope.EmpMsg}</p>
 <div >
-    <c:forEach items="${requestScope.employments}" var="i">
+    <c:forEach items="${sessionScope.employments}" var="i">
         <table id="t1">
             <tr>
                 <td>${i.getEM_POST()}</td>

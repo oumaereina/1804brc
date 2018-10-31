@@ -55,14 +55,46 @@
     <delete id="deleteEmpById">
         DELETE FROM T_EMP WHERE E_ID#{E_ID}
     </delete>
-    <select id="selectById" resultType="com.oumae.model.Emp">
+    <select id="selectById" resultMap="resultEmp">
         select
-         E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
-          E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
-          E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
-          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date,E_VID as e_vid
-         from T_EMP WHERE E_ID=#{e_id}
+        e.*,
+        t.*
+         from
+         T_EMP e
+          LEFT JOIN
+          T_TRA_TO_EMP tm
+          ON E_ID=TM_EID
+          LEFT JOIN
+          T_TRAIN t
+          ON
+          T_ID=TM_TID
+          WHERE E_ID=#{e_id}
     </select>
+    <resultMap id="resultEmp" type="Emp">
+        <id property="e_id" column="E_ID"/>
+        <result property="e_name" column="E_NAME"/>
+        <result property="e_pass" column="E_PASS"/>
+        <result property="e_p_id" column="E_P_ID"/>
+        <result property="e_mail" column="E_MAIL"/>
+        <result property="e_phone" column="E_PHONE"/>
+        <result property="e_d_id" column="E_D_ID"/>
+        <result property="e_realName" column="E_REALNAME"/>
+        <result property="e_salary" column="E_SALARY"/>
+        <result property="e_sex" column="E_SEX"/>
+        <result property="e_state" column="E_STATE"/>
+        <result property="e_age" column="E_AGE"/>
+        <result property="e_date" column="E_DATE"/>
+        <result property="e_vid" column="E_VID"/>
+        <collection property="trains" ofType="Train">
+            <id column="T_ID" property="t_id"/>
+            <result property="t_other" column="T_OTHER"/>
+            <result property="t_start" column="T_START"/>
+            <result property="t_end" column="T_END"/>
+            <result property="t_add" column="T_ADD"/>
+            <result property="t_content" column="T_CONTENT"/>
+            <result property="t_state" column="T_STATE"/>
+        </collection>
+    </resultMap>
     <select id="selectEmpByPid" resultType="com.oumae.model.Emp">
         select  E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
           E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
@@ -94,12 +126,34 @@
     </select>
     <resultMap id="emp" type="Emp" autoMapping="true">
         <id property="e_id" column="E_ID" />
+        <result property="e_name" column="E_NAME"/>
+        <result property="e_pass" column="E_PASS"/>
+        <result property="e_p_id" column="E_P_ID"/>
+        <result property="e_mail" column="E_MAIL"/>
+        <result property="e_phone" column="E_PHONE"/>
+        <result property="e_d_id" column="E_D_ID"/>
+        <result property="e_realName" column="E_REALNAME"/>
+        <result property="e_salary" column="E_SALARY"/>
+        <result property="e_sex" column="E_SEX"/>
+        <result property="e_state" column="E_STATE"/>
+        <result property="e_age" column="E_AGE"/>
+        <result property="e_date" column="E_DATE"/>
+        <result property="e_vid" column="E_VID"/>
     </resultMap>
-    <select id="selectByNamePass" resultType="com.oumae.model.Emp">
-        select E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
-          E_MAIL as e_mail, E_PHONE as e_phone, E_D_ID as e_d_id,
-          E_REALNAME as e_realName, E_SALARY as e_salary, E_SEX as e_sex,
-          E_STATE as e_state, E_AGE as e_age, E_DATE AS e_date,E_VID as e_vid from T_EMP WHERE E_NAME=#{e_name} AND E_PASS=#{e_pass}
+    <select id="selectByNamePass" resultMap="resultEmp">
+        select
+        e.*,
+        t.*
+         from
+         T_EMP e
+          LEFT JOIN
+          T_TRA_TO_EMP tm
+          ON E_ID=TM_EID
+          LEFT JOIN
+          T_TRAIN t
+          ON
+          T_ID=TM_TID
+         WHERE E_NAME=#{e_name} AND E_PASS=#{e_pass}
     </select>
     <select id="selectByVid" resultType="com.oumae.model.Emp">
         select E_ID AS e_id, E_NAME AS e_name, E_PASS as e_pass, E_P_ID as e_p_id,
@@ -109,6 +163,9 @@
     </select>
     <select id="selectTrainByIdAll" resultMap="Tra_Emp">
 
+    </select>
+    <select id="selectAllEmp" resultMap="emp">
+        SELECT e.* FROM T_EMP e
     </select>
     <resultMap id="Tra_Emp" type="Emp">
         <id property="e_id" column="E_ID"/>

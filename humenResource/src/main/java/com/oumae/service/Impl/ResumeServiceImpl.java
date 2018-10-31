@@ -2,6 +2,7 @@ package com.oumae.service.Impl;
 
 import com.oumae.dao.ResumeDao;
 import com.oumae.model.Resume;
+import com.oumae.model.Reward;
 import com.oumae.service.ResumeService;
 import org.springframework.stereotype.Service;
 
@@ -60,4 +61,5 @@ public class ResumeServiceImpl implements ResumeService{
         }
         return null;
     }
+
 }

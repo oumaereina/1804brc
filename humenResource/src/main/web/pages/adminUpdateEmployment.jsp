@@ -16,6 +16,7 @@
     <base href="<%=basePath%>"/>
     <title>Title</title>
 </head>
+<link rel="stylesheet" href="../static/layui/layui/css/layui.css">
 <script src="../js/jquery-3.2.1.js"></script>
 <body>
 <c:if test="${requestScope.employment!=null}">
@@ -23,19 +24,26 @@
         <form action="employment/updateEmployment2" method="post">
             <ul id="u1">
                 <li>公司名</li>
-                <li><input name="EM_COMPANY" class="ins" msg="公司名" type="text" value="${requestScope.employment.getEM_COMPANY()}"></li>
+                <li><input name="EM_COMPANY" class="ins" msg="公司名" type="text"
+                           value="${requestScope.employment.getEM_COMPANY()}"></li>
                 <li>岗位</li>
-                <li><input name="EM_POST" class="ins" msg="岗位" type="text" value="${requestScope.employment.getEM_POST()}"></li>
+                <li><input name="EM_POST" class="ins" msg="岗位" type="text"
+                           value="${requestScope.employment.getEM_POST()}"></li>
                 <li>需求人数</li>
-                <li><input name="EM_PEOPLE" class="ins" msg="需求人数"type="text" value="${requestScope.employment.getEM_PEOPLE()}"></li>
+                <li><input name="EM_PEOPLE" class="ins" msg="需求人数" type="text"
+                           value="${requestScope.employment.getEM_PEOPLE()}"></li>
                 <li>地址</li>
-                <li><input name="EM_ADD" class="ins" msg="地址" type="text" value="${requestScope.employment.getEM_ADD()}"></li>
+                <li><input name="EM_ADD" class="ins" msg="地址" type="text"
+                           value="${requestScope.employment.getEM_ADD()}"></li>
                 <li>学历要求</li>
-                <li><input name="EM_EDU" class="ins" msg="学历要求" type="text" value="${requestScope.employment.getEM_EDU()}"></li>
+                <li><input name="EM_EDU" class="ins" msg="学历要求" type="text"
+                           value="${requestScope.employment.getEM_EDU()}"></li>
                 <li>月薪</li>
-                <li><input name="EM_SALARY" class="ins" msg="月薪" type="text" value="${requestScope.employment.getEM_SALARY()}"></li>
+                <li><input name="EM_SALARY" class="ins" msg="月薪" type="text"
+                           value="${requestScope.employment.getEM_SALARY()}"></li>
                 <li>工作经验</li>
-                <li><input name="EM_EXP" class="ins" msg="工作经验" type="text" value="${requestScope.employment.getEM_EXP()}">
+                <li><input name="EM_EXP" class="ins" msg="工作经验" type="text"
+                           value="${requestScope.employment.getEM_EXP()}">
                     <input type="hidden" value="${requestScope.employment.getEM_DATE()}" name="EM_DATE">
                     <input type="hidden" value="${requestScope.employment.getEM_ID()}" name="EM_ID">
                 </li>
@@ -66,22 +74,22 @@
 </c:if>
 
 <c:if test="${requestScope.emp!=null}">
-  <form action="emp/updateDP2" method="post">
-      <p>将${requestScope.emp.getE_realName()}调换至</p>
-      <select name="did" id="s1">
-          <option value="${null}" >选择部门</option>
-          <c:forEach items="${requestScope.departments}" var="i">
-              <option name="" value="${i.getD_id()}">${i.getD_name()}</option>
-          </c:forEach>
-      </select>
-      <select name="pid" id="s2">
-          <option value="${null}" >选择岗位</option>
-      </select>
-      <input type="hidden" value="${requestScope.emp.getE_id()}" name="eid">
-      <input type="hidden" value="${requestScope.emp.getE_d_id()}" name="odid">
-      <input type="hidden" value="${requestScope.emp.getE_p_id()}" name="opid">
-      <p><input type="submit"></p>
-  </form>
+    <form action="emp/updateDP2" method="post">
+        <p>将${requestScope.emp.getE_realName()}调换至</p>
+        <select name="did" id="s1">
+            <option value="${null}">选择部门</option>
+            <c:forEach items="${requestScope.departments}" var="i">
+                <option name="" value="${i.getD_id()}">${i.getD_name()}</option>
+            </c:forEach>
+        </select>
+        <select name="pid" id="s2">
+            <option value="${null}">选择岗位</option>
+        </select>
+        <input type="hidden" value="${requestScope.emp.getE_id()}" name="eid">
+        <input type="hidden" value="${requestScope.emp.getE_d_id()}" name="odid">
+        <input type="hidden" value="${requestScope.emp.getE_p_id()}" name="opid">
+        <p><input type="submit"></p>
+    </form>
 </c:if>
 <c:if test="${requestScope.empDis!=null}">
     <p>${requestScope.msg}</p>
@@ -90,26 +98,42 @@
         <input type="submit" name="" id="">
     </form>
 </c:if>
+<c:if test="${requestScope.reward!=null}">
+    <form action="reward/updateEmpReward2" method="post">
+        <button class="layui-btn">
+            <i class="layui-icon"><a href="pages/adminReward.jsp">＜</a> </i>
+        </button>
+        <ul>
+            <li><input value="${requestScope.reward.getRm_time()}" disabled name="rm_time"></li>
+            <li><input value="${requestScope.reward.getRm_money()}" name="rm_money"></li>
+            <li><input name="rm_reason" value="${requestScope.reward.getRm_reason()}"><input type="hidden" name="rm_id"
+                                                                                             value="${requestScope.reward.getRm_id()}">
+            </li>
+            <li><input type="submit" value="修改"></li>
+        </ul>
+    </form>
+</c:if>
 </body>
 <script>
     $(function () {
         $("#s1").change(function () {
             $.ajax({
-                type:"get",
-                url:"emp/findPosts",
-                dataType:"json",
-                async:false,
-                data:{"P_D_ID":$("#s1").val()},
-                success:function (obj) {
+                type: "get",
+                url: "emp/findPosts",
+                dataType: "json",
+                async: false,
+                data: {"P_D_ID": $("#s1").val()},
+                success: function (obj) {
                     $("#s2").empty();
-                    for(var i=0; i<obj.length;i++){
-                        $("#s2").append("<option name='' value='"+obj[i].p_id+"'>"+obj[i].pname+"</option>");
-                        var a= $("#p1").text();
-                        a+=$("#p1").html(obj[i].P_NAME);
+                    for (var i = 0; i < obj.length; i++) {
+                        $("#s2").append("<option name='' value='" + obj[i].p_id + "'>" + obj[i].pname + "</option>");
+                        var a = $("#p1").text();
+                        a += $("#p1").html(obj[i].P_NAME);
                     }
                 }
             });
         });
     })
 </script>
+<script src="../static/layui/layui/layui.all.js" charset="utf-8"></script>
 </html>

@@ -33,6 +33,14 @@ public class DepartmentController {
         }
         return "adminDepartment";
     }
+    @RequestMapping("/showDepReward")
+    public String showDepReward(HttpSession session, Model model) throws Exception{
+        List<Department> departments = departmentService.selectAll();
+        if(departments!=null){
+            session.setAttribute("departments",departments);
+        }
+        return "adminReward";
+    }
     @RequestMapping("/delDep")
     public String delDep(Integer did,HttpSession session, Model model) throws Exception{
         Department department = departmentService.selectById(did);

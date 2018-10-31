@@ -21,7 +21,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">员工</div>
+        <div class="layui-logo">人力资源管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="">控制台</a></li>
@@ -47,7 +47,7 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退出</a></li>
+            <li class="layui-nav-item"><a href="pages/index.jsp">退出</a></li>
         </ul>
     </div>
 
@@ -125,14 +125,20 @@
                 </tr>
                 <tr>
                     <td>培训信息</td>
-                    <td>奖惩信息</td>
+                    <td>奖惩记录</td>
                     <td>实收工资</td>
                     <td>考勤记录</td>
                     <td>修改信息</td>
                 </tr>
                 <tr>
-                    <td><a href="">查看</a> </td>
-                    <td><a href="">查看</a> </td>
+                    <td>
+                        <select>
+                            <c:forEach items="${sessionScope.emp.getTrains()}" var="i">
+                                <option>${i.getT_other()}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td><a href="reward/showEmpReward?eid=${sessionScope.emp.getE_id()}">查看</a> </td>
                     <td><a href="">查看</a> </td>
                     <td><a href="">查看</a> </td>
                     <td><a href="">修改</a> </td>
@@ -140,6 +146,12 @@
                         <td>${sessionScope.emp.getE_}</td>--%>
                 </tr>
                 <tr>
+                    <td colspan="2">打卡</td>
+                </tr>
+                <tr>
+                    <td><a href="checkIn/empCheckInOn">上班打卡</a></td>
+                    <td><a href="checkIn/empCheckInOut">下班打卡</a></td>
+                    <td>${requestScope.msgCheck}</td>
                 </tr>
                 </tbody>
             </table>

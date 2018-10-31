@@ -37,16 +37,17 @@
         <li><a href="pages/adminEmployment.jsp">招聘信息管理</a></li>
         <li><a href="department/showDep">部门管理</a></li>
         <li><a href="train/showTrainMain">培训管理</a></li>
+        <li><a href="department/showDepReward">奖惩管理</a></li>
     </ul>
     <div class="layui-tab-content" style="height: 100px;">
         <div class="layui-tab-item layui-show">sda</div>
         <div class="layui-tab-item">
 
         </div>
-        <div class="layui-tab-item">asd</div>
-        <div class="layui-tab-item">sad</div>
-        <div class="layui-tab-item">sad</div>
-        <div class="layui-tab-item">6</div>
+        <div class="layui-tab-item"></div>
+        <div class="layui-tab-item"></div>
+        <div class="layui-tab-item"></div>
+        <div class="layui-tab-item"></div>
     </div>
 </div>
 <div>

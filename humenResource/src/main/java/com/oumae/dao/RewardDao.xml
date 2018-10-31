@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.RewardDao">
+    <insert id="insertReward">
+        INSERT INTO T_REWARD
+        (RM_ID, RM_MONEY, RM_TIME, RM_REASON, RM_EID, RM_STATE)
+        VALUES (REWARD_SQL.nextval,#{rm_money},#{rm_time},#{rm_reason},#{rm_eid},#{rm_state})
+    </insert>
+    <update id="updateReward">
+        UPDATE T_REWARD <set>
+        <if test="rm_money!=null">
+            RM_MONEY=#{rm_money},
+        </if>
+        <if test="rm_time!=null">
+            RM_TIME=#{rm_time},
+        </if>
+        <if test="rm_reason!=null">
+            RM_REASON=#{rm_reason},
+        </if>
+        <if test="rm_eid!=null">
+            RM_EID=#{rm_eid},
+        </if>
+        <if test="rm_state!=null">
+            RM_STATE=#{rm_state}
+        </if>
+        </set>
+        WHERE RM_ID=#{rm_id}
+    </update>
+    <select id="selectByEid" resultType="com.oumae.model.Reward">
+        SELECT r.*  FROM  T_REWARD r WHERE RM_EID=#{rm_eid}
+    </select>
+    <select id="selectById" resultType="com.oumae.model.Reward">
+         SELECT r.*  FROM  T_REWARD r WHERE RM_ID=#{rm_id}
+    </select>
+    <select id="selectToday" resultType="com.oumae.model.Reward">
+         SELECT r.*
+        FROM T_REWARD r
+        WHERE trunc(RM_TIME) = trunc(sysdate)
+        AND RM_STATE=#{r_state}
+        AND RM_EID=#{r_eid}
+    </select>
+    <select id="selectByMonth" resultType="com.oumae.model.Reward">
+        SELECT
+        r.*
+        FROM
+        TABLE T_REWARD r
+        WHERE  to_number(to_char(DateTime,'MM')) = #{month}
+    </select>
+</mapper>

@@ -17,6 +17,7 @@ public interface EmpService {
     Emp selectByVid(Integer e_vid);
     List<Emp> selectEmpByPid(Integer E_P_ID);
     List<Emp> selectEmpByDid(Integer E_D_ID);
+    List<Emp> selectAllEmp();
     List<Emp> selectEmpByPidLimit(int currentPage, int pageSize,Integer E_P_ID);
     List<Emp> selectEmpByDidLimit(int currentPage, int pageSize,Integer E_D_ID);
 }

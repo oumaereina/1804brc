@@ -17,6 +17,7 @@ public interface EmpDao {
     Emp selectByNamePass(Emp emp);
     Emp selectByVid(Integer e_vid);
     List<Emp> selectEmpByPid(Integer e_p_id);
+    List<Emp> selectAllEmp();
     List<Emp> selectEmpByDid(Integer e_d_id);
     List<Emp> selectEmpByPidLimit(HashMap<String,Object> hashMap);
     List<Emp> selectEmpByDidLimit(HashMap<String,Object> hashMap);

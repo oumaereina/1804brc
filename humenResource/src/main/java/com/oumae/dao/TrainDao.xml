@@ -27,6 +27,7 @@
           T_EMP e
           ON
           E_ID=TM_EID
+
     </select>
     <resultMap id="Tra_Emp" type="Train">
         <id property="t_id" column="T_ID"/>
@@ -48,7 +49,16 @@
         </collection>
      </resultMap>-->
     <select id="selectAll" resultMap="train">
-        SELECT *  FROM T_TRAIN
+        SELECT  t.*,
+          e.E_ID,e.E_REALNAME  FROM
+          T_TRAIN t
+          LEFT JOIN
+          T_TRA_TO_EMP tm
+          ON T_ID=TM_TID
+          LEFT JOIN
+          T_EMP e
+          ON
+          E_ID=TM_EID
     </select>
     <resultMap id="train" type="Train">
         <id property="t_id" column="T_ID"/>
@@ -58,5 +68,9 @@
         <result property="t_end" column="T_END"/>
         <result property="t_other" column="T_OTHER"/>
         <result property="t_state" column="T_STATE"/>
+        <collection property="emps" ofType="Emp">
+            <id column="E_ID" property="e_id"/>
+            <result property="e_realName" column="E_REALNAME"/>
+        </collection>
     </resultMap>
 </mapper>

@@ -48,7 +48,15 @@ public class AdminController {
         List<Post> postList=postService.selectByDid(P_D_ID);
         return postList;
     }
-
+    /*二级联动找岗位*/
+    @RequestMapping("/findEmps")
+    public @ResponseBody List<Emp> findEmps(Integer P_D_ID) throws IOException {
+        if(P_D_ID==null){
+            return null;
+        }
+        List<Emp> emps=empService.selectEmpByPid(P_D_ID);
+        return emps;
+    }
     /*消息*/
     @RequestMapping("/showMsg")
     public String showMsg(Emp emp,HttpSession session, Model model) throws Exception{

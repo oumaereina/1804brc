@@ -73,6 +73,11 @@ public class EmpServiceImpl implements EmpService{
         return emps;
     }
 
+    public List<Emp> selectAllEmp() {
+        List<Emp> emps = empDao.selectAllEmp();
+        return emps;
+    }
+
     public List<Emp> selectEmpByPidLimit(int currentPage, int pageSize, Integer E_P_ID) {
         HashMap<String,Object> map = new HashMap<String, Object>();
         map.put("currentPage",(currentPage-1)*pageSize+1);

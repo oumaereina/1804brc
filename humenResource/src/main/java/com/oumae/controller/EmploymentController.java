@@ -27,16 +27,16 @@ public class EmploymentController {
     private EmploymentService employmentService;
     private  final  int PAGESIZE = 5;
     @RequestMapping("/showEmp")
-    public String addResume(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1") int currentPage) throws Exception{
+    public String addResume(HttpSession session,  @RequestParam(defaultValue = "1") int currentPage) throws Exception{
         List<Employment> employments = employmentService.getEmploymentByLimit(currentPage,PAGESIZE);
         List<Employment> allEmployment = employmentService.selectAllEmployment();
         int totalRows = allEmployment.size();
         int totalPages = DoPage.getTotalPages(totalRows);
         if(employments==null){
-            model.addAttribute("EmpMsg", "没有招聘信息");
+            session.setAttribute("EmpMsg", "没有招聘信息");
         }else {
-            model.addAttribute("totalPages",totalPages);
-            model.addAttribute("employments",employments);
+            session.setAttribute("totalPages",totalPages);
+            session.setAttribute("employments",employments);
         }
         return "index";
     }
