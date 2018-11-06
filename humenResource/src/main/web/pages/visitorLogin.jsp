@@ -23,42 +23,41 @@
         <tr><td>请登录:</td></tr>
         <tr>
             <td> 账号：</td>
-            <td><input name="v_name" class="ins"msg="用户名"></td>
+            <td><input name="v_name" class="ins" msg="用户名"></td>
             <td></td>
         </tr>
         <tr>
             <td>密码：</td>
-            <td><input name="v_pass" type="password"class="ins"  msg="密码"></td>
+            <td><input name="v_pass" type="password" class="ins"  msg="密码"></td>
             <td></td>
         </tr>
         <tr>
-            <td><input type="submit" value="登录" onclick="checkNull()" id="sub1"></td>
+            <td><input type="submit" value="登录"  id="sub1"></td>
         </tr>
         <tr><td><p style="color: crimson">${requestScope.msg}</p></td></tr>
     </table>
 </form>
 </body>
 <script>
-    function checkNull()
-    {
-        var num=0;
-        var str="";
-        $(".ins").each(function(n){
-            if($(".ins").val()=="")
-            {
-                num++;
-                str+=$(this).attr("msg")+"不能为空！\r\n";
+    $("#sub1").click(function (e) {
+
+            var num = 0;
+            var str = "";
+            $(".ins").each(function (n) {
+                if ($(".ins").val() == "") {
+                    num++;
+                    str += $(this).attr("msg") + "不能为空！\r\n";
+                }
+            });
+            if (num > 0) {
+                alert(str);
+                e.preventDefault();
+                return false;
             }
-        });
-        if(num>0)
-        {
-            alert(str);
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
+            else {
+                return true;
+            }
+        })
+
 </script>
 </html>

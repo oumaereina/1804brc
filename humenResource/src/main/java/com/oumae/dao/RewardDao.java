@@ -16,4 +16,5 @@ public interface RewardDao {
     Reward selectById(Integer rm_id);
     List<Reward> selectToday( @Param("r_state") Integer r_state,@Param("r_eid") Integer r_eid);
     List<Reward> selectByMonth(Integer month);
+    List<Reward> selectByMonthEid(@Param("r_eid") Integer r_eid,@Param("month")Integer month);
 }

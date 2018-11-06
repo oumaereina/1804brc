@@ -72,10 +72,15 @@
         margin-top: -900px;
     }
 </style>
+
 <body>
+<button class="layui-btn layui-btn-sm layui-btn-primary">
+    <i class="layui-icon"><a href="pages/admin.jsp">＜</a> </i>
+</button>
 <div id="d1">
     <ul >
         <li><a href="employment/showEmpAdmin">查看招聘信息</a> </li>
+        <li><p>${requestScope.msg}</p></li>
     </ul>
 </div>
 <c:if test="${requestScope.employments!=null}">
@@ -166,4 +171,5 @@
         }
     })
 </script>
+
 </html>

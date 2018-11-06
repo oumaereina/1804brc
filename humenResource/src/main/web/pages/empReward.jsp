@@ -19,7 +19,7 @@
     <title>奖惩信息</title>
 </head>
 <body>
-<button class="layui-btn">
+<button class="layui-btn layui-btn-sm layui-btn-primary">
     <i class="layui-icon"><a href="pages/emp.jsp">＜</a> </i>
 </button>
 <form>

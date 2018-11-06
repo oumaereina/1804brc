@@ -26,8 +26,8 @@ public class SalaryServiceImpl implements SalaryService{
         return false;
     }
 
-    public List<Salary> selectByEid(Integer s_eid) {
-        List<Salary> salaries = salaryDao.selectByEid(s_eid);
+    public List<Salary> selectByEid(Integer s_eid,Integer month) {
+        List<Salary> salaries = salaryDao.selectByEid(s_eid,month);
         return salaries;
     }
 

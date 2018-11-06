@@ -45,7 +45,7 @@ public class ResumeController {
         resume.setR_school((String) request.getParameter("r_school"));
         resume.setR_hobby((String) request.getParameter("r_hobby"));
         resume.setR_self((String) request.getParameter("r_self"));
-        resume.setR_state(1);
+        resume.setR_state(0);
         if(resumeService.insertResume(resume)){
             model.addAttribute("msg", "添加成功");
         }else {
@@ -84,14 +84,14 @@ public class ResumeController {
         resume.setR_school((String) request.getParameter("r_school"));
         resume.setR_hobby((String) request.getParameter("r_hobby"));
         resume.setR_self((String) request.getParameter("r_self"));
-        resume.setR_state(1);
+        resume.setR_state(Integer.valueOf(request.getParameter("r_state")));
         resumeService.updateResumeById(resume);
         return new ModelAndView("redirect:selectResume");
     }
     /*查看全部简历*/
     @RequestMapping("/selectAllResumeAdmin")
     public String selectAllResumeAdmin(HttpSession session, Model model) throws Exception{
-        List<Resume> resumes = resumeService.selectResumeByState(null);
+        List<Resume> resumes = resumeService.selectAllResume();
         model.addAttribute("resumes",resumes);
         return "adminResumes";
     }
@@ -99,6 +99,10 @@ public class ResumeController {
     @RequestMapping("/selectNoReadResumeAdmin")
     public String selectNoReadResumeAdmin(HttpSession session, Model model) throws Exception{
         List<Resume> resumes = resumeService.selectResumeByState(0);
+        for (Resume resume : resumes) {
+            resume.setR_state(1);
+            resumeService.updateResumeById(resume);
+        }
         model.addAttribute("resumes",resumes);
         return "adminResumes";
     }

@@ -25,4 +25,17 @@
         AND C_STATE=#{c_state}
         AND C_EID=#{c_eid}
     </select>
+    <select id="selectMonth" resultType="com.oumae.model.CheckIn">
+        SELECT
+        c.*
+        FROM T_CHECKIN c
+        WHERE to_number(to_char(C_TIME,'MM'))=#{month}
+        AND C_STATE=#{c_state}
+        AND C_EID=#{c_eid}
+    </select>
+    <select id="selectByEidLimit" resultType="com.oumae.model.CheckIn">
+        SELECT g.* FROM
+        (SELECT rownum rn,c.* FROM T_CHECKIN c WHERE rownum &lt;= #{pageSize}) g
+        where g.rn &gt;=#{currentPage} AND C_EID=#{c_eid}
+    </select>
 </mapper>

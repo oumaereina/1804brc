@@ -14,4 +14,5 @@ public interface ResumeDao {
     Integer updateResumeById(Resume resume);
     List<Resume> selectResumeByVid(Integer r_vid);
     List<Resume> selectResumeByState(@Param(value = "R_STATE") Integer R_STATE);
+    List<Resume> selectAllResume();
 }

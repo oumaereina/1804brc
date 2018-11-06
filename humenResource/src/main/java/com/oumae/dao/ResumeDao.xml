@@ -34,12 +34,15 @@
     </select>
     <select id="selectResumeByState" resultType="com.oumae.model.Resume" parameterType="integer">
         SELECT * FROM T_RESUME
+        <if test="R_STATE!=null">
         <where>
-            <if test="R_STATE!=null">
+
                 R_STATE=#{R_STATE}
-            </if>
-            <if test="R_STATE==null">
-            </if>
+
         </where>
+        </if>
+    </select>
+    <select id="selectAllResume" resultType="com.oumae.model.Resume">
+        SELECT * FROM T_RESUME WHERE R_STATE!=-1
     </select>
 </mapper>

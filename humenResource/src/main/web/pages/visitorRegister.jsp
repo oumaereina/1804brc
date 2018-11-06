@@ -26,16 +26,16 @@
     <table>
         <tr>
             <td> 账号：</td>
-            <td><input name="v_name" id="name"></td>
+            <td><input name="v_name" id="name" msg="账号" class="tr"></td>
             <td><p id="p1"></p></td>
         </tr>
         <tr>
             <td> 密码：</td>
-            <td><input name="v_pass" type="password" id="pass"><input name="v_eid" type="hidden" value=0></td>
+            <td><input name="v_pass" type="password" id="pass" msg="密码" class="tr"><input name="v_eid" type="hidden" value=0></td>
         </tr>
         <tr>
             <td> 再次输入密码：</td>
-            <td><input type="password" id="checkPass"></td>
+            <td><input type="password" id="checkPass" msg="重复密码" class="tr"></td>
             <td><p id="p2"></p></td>
         </tr>
         <tr>
@@ -48,6 +48,28 @@
 </body>
 <script>
    $(function () {
+       $("#register").click(function (e) {
+           var num=0;
+           var str="";
+           $(".tr").each(function(n){
+
+               if($(".tr").val()=="")
+               {
+                   num++;
+                   str+=$(this).attr("msg")+"不能为空！\r\n";
+               }
+           });
+           if(num>0)
+           {
+               alert(str);
+               e.preventDefault()
+               return false;
+           }
+           else
+           {
+               return true;
+           }
+       })
        $("#name").blur(function () {
            $.ajax({
                type:"get",

@@ -60,4 +60,9 @@ public class RewardServiceImpl implements RewardService{
         List<Reward> rewards = rewardDao.selectByMonth(month);
         return rewards;
     }
+
+    public List<Reward> selectByMonthEid(Integer r_eid, Integer month) {
+        List<Reward> rewards = rewardDao.selectByMonthEid(r_eid, month);
+        return rewards;
+    }
 }

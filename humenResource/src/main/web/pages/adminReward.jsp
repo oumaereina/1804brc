@@ -45,9 +45,10 @@
         <th>操作</th>
     </tr>
 </table>--%>
-<button class="layui-btn">
+<button class="layui-btn layui-btn-sm layui-btn-primary">
     <i class="layui-icon"><a href="pages/admin.jsp">＜</a> </i>
 </button>
+
 <table class="layui-table">
     <colgroup>
         <col width="150">

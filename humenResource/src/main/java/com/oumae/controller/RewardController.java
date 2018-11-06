@@ -29,7 +29,7 @@ public class RewardController {
         return "empReward";
     }
     @RequestMapping("/showEmpRewardAdmin")
-    public @ResponseBody @JsonFormat(pattern = "yyyy-MM-dd")
+    public @ResponseBody
     List<Reward> showEmpRewardAdmin(Integer eid, HttpSession session, Model model) throws Exception {
         List<Reward> rewards = rewardService.selectByEid(eid);
         model.addAttribute("reward",rewards);

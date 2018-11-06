@@ -13,7 +13,7 @@
 %>
 <html>
 <link rel="stylesheet" href="../static/layui/layui/css/layui.css">
-<script ></script>
+<script src="../js/jquery-3.2.1.js"></script>
 <head>
     <base href="<%=basePath%>"/>
     <title>管理员</title>
@@ -26,38 +26,36 @@
 <body>
 <div>
     <ul>
-        <li>您有${requestScope.noReadResumes}条未读简历</li>
+        <li>您有${sessionScope.noReadResumes}条未读简历</li>
     </ul>
 </div>
 <div class="layui-tab layui-tab-card">
     <ul class="layui-tab-title">
-        <li class="layui-this" ><a href="">员工管理</a> </li>
-        <li><a href="admin/showMsg">消息</a></li>
+        <li class="layui-this"><a href="admin/showMsg">录用</a></li>
         <li><a href="resume/selectAllResumeAdmin">游客简历管理</a></li>
         <li><a href="pages/adminEmployment.jsp">招聘信息管理</a></li>
         <li><a href="department/showDep">部门管理</a></li>
         <li><a href="train/showTrainMain">培训管理</a></li>
         <li><a href="department/showDepReward">奖惩管理</a></li>
+        <li><a href="salary/insertSalary" onclick="add()" id="a2">结算上月薪资</a></li>
+        <li><a href="reconsider/showReconsider">查看员工薪资复议</a></li>
+        <li><a href="pages/index.jsp">退出</a> </li>
     </ul>
-    <div class="layui-tab-content" style="height: 100px;">
-        <div class="layui-tab-item layui-show">sda</div>
-        <div class="layui-tab-item">
 
-        </div>
-        <div class="layui-tab-item"></div>
-        <div class="layui-tab-item"></div>
-        <div class="layui-tab-item"></div>
-        <div class="layui-tab-item"></div>
-    </div>
 </div>
 <div>
     <c:if test="${requestScope.visitors!=null}">
-        <c:forEach items="${requestScope.visitors}" var="i">
+        <c:forEach items="${requestScope.visitors}" var="i" varStatus="loop">
             <ul>
-                <li>游客 ${i.getV_name()} 已确认面试邀请,请及时联系并考虑是否录取<a href="emp/addEmp?vid=" id="a1">录用此人</a></li>
+                <c:if test="${resumes[loop.count-1].getR_state()!=2}">
+                    <li>游客 ${i.getV_name()} 已确认面试邀请,请及时联系并考虑是否录取
+                        <a href="emp/addEmp?vid=${i.getV_id()}" id="a1">录用此人</a>
+                    </li>
+                </c:if>
             </ul>
         </c:forEach>
     </c:if>
+    <p style="color: crimson">${requestScope.msg}</p>
 </div>
 <%--<div>
     <ul>
@@ -71,19 +69,17 @@
 </body>
 <script src="../static/layui/layui/layui.all.js" charset="utf-8"></script>
 <script>
-    /*$("#u1").click(function () {
+    /*$("#a2").click(function (e) {
         $.ajax({
             type:"get",
-            url:"",
+            url:"salary/showSalaryByAdmin",
             dataType:"json",
             async:false,
-            data:{"P_D_ID":$("#s1").val()},
+            data:{},
             success:function (obj) {
-                $("#s2").empty();
-                for(var i=0; i<obj.length;i++){
-                    $("#s2").append("<option name='' value='"+obj[i].p_id+"'>"+obj[i].pname+"</option>");
-                    var a= $("#p1").text();
-                    a+=$("#p1").html(obj[i].P_NAME);
+                if(obj.size()!=0){
+                    alert("当月已结算，无法再次结算")
+                    e.preventDefault()
                 }
 
             }
@@ -130,5 +126,10 @@
         });
 
     });
+    function add() {
+        if (!confirm("确认结算全部门工资？")) {
+            window.event.returnValue = false;
+        }
+    }
 </script>
 </html>

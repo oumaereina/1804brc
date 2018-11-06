@@ -1,6 +1,7 @@
 package com.oumae.dao;
 
 import com.oumae.model.Salary;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface SalaryDao {
     Integer insertSalary(Salary salary);
-    List<Salary> selectByEid(Integer s_eid);
+    List<Salary> selectByEid(@Param("s_eid") Integer s_eid, @Param("month") Integer month);
     Salary selectById(Integer s_id);
     List<Salary> selectByMonth(Integer month);
 }

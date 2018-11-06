@@ -25,8 +25,8 @@
     <title>Title</title>
 </head>
 <body>
-<button class="layui-btn layui-btn-sm">
-    <i class="layui-icon"><a href="pages/emp.jsp">&#xe602;</a> </i>
+<button class="layui-btn layui-btn-sm layui-btn-primary">
+    <i class="layui-icon"><a href="pages/emp.jsp">＜</a> </i>
 </button>
 <div>
     <c:forEach items="${sessionScope.posts}" var="i">

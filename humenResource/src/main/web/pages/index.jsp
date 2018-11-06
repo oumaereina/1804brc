@@ -24,7 +24,7 @@
     #t1{
         font-size: 14px;
         border:solid 1px #F2F2F2;
-        width: 900px;
+        width: 1600px;
     }
     #u1{
         font-size: 14px;
@@ -60,42 +60,41 @@
     }
 </style>
 <body>
-<c:if test="${sessionScope.visitor==null}">
     <ul id="u1">
         <li><p>游客:您还未登录，请先<a href="pages/visitorLogin.jsp">登录</a></p></li>
         <li><a href="pages/visitorRegister.jsp">游客注册</a></li>
         <li><a href="pages/empLogin.jsp">员工登录通道</a> </li>
+        <li>${requestScope.msg}</li>
     </ul>
-</c:if>
 <hr>
 <p>${sessionScope.EmpMsg}</p>
 <div >
     <c:forEach items="${sessionScope.employments}" var="i">
         <table id="t1">
             <tr>
-                <td>${i.getEM_POST()}</td>
+                <td>职位：${i.getEM_POST()}</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>${i.getEM_COMPANY()}</td>
+                <td>公司：${i.getEM_COMPANY()}</td>
             </tr>
             <tr>
-                <td>${i.getEM_SALARY()}</td>
-                <td>${i.getEM_ADD()}</td>
-                <td>${i.getEM_EDU()}</td>
-                <td>${i.getEM_EXP()}</td>
-                <td>${i.getEM_PEOPLE()} 人</td>
+                <td>薪资待遇：${i.getEM_SALARY()}</td>
+                <td>工作地点：${i.getEM_ADD()}</td>
+                <td>学历要求：${i.getEM_EDU()}</td>
+                <td>工作经验：${i.getEM_EXP()}</td>
+                <td>人数：${i.getEM_PEOPLE()} 人</td>
             </tr>
             <tr>
                 <td class="oth"><div class="div1"><p>绩效奖金</p></div></td>
                 <td class="oth"><div class="div1"><p>五险一金</p></div></td>
                 <td class="oth"><div class="div1"><p>年终分红</p></div></td>
                 <td class="oth"><div class="div1"><p>包吃包住</p></div></td>
-                <td>${i.getEM_DATE()}</td>
+                <td>发布日期：${i.getEM_DATE()}</td>
             </tr>
             <tr>
                 <c:if test="${sessionScope.visitor!=null}">
-                    <td><a href="resume.jsp">投递简历</a> </td>
+                    <td><a href="pages/resume.jsp">投递简历</a> </td>
                 </c:if>
             </tr>
         </table>

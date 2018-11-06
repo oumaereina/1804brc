@@ -1,6 +1,7 @@
 package com.oumae.service;
 
 import com.oumae.model.Reward;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface RewardService {
     Reward selectById(Integer rm_id);
     List<Reward> selectToday(Integer r_state,Integer r_eid);
     List<Reward> selectByMonth(Integer month);
+    List<Reward> selectByMonthEid(Integer r_eid,Integer month);
 }

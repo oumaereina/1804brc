@@ -8,10 +8,10 @@
         UPDATE T_INVITE SET I_VID=#{I_VID},I_STATE=#{I_STATE},I_DATE=#{I_DATE} WHERE I_ID=#{I_ID}
     </update>
     <select id="selectInviteByVid" resultType="com.oumae.model.Invite">
-        SELECT * FROM T_INVITE WHERE I_VID=#{I_VID} and I_STATE=0
+        SELECT * FROM T_INVITE WHERE I_VID=#{I_VID}
     </select>
     <select id="selectById" resultType="com.oumae.model.Invite">
-        SELECT * FROM T_INVITE WHERE I_ID=#{I_ID}
+        SELECT i.* FROM T_INVITE i WHERE I_ID=#{I_ID}
     </select>
     <select id="selectInviteByState" resultType="com.oumae.model.Invite">
          SELECT * FROM T_INVITE WHERE I_STATE=#{I_STATE}

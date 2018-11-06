@@ -62,4 +62,9 @@ public class ResumeServiceImpl implements ResumeService{
         return null;
     }
 
+    public List<Resume> selectAllResume() {
+        List<Resume> resumes = resumeDao.selectAllResume();
+        return resumes;
+    }
+
 }

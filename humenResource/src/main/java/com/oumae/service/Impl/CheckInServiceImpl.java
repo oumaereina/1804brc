@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -65,5 +66,22 @@ public class CheckInServiceImpl implements CheckInService{
     public List<CheckIn> selectToday(Date dtcol,Integer c_state,Integer c_eid) {
         List<CheckIn> checkIns = checkInDao.selectToday(dtcol,c_state,c_eid);
         return checkIns;
+    }
+
+    public List<CheckIn> selectMonth(Integer month, Integer c_eid, Integer c_state) {
+        List<CheckIn> checkIns = checkInDao.selectMonth(month,c_eid,c_state);
+        return checkIns;
+    }
+
+    public List<CheckIn> selectByEidLimit(int currentPage, int pageSize, Integer c_eid) {
+        HashMap<String,Object> map = new HashMap<String, Object>();
+        map.put("currentPage",(currentPage-1)*pageSize+1);
+        map.put("pageSize",pageSize*currentPage);
+        map.put("c_eid",c_eid);
+        List<CheckIn> checkIns = checkInDao.selectByEidLimit(map);
+        if(checkIns!=null){
+            return checkIns;
+        }
+        return null;
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface SalaryService {
     boolean insertSalary(Salary salary);
-    List<Salary> selectByEid(Integer s_eid);
+    List<Salary> selectByEid(Integer s_eid,Integer month);
     Salary selectById(Integer s_id);
     List<Salary> selectByMonth(Integer month);
 }

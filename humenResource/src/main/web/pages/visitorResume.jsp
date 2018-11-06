@@ -27,7 +27,13 @@
         list-style-type: none;
     }
 </style>
+<link rel="stylesheet" href="../static/layui/layui/css/layui.css">
+<script src="../js/jquery-3.2.1.js"></script>
+<script src="../static/layui/layui/layui.all.js" charset="utf-8"></script>
 <body>
+<button class="layui-btn layui-btn-sm layui-btn-primary">
+    <i class="layui-icon"><a href="pages/visitorMain.jsp">＜</a></i>
+</button>
 <div>
     <ul id="u1">
         <li><a href="resume/selectResume">查看简历</a></li>
@@ -56,8 +62,9 @@
                <li><input type="text"value="${i.getR_health()}" name="r_health"></li>
                <li><input type="text"value="${i.getR_self()}" name="r_self">
                    <input type="hidden" value="${i.getR_id()}" name="r_id">
+                   <input type="hidden" value="${i.getR_state()}" name="r_state">
                </li>
-               <c:if test="${i.getR_state()==1}">
+               <c:if test="${i.getR_state()==1||i.getR_state()==2}">
                    <li>已读</li>
                </c:if>
                <c:if test="${i.getR_state()==0}">

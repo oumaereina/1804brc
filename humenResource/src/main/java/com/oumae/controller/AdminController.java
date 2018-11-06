@@ -73,6 +73,8 @@ public class AdminController {
             model.addAttribute("resumes",resumes);
             model.addAttribute("visitors",visitors);
             model.addAttribute("invites",invites);
+        }else {
+            model.addAttribute("msg","没有消息");
         }
         return "admin";
     }

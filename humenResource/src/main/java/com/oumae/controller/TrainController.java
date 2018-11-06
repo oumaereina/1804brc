@@ -1,9 +1,11 @@
 package com.oumae.controller;
 
 import com.oumae.model.Department;
+import com.oumae.model.Emp;
 import com.oumae.model.TraToEmp;
 import com.oumae.model.Train;
 import com.oumae.service.DepartmentService;
+import com.oumae.service.EmpService;
 import com.oumae.service.TraToEmpService;
 import com.oumae.service.TrainService;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,9 +31,17 @@ public class TrainController {
     private DepartmentService departmentService;
     @Resource
     private TraToEmpService traToEmpService;
+    @Resource
+    private EmpService empService;
     /*添加培训信息*/
     @RequestMapping("/addTrain")
     public String addTrain(Train train, HttpSession session, Model model) throws Exception{
+        String date = train.getT_start();
+        String date2 = train.getT_end();
+        if(date.compareTo(date2)>0){
+            model.addAttribute("msg","添加失败，开始时间需要在结束时间之前");
+            return "adminTrain";
+        }
         if(trainService.insertTrain(train)){
             model.addAttribute("msg","添加成功");
         }else {
@@ -44,6 +55,15 @@ public class TrainController {
     List<Train> showTrain() throws Exception{
         List<Train> trains =trainService.selectAll();
         return trains;
+    }
+    @RequestMapping("/delTrain")
+    public @ResponseBody
+    String  delTrain(Integer tid) throws Exception{
+        if(trainService.deleteTrain(tid)){
+            return "删除成功";
+        }else {
+            return "删除失败";
+        }
     }
     /*培训主页*/
     @RequestMapping("/showTrainMain")
@@ -80,4 +100,15 @@ public class TrainController {
         }
         return "adminTrain";
     }
+
+    @RequestMapping("/updateTrain")
+    public String addTrain(Integer tid,Integer eid, HttpSession session, Model model) throws Exception{
+        Train train = trainService.selectById(tid);
+        train.setT_state(1);
+        trainService.updateTrain(train);
+        Emp emp1 = empService.selectById(eid);
+        session.setAttribute("emp",emp1);
+        return "emp";
+    }
+
 }

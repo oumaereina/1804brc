@@ -6,9 +6,11 @@ import com.oumae.model.Reward;
 import com.oumae.model.Visitor;
 import com.oumae.service.CheckInService;
 import com.oumae.service.RewardService;
+import com.oumae.utils.DoPage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -28,7 +30,22 @@ public class CheckInController {
     private CheckInService checkInService;
     @Resource
     private RewardService rewardService;
-
+    private  final  int PAGESIZE = 4;
+    @RequestMapping("/showEmpCheckIn")
+    public String showEmpCheckIn(HttpSession session, Model model,  @RequestParam(defaultValue = "1") int currentPage) throws Exception {
+        Emp emp = (Emp) session.getAttribute("emp");
+        List<CheckIn> checkIns = checkInService.selectByEid(emp.getE_id());
+        List<CheckIn> checkIns1 = checkInService.selectByEidLimit(currentPage,PAGESIZE,emp.getE_id());
+        if(checkIns==null){
+            session.setAttribute("msg", "没有考勤记录");
+        }else {
+            int totalRows = checkIns.size();
+            int totalPages = DoPage.getTotalPages(totalRows);
+            session.setAttribute("totalPages",totalPages);
+            session.setAttribute("checkIns",checkIns1);
+        }
+        return "empCheckIn";
+    }
     /*上班打卡*/
     @RequestMapping("/empCheckInOn")
     public String empCheckInOn(HttpSession session, Model model) throws Exception {

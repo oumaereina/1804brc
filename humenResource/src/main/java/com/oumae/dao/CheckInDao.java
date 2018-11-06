@@ -4,6 +4,7 @@ import com.oumae.model.CheckIn;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,5 +16,7 @@ public interface CheckInDao {
     Integer updateCheckIn(CheckIn checkIn);
     CheckIn selectById(Integer c_id);
     List<CheckIn> selectByEid(Integer c_eid);
+    List<CheckIn> selectByEidLimit(HashMap<String,Object> hashMap);
+    List<CheckIn> selectMonth(@Param("month")Integer month,@Param("c_eid")Integer c_eid,@Param("c_state")Integer c_state);
     List<CheckIn> selectToday(@Param("c_time")Date c_time,@Param("c_state") Integer c_state,@Param("c_eid")Integer c_eid);
 }

@@ -15,4 +15,6 @@ public interface CheckInService {
     CheckIn selectById(Integer c_id);
     List<CheckIn> selectByEid(Integer c_eid);
     List<CheckIn> selectToday(Date dtcol, Integer c_state,Integer c_eid);
+    List<CheckIn> selectMonth(Integer month,Integer c_eid,Integer c_state);
+    List<CheckIn> selectByEidLimit(int currentPage, int pageSize,Integer c_eid);
 }

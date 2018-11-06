@@ -11,20 +11,37 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <html>
+
 <head>
     <base href="<%=basePath%>"/>
     <title>Title</title>
 </head>
+<link rel="stylesheet" href="../static/layui/layui/css/layui.css">
+<script src="../js/jquery-3.2.1.js"></script>
 <body>
+<button class="layui-btn layui-btn-sm layui-btn-primary">
+    <i class="layui-icon"><a href="pages/admin.jsp">＜</a> </i>
+</button>
 <form action="invite/addInvite2" method="post">
     <ul>
-        <li><input type="date" name="I_DATE">
-            <input type="hidden" name="I_VID" value="${requestScope.vid}">
+        <li><input type="date" name="I_DATE" id="time">
+            <input type="hidden" name="I_VID" value="${sessionScope.vid}">
             <input type="hidden" name="I_STATE" value=0>
-            <input type="submit">
+            <input type="submit" id="sub2">
         </li>
-        <li><p>${sessionScope.msg}</p></li>
+        <li><p style="color:crimson">${sessionScope.inviteMsg}</p></li>
     </ul>
 </form>
 </body>
+<script src="../static/layui/layui/layui.all.js" charset="utf-8"></script>
+<script>
+    $(function () {
+        $("#sub2").click(function (e) {
+            if($("#time").val()==""){
+                alert("日期不能为空")
+                e.preventDefault()
+            }
+        })
+    })
+</script>
 </html>

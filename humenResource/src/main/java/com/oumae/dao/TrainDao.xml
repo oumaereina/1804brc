@@ -27,7 +27,7 @@
           T_EMP e
           ON
           E_ID=TM_EID
-
+          WHERE T_ID=#{t_id}
     </select>
     <resultMap id="Tra_Emp" type="Train">
         <id property="t_id" column="T_ID"/>

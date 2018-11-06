@@ -36,7 +36,7 @@ public class VisitorController {
     public String login(@ModelAttribute("visitor") Visitor visitor, Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage) throws Exception {
         if(visitor.getV_name().equals("admin")&&visitor.getV_pass().equals("admin")){
             List<Resume> resumes = resumeService.selectResumeByState(0);
-            model.addAttribute("noReadResumes",resumes.size());
+            session.setAttribute("noReadResumes",resumes.size());
             return "admin";
         }
 
@@ -48,8 +48,8 @@ public class VisitorController {
         if(employments==null){
             model.addAttribute("EmpMsg", "没有招聘信息");
         }else {
-            model.addAttribute("totalPages",totalPages);
-            model.addAttribute("employments",employments);
+            session.setAttribute("totalPages",totalPages);
+            session.setAttribute("employments",employments);
         }
         if (null != visitor1) {
             Emp emp = empService.selectByVid(visitor1.getV_id());
@@ -58,7 +58,9 @@ public class VisitorController {
             }
             List<Invite> invites = inviteService.selectInviteByVid(visitor1.getV_id());
             if(invites!=null&&invites.size()!=0){
-                model.addAttribute("inviteMsg",invites.get(0));
+                session.setAttribute("inviteMsg",invites.get(0));
+            }else {
+                session.setAttribute("inviteMsg",null);
             }
             //model.addAttribute("msg", "登录成功");
             session.setAttribute("visitor", visitor1);
@@ -75,10 +77,10 @@ public class VisitorController {
         int totalRows = allEmployment.size();
         int totalPages = DoPage.getTotalPages(totalRows);
         if(employments==null){
-            model.addAttribute("EmpMsg", "没有招聘信息");
+            session.setAttribute("EmpMsg", "没有招聘信息");
         }else {
-            model.addAttribute("totalPages",totalPages);
-            model.addAttribute("employments",employments);
+            session.setAttribute("totalPages",totalPages);
+            session.setAttribute("employments",employments);
         }
         return "visitorMain";
     }
@@ -91,7 +93,7 @@ public class VisitorController {
         } else {
             model.addAttribute("msg", "注册失败");
         }
-        return "visitorMain";
+        return "index";
     }
     /*确认名字*/
     @RequestMapping("/checkName")
@@ -110,6 +112,14 @@ public class VisitorController {
             invites.setI_STATE(1);
             inviteService.updateInvite(invites);
         }
+        session.setAttribute("inviteMsg",null);
         return new ModelAndView("redirect:paging");
+    }
+    @RequestMapping("/deleteSession")
+    public String deleteSession( HttpSession session) throws Exception {
+        session.setAttribute("inviteMsg",null);
+        session.setAttribute("visitor",null);
+        session.setAttribute("emp",null);
+        return "index";
     }
 }

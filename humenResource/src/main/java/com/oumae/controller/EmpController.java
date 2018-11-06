@@ -30,6 +30,8 @@ public class EmpController {
     private ResumeService resumeService;
     @Resource
     private DimissionService dimissionService;
+    @Resource
+    private SalaryService salaryService;
     private  final  int PAGESIZE = 10;
     /*录取为员工1*/
     @RequestMapping("/addEmp")
@@ -82,12 +84,20 @@ public class EmpController {
     }
     @RequestMapping("/empLogin")
     public String showEmp(Emp emp, HttpSession session, Model model) throws Exception{
-
+        Calendar cale = null;
+        cale = Calendar.getInstance();
+        int month = cale.get(Calendar.MONTH);
         Emp emp1 = empService.selectByNamePass(emp);
         if(emp1!=null){
             List<Department> departments=departmentService.selectAll();
             Department department = departmentService.selectById(emp1.getE_d_id());
             Post post = postService.selectById(emp1.getE_p_id());
+            List<Salary> salaries = salaryService.selectByEid(emp1.getE_id(),month+1);
+            if(salaries.size()!=0){
+                session.setAttribute("salary",salaries.get(0));
+            }else {
+                session.setAttribute("salary",null);
+            }
             session.setAttribute("departs",departments);
             session.setAttribute("depart",department);
             session.setAttribute("post",post);
@@ -237,5 +247,19 @@ public class EmpController {
         List<Emp> emps = empService.selectEmpByDid(did);
         model.addAttribute("emps",emps);
         return "adminTrain";
+    }
+
+    @RequestMapping("/updateEmp")
+    public String updateEmp(Integer eid, Model model) throws Exception{
+        Emp emp = empService.selectById(eid);
+        model.addAttribute("emp",emp);
+        return "adminUpdateEmp";
+    }
+    @RequestMapping("/updateEmp2")
+    public String updateEmp2(Emp emp, Model model,HttpSession session) throws Exception{
+        empService.updateEmpById(emp);
+        Emp emp1 = empService.selectById(emp.getE_id());
+        session.setAttribute("emp",emp);
+        return "emp";
     }
 }

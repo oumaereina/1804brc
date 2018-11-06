@@ -43,7 +43,15 @@
         SELECT
         r.*
         FROM
-        TABLE T_REWARD r
-        WHERE  to_number(to_char(DateTime,'MM')) = #{month}
+        T_REWARD r
+        WHERE  to_number(to_char(RM_TIME,'MM')) = #{month}
+    </select>
+    <select id="selectByMonthEid" resultType="com.oumae.model.Reward">
+        SELECT
+        r.*
+        FROM
+        T_REWARD r
+        WHERE  to_number(to_char(RM_TIME,'MM')) = #{month}
+        AND RM_EID=#{r_eid}
     </select>
 </mapper>

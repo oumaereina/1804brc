@@ -24,7 +24,7 @@ public class InviteController {
     private InviteService inviteService;
     @RequestMapping("/addInvite1")
     public String addInvite1(Integer vid, HttpSession session, Model model) throws Exception{
-        model.addAttribute("vid",vid);
+        session.setAttribute("vid",vid);
         return "adminInvite";
     }
     /*发送面试邀请*/
@@ -34,20 +34,21 @@ public class InviteController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = sdf.parse(invite.getI_DATE());
         if(date.getTime()-currDate.getTime()<86400000){
-            session.setAttribute("msg","面试时间须在当前时间24小时之后");
+            session.setAttribute("inviteMsg","面试时间须在当前时间24小时之后");
             return new ModelAndView("redirect:/pages/adminInvite.jsp");
         }
         List<Invite> invites = inviteService.selectInviteByVid(invite.getI_VID());
         if(invites!=null&&invites.size()!=0){
-            model.addAttribute("msg", "添加失败,不能重复发送面试邀请");
+            session.setAttribute("inviteMsg", "添加失败,不能重复发送面试邀请");
         }else {
             if(inviteService.insertInvite(invite)){
-                model.addAttribute("msg", "添加成功");
+                session.setAttribute("inviteMsg", "添加成功");
+                session.setAttribute("vid",null);
             }else {
-                model.addAttribute("msg", "添加失败");
+                session.setAttribute("inviteMsg", "添加失败");
             }
         }
-        return new ModelAndView("redirect:/resume/selectReadResumeAdmin");
+        return new ModelAndView("redirect:/pages/adminInvite.jsp");
     }
 
 }

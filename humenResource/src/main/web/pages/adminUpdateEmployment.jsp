@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="../static/layui/layui/css/layui.css">
 <script src="../js/jquery-3.2.1.js"></script>
 <body>
+<button class="layui-btn">
+    <i class="layui-icon"><a href="pages/admin.jsp">＜</a> </i>
+</button>
 <c:if test="${requestScope.employment!=null}">
     <div id="d4">
         <form action="employment/updateEmployment2" method="post">
@@ -100,8 +103,8 @@
 </c:if>
 <c:if test="${requestScope.reward!=null}">
     <form action="reward/updateEmpReward2" method="post">
-        <button class="layui-btn">
-            <i class="layui-icon"><a href="pages/adminReward.jsp">＜</a> </i>
+        <button class="layui-btn layui-btn-sm layui-btn-primary">
+            <i class="layui-icon"><a href="pages/adminReward.jsp">＜</a></i>
         </button>
         <ul>
             <li><input value="${requestScope.reward.getRm_time()}" disabled name="rm_time"></li>

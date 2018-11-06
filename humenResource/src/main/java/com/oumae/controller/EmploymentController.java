@@ -66,9 +66,13 @@ public class EmploymentController {
     }
     /*删除招聘信息*/
     @RequestMapping("/deleteEmployment")
-    public ModelAndView deleteEmployment(Integer EM_ID, HttpSession session, Model model) throws Exception{
-        employmentService.deleteEmpById(EM_ID);
-        return new ModelAndView("redirect:showEmp");
+    public String deleteEmployment(Integer EM_ID, HttpSession session, Model model) throws Exception{
+        if(employmentService.deleteEmpById(EM_ID)){
+            model.addAttribute("msg","删除成功");
+        }else {
+            model.addAttribute("msg","删除失败");
+        }
+        return "adminEmployment";
     }
     /*修改招聘信息1*/
     @RequestMapping("/updateEmployment")
