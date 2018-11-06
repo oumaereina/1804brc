@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.TraToEmpDao">
+
+    <insert id="insertTE">
+        INSERT INTO T_TRA_TO_EMP
+        (TM_ID, TM_TID, TM_EID, TM_STATE)
+        VALUES (TRA_TO_EMP_SQL.nextval,#{tm_tid},#{tm_eid},#{tm_state})
+    </insert>
+    <update id="updateTE">
+        UPDATE T_TRA_TO_EMP SET
+        TM_TID=#{tm_tid}, TM_EID=#{tm_eid}, TM_STATE=#{tm_state}
+        WHERE TM_ID=#{tm_id}
+    </update>
+    <delete id="deleteTE">
+        DELETE FROM T_TRA_TO_EMP WHERE TM_ID=#{tm_id}
+    </delete>
+    <select id="selectByEidTid" resultType="com.oumae.model.TraToEmp">
+        SELECT * FROM  T_TRA_TO_EMP WHERE TM_EID=#{tm_eid} AND TM_TID=#{tm_tid}
+    </select>
+</mapper>

@@ -2,64 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b1c78c7-0ce9-455f-8cb2-70ae26d80268" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/web/pages/empCheckIn.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/web/pages/adminReconsider.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/web/pages/adminUpdateEmp.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/ReconsiderController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/model/Reconsider.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/ReconsiderDao.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/service/ReconsiderService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/ReconsiderDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/service/Impl/ReconsiderServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/service/CheckInService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/service/CheckInService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/service/Impl/ResumeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/service/Impl/ResumeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/controller/RewardController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/RewardController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/adminAddEmp.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/adminAddEmp.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/adminEmployment.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/adminEmployment.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/adminReward.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/adminReward.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/dao/SalaryDao.xml" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/SalaryDao.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/index.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/admin.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/admin.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/service/ResumeService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/service/ResumeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/controller/TrainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/TrainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/service/Impl/CheckInServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/service/Impl/CheckInServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/empReward.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/empReward.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/empShowPosts.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/empShowPosts.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/visitorRegister.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/visitorRegister.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/dao/RewardDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/RewardDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/dao/InviteDao.xml" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/InviteDao.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/adminDepartment.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/adminDepartment.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/dao/SalaryDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/SalaryDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/adminTrain.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/adminTrain.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/controller/EmploymentController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/EmploymentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/resume.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/resume.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/controller/AdminController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/AdminController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/dao/ResumeDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/ResumeDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/dao/CheckInDao.xml" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/CheckInDao.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/dao/TrainDao.xml" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/TrainDao.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/visitorMain.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/visitorMain.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/dao/ResumeDao.xml" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/ResumeDao.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/controller/ResumeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/ResumeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/service/RewardService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/service/RewardService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/controller/CheckInController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/CheckInController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/adminInvite.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/adminInvite.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/service/Impl/SalaryServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/service/Impl/SalaryServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/visitorLogin.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/visitorLogin.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/visitorResume.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/visitorResume.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/controller/InviteController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/InviteController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/controller/EmpController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/EmpController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/adminResumes.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/adminResumes.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/service/SalaryService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/service/SalaryService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/service/Impl/RewardServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/service/Impl/RewardServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/controller/SalaryController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/SalaryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/controller/VisitorController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/controller/VisitorController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/dao/CheckInDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/CheckInDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/oumae/dao/RewardDao.xml" afterPath="$PROJECT_DIR$/src/main/java/com/oumae/dao/RewardDao.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/emp.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/emp.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/web/pages/adminUpdateEmployment.jsp" afterPath="$PROJECT_DIR$/src/main/web/pages/adminUpdateEmployment.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -686,7 +629,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -870,9 +813,39 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="humenResource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="humenResource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oumae" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1545,7 +1518,8 @@
       <workItem from="1541121225937" duration="11589000" />
       <workItem from="1541141734739" duration="6567000" />
       <workItem from="1541467727657" duration="1263000" />
-      <workItem from="1541474270568" duration="1000" />
+      <workItem from="1541474270568" duration="59000" />
+      <workItem from="1541474420928" duration="39000" />
     </task>
     <task id="LOCAL-00001" summary="新建工程">
       <created>1539916814273</created>
@@ -1687,11 +1661,18 @@
       <option name="project" value="LOCAL" />
       <updated>1540975463213</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="完成">
+      <created>1541474313630</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1541474313630</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="374677000" />
+    <option name="totallyTimeSpent" value="374774000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1704,7 +1685,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1724,11 +1704,11 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32785088" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2851064" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3276414" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32814237" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15182403" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18776824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1801,7 +1781,8 @@
     <MESSAGE value="培训的增查" />
     <MESSAGE value="添加管理员添加员工去培训的功能及重复判断" />
     <MESSAGE value="啊啊啊" />
-    <option name="LAST_COMMIT_MESSAGE" value="啊啊啊" />
+    <MESSAGE value="完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

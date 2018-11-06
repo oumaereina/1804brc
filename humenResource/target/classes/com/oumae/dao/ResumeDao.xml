@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.ResumeDao">
+    <insert id="insertResume">
+        INSERT INTO T_RESUME VALUES(
+        RESUME_SQL.nextval,#{r_vid,jdbcType=NUMERIC},#{r_name,jdbcType=VARCHAR},#{r_sex,jdbcType=VARCHAR},
+        #{r_nation,jdbcType=VARCHAR},#{r_bir,jdbcType=VARCHAR},#{r_native_place,jdbcType=VARCHAR},
+        #{r_pol_sta,jdbcType=VARCHAR},#{r_height,jdbcType=NUMERIC},#{r_weight,jdbcType=NUMERIC},
+        #{r_health,jdbcType=VARCHAR},#{r_english,jdbcType=VARCHAR},#{r_edu,jdbcType=VARCHAR},#{r_major,jdbcType=VARCHAR}
+        ,#{r_idc,jdbcType=NUMERIC},#{r_phone,jdbcType=NUMERIC},
+        #{r_add,jdbcType=VARCHAR},#{r_school,jdbcType=VARCHAR},#{r_hobby,jdbcType=VARCHAR},#{r_self,jdbcType=VARCHAR},#{r_state,jdbcType=NUMERIC})
+    </insert>
+    <update id="updateResumeById">
+        UPDATE T_RESUME
+        <set>
+        R_VID=#{r_vid,jdbcType=NUMERIC},R_NAME=#{r_name,jdbcType=VARCHAR},R_SEX=#{r_sex,jdbcType=VARCHAR},
+        R_NATION=#{r_nation,jdbcType=VARCHAR},R_BIR=#{r_bir,jdbcType=VARCHAR},R_NATIVE_PLACE=#{r_native_place,jdbcType=VARCHAR},
+        R_POL_STA=#{r_pol_sta,jdbcType=VARCHAR},R_HEIGHT=#{r_height,jdbcType=NUMERIC} ,
+            <if test="r_weight!=null">
+                R_WEIGHT=#{r_weight,jdbcType=NUMERIC}
+            </if>
+            ,R_HEALTH=#{r_health,jdbcType=VARCHAR} ,
+        R_ENGLISH=#{r_english,jdbcType=VARCHAR} ,R_EDU= #{r_edu,jdbcType=VARCHAR},R_MAJOR=#{r_major,jdbcType=VARCHAR} , R_IDC=#{r_idc,jdbcType=NUMERIC},R_PHONE=#{r_phone,jdbcType=NUMERIC} ,
+        R_ADD=#{r_add,jdbcType=VARCHAR} ,R_SCHOOL=#{r_school,jdbcType=VARCHAR},R_HOBBY=#{r_hobby,jdbcType=VARCHAR} ,
+        R_SELF=#{r_self,jdbcType=VARCHAR},R_STATE=#{r_state,jdbcType=VARCHAR}
+    </set>
+    <where>R_ID=#{r_id}</where>
+    </update>
+    <delete id="deleteResumeById">
+        DELETE  FROM T_RESUME WHERE R_ID=#{r_id}
+    </delete>
+    <select id="selectResumeByVid" resultType="com.oumae.model.Resume">
+        SELECT * FROM T_RESUME WHERE R_VID=#{r_vid}
+    </select>
+    <select id="selectResumeByState" resultType="com.oumae.model.Resume" parameterType="integer">
+        SELECT * FROM T_RESUME
+        <if test="R_STATE!=null">
+        <where>
+
+                R_STATE=#{R_STATE}
+
+        </where>
+        </if>
+    </select>
+    <select id="selectAllResume" resultType="com.oumae.model.Resume">
+        SELECT * FROM T_RESUME WHERE R_STATE!=-1
+    </select>
+</mapper>

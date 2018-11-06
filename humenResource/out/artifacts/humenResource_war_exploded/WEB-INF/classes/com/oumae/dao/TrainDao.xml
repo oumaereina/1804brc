@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.TrainDao">
+    <insert id="insertTrain">
+        INSERT INTO T_TRAIN (T_ID, T_ADD, T_START, T_CONTENT, T_OTHER, T_STATE, T_END) VALUES
+        (TRAIN_SQL.nextval,#{t_add},#{t_start},#{t_content},#{t_other},#{t_state},#{t_end})
+    </insert>
+    <update id="updateTrain">
+        UPDATE T_TRAIN SET
+        T_ADD=#{t_add}, T_START=#{t_start}, T_CONTENT=#{t_content}, T_OTHER=#{t_other}, T_STATE=#{t_state}, T_END=#{t_end}
+        WHERE
+        T_ID=#{t_id}
+    </update>
+    <delete id="deleteTrain">
+        DELETE FROM T_TRAIN WHERE T_ID=#{t_id}
+    </delete>
+    <select id="selectById" resultMap="Tra_Emp">
+        SELECT
+          t.*,
+          e.E_ID,e.E_REALNAME
+        FROM
+          T_TRAIN t
+          LEFT JOIN
+          T_TRA_TO_EMP tm
+          ON T_ID=TM_TID
+          LEFT JOIN
+          T_EMP e
+          ON
+          E_ID=TM_EID
+          WHERE T_ID=#{t_id}
+    </select>
+    <resultMap id="Tra_Emp" type="Train">
+        <id property="t_id" column="T_ID"/>
+        <result property="t_add" column="T_ADD"/>
+        <result property="t_content" column="T_CONTENT"/>
+        <result property="t_start" column="T_START"/>
+        <result property="t_end" column="T_END"/>
+        <result property="t_other" column="T_OTHER"/>
+        <result property="t_state" column="T_STATE"/>
+        <collection property="emps" ofType="Emp">
+            <id column="E_ID" property="e_id"/>
+            <result property="e_realName" column="E_REALNAME"/>
+        </collection>
+    </resultMap>
+    <!--<resultMap id="collection" type="Train" extends="Tra_Emp">
+        <collection property="emps" ofType="Emp">
+            <id column="E_ID" property="e_id"/>
+            <result property="e_realName" column="E_REALNAME"/>
+        </collection>
+     </resultMap>-->
+    <select id="selectAll" resultMap="train">
+        SELECT  t.*,
+          e.E_ID,e.E_REALNAME  FROM
+          T_TRAIN t
+          LEFT JOIN
+          T_TRA_TO_EMP tm
+          ON T_ID=TM_TID
+          LEFT JOIN
+          T_EMP e
+          ON
+          E_ID=TM_EID
+    </select>
+    <resultMap id="train" type="Train">
+        <id property="t_id" column="T_ID"/>
+        <result property="t_add" column="T_ADD"/>
+        <result property="t_content" column="T_CONTENT"/>
+        <result property="t_start" column="T_START"/>
+        <result property="t_end" column="T_END"/>
+        <result property="t_other" column="T_OTHER"/>
+        <result property="t_state" column="T_STATE"/>
+        <collection property="emps" ofType="Emp">
+            <id column="E_ID" property="e_id"/>
+            <result property="e_realName" column="E_REALNAME"/>
+        </collection>
+    </resultMap>
+</mapper>

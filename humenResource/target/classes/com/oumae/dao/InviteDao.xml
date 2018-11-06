@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.InviteDao">
+    <insert id="insertInvite">
+        INSERT INTO T_INVITE VALUES (VISITOR_SQL.nextval,#{I_VID},#{I_STATE},#{I_DATE})
+    </insert>
+    <update id="updateInvite">
+        UPDATE T_INVITE SET I_VID=#{I_VID},I_STATE=#{I_STATE},I_DATE=#{I_DATE} WHERE I_ID=#{I_ID}
+    </update>
+    <select id="selectInviteByVid" resultType="com.oumae.model.Invite">
+        SELECT * FROM T_INVITE WHERE I_VID=#{I_VID}
+    </select>
+    <select id="selectById" resultType="com.oumae.model.Invite">
+        SELECT i.* FROM T_INVITE i WHERE I_ID=#{I_ID}
+    </select>
+    <select id="selectInviteByState" resultType="com.oumae.model.Invite">
+         SELECT * FROM T_INVITE WHERE I_STATE=#{I_STATE}
+    </select>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.DepartmentDao">
+    <insert id="insertDepartment">
+        INSERT INTO T_DEPARTMENT
+         VALUES (DEP_SQL.nextval,#{d_name},#{D_NUM},#{D_DATE,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateDepartmentById">
+        UPDATE T_DEPARTMENT
+        <set>
+            <if test="d_name!=null">
+                D_NAME=#{d_name},
+            </if>
+            <if test="D_NUM!=null">
+                D_NUM=#{D_NUM},
+            </if>
+            <if test="D_DATE!=null">
+                D_DATE=#{D_DATE,jdbcType=VARCHAR}
+            </if>
+        </set>
+        <where>
+            D_ID=#{d_id}
+        </where>
+    </update>
+    <delete id="deleteDepartmentById">
+        DELETE FROM T_DEPARTMENT WHERE  D_ID=#{d_id}
+    </delete>
+    <select id="selectById" resultType="com.oumae.model.Department">
+        select D_ID as d_id, D_NAME as d_name, D_NUM, D_DATE from T_DEPARTMENT WHERE  D_ID=#{D_ID}
+    </select>
+    <select id="selectAll" resultType="com.oumae.model.Department">
+        select D_ID as d_id, D_NAME as d_name, D_NUM, D_DATE from T_DEPARTMENT
+    </select>
+    <select id="selectByName" resultType="com.oumae.model.Department">
+        select D_ID as d_id, D_NAME as d_name, D_NUM, D_DATE from T_DEPARTMENT WHERE D_NAME=#{d_name}
+    </select>
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.CheckInDao">
+    <insert id="insertCheckIn">
+        INSERT INTO T_CHECKIN
+        (C_ID, C_EID, C_EDID, C_EPID, C_TIME, C_STATE)
+        VALUES (CHECK_SQL.nextval,#{c_eid},#{c_edid},#{c_epid},#{c_time},#{c_state})
+    </insert>
+    <update id="updateCheckIn">
+        UPDATE T_CHECKIN SET
+        C_EID=#{c_eid}, C_EDID=#{c_edid}, C_EPID=#{c_epid}, C_TIME=#{c_time}, C_STATE=#{c_state}
+        WHERE C_ID=#{c_id}
+    </update>
+    <delete id="deleteCheckIn"></delete>
+    <select id="selectById" resultType="com.oumae.model.CheckIn">
+        SELECT c.*  FROM T_CHECKIN c WHERE C_ID=#{c_id}
+    </select>
+    <select id="selectByEid" resultType="com.oumae.model.CheckIn">
+        SELECT c.*  FROM T_CHECKIN c WHERE C_EID=#{c_eid}
+    </select>
+    <select id="selectToday" resultType="com.oumae.model.CheckIn">
+        SELECT c.*
+        FROM T_CHECKIN c
+        WHERE trunc(C_TIME) = trunc(sysdate)
+        AND C_STATE=#{c_state}
+        AND C_EID=#{c_eid}
+    </select>
+    <select id="selectMonth" resultType="com.oumae.model.CheckIn">
+        SELECT
+        c.*
+        FROM T_CHECKIN c
+        WHERE to_number(to_char(C_TIME,'MM'))=#{month}
+        AND C_STATE=#{c_state}
+        AND C_EID=#{c_eid}
+    </select>
+    <select id="selectByEidLimit" resultType="com.oumae.model.CheckIn">
+        SELECT g.* FROM
+        (SELECT rownum rn,c.* FROM T_CHECKIN c WHERE rownum &lt;= #{pageSize}) g
+        where g.rn &gt;=#{currentPage} AND C_EID=#{c_eid}
+    </select>
+</mapper>

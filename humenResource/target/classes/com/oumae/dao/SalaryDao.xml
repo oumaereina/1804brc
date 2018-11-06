@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.SalaryDao">
+    <insert id="insertSalary">
+      INSERT INTO T_SALARY (S_ID, S_SALARY, S_EID, S_TIME)
+      VALUES (SALARY_SQL.nextval,#{s_salary},#{s_eid},#{s_time})
+    </insert>
+    <select id="selectByEid" resultType="com.oumae.model.Salary">
+        SELECT s.*  FROM T_SALARY s WHERE
+        to_number(to_char(S_TIME,'MM')) = #{month}
+        AND S_EID=#{s_eid}
+    </select>
+    <select id="selectById" resultType="com.oumae.model.Salary">
+        SELECT s.*  FROM T_SALARY s WHERE S_ID=#{s_id}
+    </select>
+    <select id="selectByMonth" resultType="com.oumae.model.Salary">
+        SELECT s.*  FROM T_SALARY s WHERE
+        to_number(to_char(S_TIME,'MM')) = #{month}
+    </select>
+</mapper>

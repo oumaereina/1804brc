@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oumae.dao.VisitorDao">
+
+    <insert id="insertVisitor">
+        INSERT INTO T_VISITOR VALUES (VISITOR_SQL.nextval,#{v_name},#{v_pass},
+        <if test="v_eid!=null">
+            #{v_eid,jdbcType=NUMERIC}
+        </if>
+        )
+    </insert>
+    <select id="getVisitor" resultType="com.oumae.model.Visitor">
+        SELECT * FROM T_VISITOR WHERE V_NAME=#{v_name} AND V_PASS=#{v_pass}
+    </select>
+    <select id="getVisitorByName" resultType="com.oumae.model.Visitor">
+        SELECT * FROM T_VISITOR WHERE V_NAME=#{v_name}
+    </select>
+    <select id="getVisitorByVid" resultType="com.oumae.model.Visitor">
+        SELECT * FROM T_VISITOR WHERE V_ID=#{V_ID}
+    </select>
+</mapper>

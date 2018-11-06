@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oumae.dao.ReconsiderDao">
+    <insert id="insertReconsider">
+        INSERT INTO T_RECONSIDER
+        (RC_ID, RC_TIME, RC_EID, RC_STATE, RC_SALARYID)
+        VALUES (RECON_SQL.nextval,#{rc_time},#{rc_eid},#{rc_state},#{rc_salaryId})
+    </insert>
+    <update id="updateReconsider">
+        UPDATE T_RECONSIDER SET RC_STATE=#{rc_state} WHERE RC_ID=#{rc_id}
+    </update>
+    <select id="selectByMonth" resultType="com.oumae.model.Reconsider">
+        SELECT r.*  FROM T_RECONSIDER r
+        WHERE
+        to_number(to_char(RC_TIME,'MM')) = #{month}
+        AND RC_STATE =#{rc_state}
+    </select>
+    <select id="selectById" resultType="com.oumae.model.Reconsider">
+        SELECT r.*  FROM T_RECONSIDER r WHERE RC_ID=#{rc_id}
+    </select>
+    <select id="selectByMonthEid" resultType="com.oumae.model.Reconsider">
+        SELECT r.*  FROM T_RECONSIDER r WHERE
+        RC_EID=#{rc_eid} AND to_number(to_char(RC_TIME,'MM')) = #{month}
+    </select>
+</mapper>
